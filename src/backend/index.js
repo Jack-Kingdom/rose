@@ -5,19 +5,14 @@
 import express from 'express'
 import morgan from 'morgan'
 import config from './config'
-import graphqlRouter from './api/graphql'
-import staticRouter from './logic/router/static'
+import router from './logic/router'
 
 let app = express();
 
 // load logger
 app.use(morgan('short'));
 
-// load graphql
-app.use(graphqlRouter);
-
-// static file router
-app.use(staticRouter);
+app.use(router);
 
 // start app
 app.listen(config.port, () => {
