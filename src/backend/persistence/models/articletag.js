@@ -5,7 +5,6 @@ import Sequelize from 'sequelize'
 import database from '../database/index'
 
 let ArticleTag = database.define('ArticleTag', {
-
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -20,6 +19,8 @@ let ArticleTag = database.define('ArticleTag', {
     article_id: Sequelize.INTEGER,
     tag_id: Sequelize.INTEGER,
 
+}, {
+    timestamps: false,
 });
 
 export default ArticleTag;

@@ -18,8 +18,8 @@ let User = database.define('User', {
         defaultValue: Sequelize.UUIDV1,
     },
 
-    email:{
-        type:Sequelize.STRING,
+    email: {
+        type: Sequelize.STRING,
         unique: true,
     },
 
@@ -27,6 +27,8 @@ let User = database.define('User', {
 
     password: Sequelize.STRING,
 
+}, {
+    timestamps: false,
 });
 
 export default User;

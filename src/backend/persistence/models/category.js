@@ -21,6 +21,8 @@ let Category = database.define('Category', {
     // category name
     name: Sequelize.STRING,
 
+},{
+    timestamps:false
 });
 
 export default Category;

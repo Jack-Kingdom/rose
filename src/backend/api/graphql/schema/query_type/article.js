@@ -29,7 +29,6 @@ let ArticleType = new GraphQLObjectType({
             url: {type: GraphQLString},
             content: {type: GraphQLString},
             status: {type: GraphQLString},
-            language: {type: GraphQLString},
             meta_title: {type: GraphQLString},
             meta_description: {type: GraphQLString},
             created_at: {type: GraphQLString},

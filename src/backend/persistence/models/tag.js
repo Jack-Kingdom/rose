@@ -21,6 +21,8 @@ let Tag = database.define('Tag', {
     // current tag's name
     name: Sequelize.STRING,
 
+},{
+    timestamps:false
 });
 
 export default Tag;
