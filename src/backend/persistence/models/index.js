@@ -37,16 +37,21 @@ let models = {
     let articles = await models.Article.findAll();
 
     if (!(categories.length || tags.length || articles.length)) {
-        let initCategory = await models.Category.create({name: 'Uncategoried'});
-        let initTag = await models.Tag.create({name: 'Poem'});
-        let initArticle = await models.Article.create({
+        let firstCategory = await models.Category.create({name: 'Uncategoried'});
+        let firstTag = await models.Tag.create({name: 'Poem'});
+        let secondTag = await models.Tag.create({name: 'Thinking'});
+        let firstArticle = await models.Article.create({
             title: '一行小诗',
             url: 'a-little-poem',
             content: '爱你一万年',
             status: 'published',
             created_at: new Date().getTime(),
             comment_support: true,
-        })
+        });
+
+        firstArticle.setCategory(firstCategory);
+        firstArticle.addTag(firstTag);
+        firstArticle.addTag(secondTag);
     }
 
 })();

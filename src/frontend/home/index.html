@@ -4,35 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <% if(!htmlWebpackPlugin.options.debugMode) { %>
-    <!-- CSS dependency for production -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <% } %>
-
-    <% if(htmlWebpackPlugin.options.debugMode) { %>
-    <!-- CSS dependency for development -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <% } %>
 
 </head>
 <body>
 
 <div id="app"></div>
 
-<% if(!htmlWebpackPlugin.options.debugMode) { %>
-<!-- JS dependency for production -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
 <script src="https://unpkg.com/react-router-dom@4.0.0/umd/react-router-dom.min.js"></script>
-<% } %>
-
-
-<% if(htmlWebpackPlugin.options.debugMode) { %>
-<!-- JS dependency for development -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
-<script src="https://unpkg.com/react-router-dom@4.0.0/umd/react-router-dom.js"></script>
-<% } %>
 
 </body>
 </html>

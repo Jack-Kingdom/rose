@@ -40,4 +40,4 @@ class Sidebar extends React.Component {
     }
 }
 
-module.exports = Sidebar;
+export default Sidebar;

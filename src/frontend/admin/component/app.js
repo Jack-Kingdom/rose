@@ -3,11 +3,19 @@
  */
 
 import React from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom'
+import MediumDraftEditor from './editor/medium_editor'
 
 class App extends React.Component{
     render() {
-        return <p>Hello This is admin page</p>
+        return (
+            <BrowserRouter>
+                <div className="site-wrapper">
+                    <MediumDraftEditor/>
+                </div>
+            </BrowserRouter>
+        );
     }
 }
 
-module.exports = App;
+export default App;

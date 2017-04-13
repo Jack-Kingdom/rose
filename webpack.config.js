@@ -45,16 +45,14 @@ module.exports = {
             template: 'src/frontend/home/index.html',
             chunks: ['home'],
             filename:'home.html',
-            debug:config.debug,
         }),
         // admin page
         new HtmlWebpackPlugin({
             template: 'src/frontend/admin/index.html',
             chunks: ['admin'],
             filename: 'admin.html',
-            debug:config.debug,
         }),
         // minimize and compress javascript
-        new UglifyJSPlugin()
+        // new UglifyJSPlugin()
     ]
 };
