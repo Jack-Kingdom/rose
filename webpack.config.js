@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const config = require('./src/backend/config');
@@ -24,6 +25,21 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            },
+            {
+                test:  /\.less$/,
+                // loader:  "style-loader!css-loader!less-loader"
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: "css-loader!less-loader",
+                })
+            },
+            {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=8192&name=img/[hash:8].[name].[ext]'
             },
@@ -38,6 +54,7 @@ module.exports = {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'react-router-dom':'ReactRouterDOM',
+        'medium-editor':'MediumEditor',
     },
     plugins: [
         // home page
@@ -52,6 +69,10 @@ module.exports = {
             chunks: ['admin'],
             filename: 'admin.html',
         }),
+
+        // combine css file
+        new ExtractTextPlugin("css/[name].css"),
+
         // minimize and compress javascript
         // new UglifyJSPlugin()
     ]

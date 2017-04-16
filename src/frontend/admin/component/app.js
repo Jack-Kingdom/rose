@@ -4,14 +4,14 @@
 
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom'
-import MediumDraftEditor from './editor/medium_editor'
+import MyEditor from './editor'
 
 class App extends React.Component{
     render() {
         return (
             <BrowserRouter>
-                <div className="site-wrapper">
-                    <MediumDraftEditor/>
+                <div className="site-wrapper" style={require('./app.less')}>
+                    <MyEditor/>
                 </div>
             </BrowserRouter>
         );

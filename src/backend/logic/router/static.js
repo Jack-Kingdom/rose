@@ -21,6 +21,9 @@ staticRouter.get('/admin', (req, res) => {
 // js file
 staticRouter.use('/js', express.static(path.join(config.appRoot, 'build/frontend/js')));
 
+// css file
+staticRouter.use('/css', express.static(path.join(config.appRoot, 'build/frontend/css')));
+
 // img file
 staticRouter.use('/img', express.static(path.join(config.appRoot, 'build/frontend/img')));
 
