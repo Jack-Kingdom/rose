@@ -4,7 +4,8 @@
 
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom'
-import Sidebar from './sidebar/sidebar'
+import Home from './home'
+import Admin from './admin'
 
 class App extends React.Component {
 
@@ -20,7 +21,8 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div className="site-wrapper">
-                    <Sidebar/>
+                    <Route exact path="/" component={ Home }/>
+                    <Route exact path="/admin" component={ Admin }/>
                 </div>
             </BrowserRouter>
         );

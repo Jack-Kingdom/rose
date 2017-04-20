@@ -11,8 +11,7 @@ const path = require('path');
 const config = require('./src/backend/config');
 module.exports = {
     entry: {
-        home: './src/frontend/home/entry.js',
-        admin: './src/frontend/admin/entry.js'
+        home: './src/frontend/entry.js',
     },
     output: {
         path: path.join(__dirname, 'build/frontend'),
@@ -59,15 +58,8 @@ module.exports = {
     plugins: [
         // home page
         new HtmlWebpackPlugin({
-            template: 'src/frontend/home/index.html',
-            chunks: ['home'],
-            filename:'home.html',
-        }),
-        // admin page
-        new HtmlWebpackPlugin({
-            template: 'src/frontend/admin/index.html',
-            chunks: ['admin'],
-            filename: 'admin.html',
+            template: 'src/frontend/index.html',
+            filename:'index.html',
         }),
 
         // combine css file

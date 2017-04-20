@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 
 class Sidebar extends React.Component {
 
@@ -33,6 +33,7 @@ class Sidebar extends React.Component {
                     <li><Link to="/Archives">Archives</Link></li>
                     <li><Link to="/Search">Search</Link></li>
                     <li><Link to="/About">About</Link></li>
+                    <li><Link to="/admin">Admin</Link></li>
                 </ul>
 
             </div>

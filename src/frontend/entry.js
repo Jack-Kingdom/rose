@@ -4,9 +4,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './component/app'
+import App from './application'
+
 
 ReactDOM.render(
     <App/>,
-    document.getElementById('target')
+    document.getElementById('app')
 );
