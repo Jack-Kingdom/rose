@@ -16,9 +16,11 @@ import {
 } from 'graphql';
 
 import QueryType from './query_type'
+import MutationType from './mutiation_type'
 
 let schema = new GraphQLSchema({
     query: QueryType,
+    mutation: MutationType,
 });
 
 export default schema;

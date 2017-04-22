@@ -2,7 +2,7 @@
   "name": "ownblog",
   "version": "0.0.1",
   "description": "my own blog app",
-  "main": "index.js",
+  "main": "src/backend/index.js",
   "scripts": {
     "start": "nodemon src/backend/index.js --exec \"babel-node\"",
     "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",

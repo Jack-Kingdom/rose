@@ -14,24 +14,23 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import ArticleType from './article'
+import ArticleQueryType from './article'
 
-let CategoryType = new GraphQLObjectType({
+let CategoryQueryType = new GraphQLObjectType({
     name: 'Category',
     description: 'Category Info',
     fields: () => {
         return {
             id: {type: GraphQLInt},
-            uuid: {type: GraphQLString},
             name: {type: GraphQLString},
 
             //articles of current category
             articles: {
-                type: new GraphQLList(ArticleType),
+                type: new GraphQLList(ArticleQueryType),
                 resolve: (root, args) => root.getArticles()
             }
         }
     }
 });
 
-export default CategoryType;
+export default CategoryQueryType;

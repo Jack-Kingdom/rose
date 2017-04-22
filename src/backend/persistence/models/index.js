@@ -15,5 +15,4 @@ const models = {
     Account: AccountModel,
 };
 
-
 export default models;

@@ -14,10 +14,10 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 
-import ArticleType from './article'
-import CategoryType from './category'
-import TagType from './tag'
-import models from '../../../../persistence/models'
+import ArticleQueryType from './article'
+import CategoryQueryType from './category'
+import TagQueryType from './tag'
+import models from '../../../../persistence/models';
 
 
 let QueryType = new GraphQLObjectType({
@@ -26,7 +26,7 @@ let QueryType = new GraphQLObjectType({
     fields: () => {
         return {
             categories: {
-                type: new GraphQLList(CategoryType),
+                type: new GraphQLList(CategoryQueryType),
                 args: {
                     limit: {
                         type: GraphQLInt,
@@ -43,7 +43,7 @@ let QueryType = new GraphQLObjectType({
             },
 
             tags: {
-                type: new GraphQLList(TagType),
+                type: new GraphQLList(TagQueryType),
                 args: {
                     limit: {
                         type: GraphQLInt,
@@ -60,7 +60,7 @@ let QueryType = new GraphQLObjectType({
             },
 
             articles: {
-                type: new GraphQLList(ArticleType),
+                type: new GraphQLList(ArticleQueryType),
                 args: {
                     limit: {
                         type: GraphQLInt,
@@ -69,7 +69,7 @@ let QueryType = new GraphQLObjectType({
                         type: GraphQLString,
                     }
                 },
-                resolve: (root, args) => models.Article.findAll({
+                resolve: (root, args) => models.Article.find({
                     where: {},
                     limit: args.limit,
                     orderBy: args.orderBy,
@@ -77,7 +77,7 @@ let QueryType = new GraphQLObjectType({
             },
 
             category: {
-                type: CategoryType,
+                type: CategoryQueryType,
                 args: {
                     id: {
                         type: new GraphQLNonNull(GraphQLID),
@@ -87,7 +87,7 @@ let QueryType = new GraphQLObjectType({
             },
 
             tag: {
-                type: TagType,
+                type: TagQueryType,
                 args: {
                     id: {
                         type: new GraphQLNonNull(GraphQLID),
@@ -96,7 +96,7 @@ let QueryType = new GraphQLObjectType({
                 resolve: (root, args) => models.Tag.find({where: {id: args.id}})
             },
             article: {
-                type: ArticleType,
+                type: ArticleQueryType,
                 args: {
                     id: {
                         type: new GraphQLNonNull(GraphQLID),

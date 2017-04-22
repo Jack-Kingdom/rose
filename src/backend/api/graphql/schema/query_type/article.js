@@ -15,39 +15,36 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 
-import CategoryType from './category'
-import TagType from './tag'
+import CategoryQueryType from './category'
+import TagQueryType from './tag'
 
-let ArticleType = new GraphQLObjectType({
+let ArticleQueryType = new GraphQLObjectType({
     name: 'Article',
     description: 'Article type',
     fields: () => {
         return {
             id: {type: GraphQLID},
-            uuid: {type: GraphQLString},
             title: {type: GraphQLString},
-            url: {type: GraphQLString},
+            slug: {type: GraphQLString},
             content: {type: GraphQLString},
             status: {type: GraphQLString},
-            meta_title: {type: GraphQLString},
-            meta_description: {type: GraphQLString},
-            created_at: {type: GraphQLString},
-            updated_at: {type: GraphQLString},
-            comment_support:{type:GraphQLBoolean},
+            createdAt: {type: GraphQLString},
+            updatedAt: {type: GraphQLString},
+            allowComments: {type: GraphQLBoolean},
 
             // query_type current article's category
             category: {
-                type: CategoryType,
+                type: CategoryQueryType,
                 resolve: (root, args) => root.getCategory()
             },
 
             // query_type current article's all tags
             tags: {
-                type: new GraphQLList(TagType),
+                type: new GraphQLList(TagQueryType),
                 resolve: (root, args) => root.getTags()
             }
         }
     }
 });
 
-export default ArticleType;
+export default ArticleQueryType;
