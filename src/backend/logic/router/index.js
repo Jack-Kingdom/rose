@@ -9,8 +9,9 @@ import graphqlRouter from './graphql'
 
 let router = express.Router();
 
-router.use(staticRouter);
-
 router.use(graphqlRouter);
+
+// make sure this route is at last
+router.use(staticRouter);
 
 export default router;

@@ -4,13 +4,17 @@
 
 import React from 'react';
 import MediumEditor from 'medium-editor'
+import Radium from 'radium'
+import styles from '../../styles'
 
+@Radium
 class Editor extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            text: 'Fusce dapibus, tellus ac cursus commodo',
+            title: props.title || "Article's title here",
+            content: props.content || "Article's content here",
         };
     }
 
@@ -20,7 +24,11 @@ class Editor extends React.Component {
 
     render() {
         return (
-            <div ref="editor" />
+            <div className="editor-container">
+                <input id="article-title" style={[styles.editor.base, styles.editor.title]}/>
+                <div ref="editor" id="article-content"
+                     style={[styles.editor.base, styles.editor.content]}>{this.state.content}</div>
+            </div>
         );
     }
 }

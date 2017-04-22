@@ -51,8 +51,6 @@ let Article = database.define('Article', {
 
         // article support comment function or not
         comment_support: Sequelize.BOOLEAN,
-
-
     },
     {
         timestamps:false,
