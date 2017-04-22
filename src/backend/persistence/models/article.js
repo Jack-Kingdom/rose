@@ -2,58 +2,41 @@
  * Created by Jack on 12/18/16.
  */
 
-import Sequelize from 'sequelize'
-import database from '../database/index'
+import mongoose from 'mongoose'
+import dbConnection from '../database'
 
-let Article = database.define('Article', {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-
-        uuid: {
-            type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV1,
-        },
-
-        title: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            unique: true,
-        },
-
-        // current article's url
-        url: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            unique: true,
-        },
-
-        // foreign key for Category id
-        category: Sequelize.INTEGER,
-
-        // parsed html content
-        content: Sequelize.TEXT,
-
-        // article status：published、draft、deleted
-        status: Sequelize.ENUM('published', 'draft', 'deleted'),
-
-        // SEO
-        meta_title: Sequelize.STRING,
-        meta_description: Sequelize.STRING,
-
-
-        // store timestamp with bigint
-        created_at: Sequelize.BIGINT,
-        updated_at: Sequelize.BIGINT,
-
-
-        // article support comment function or not
-        comment_support: Sequelize.BOOLEAN,
+const ArticleSchema = mongoose.Schema({
+    title: {
+        type: String,
     },
-    {
-        timestamps:false,
-    });
+    slug: {
+        type: String,
+    },
+    content: {
+        type: String,
+    },
+    categoryId: {
+        type: mongoose.Schema.ObjectId,
+    },
+    tagIds: {
+        type: Array,
+    },
+    status: {
+        type: String,
+        enumValues: ['published', 'draft', 'deleted']
+    },
+    createdAt: {
+        type: Date,
+        defaultValue: new Date(),
+    },
+    updatedAt: {
+        type: Date,
+    },
+    allowComments: {
+        type: Boolean,
+    }
+});
 
-export default Article;
+const ArticleModel = dbConnection.model('Article', ArticleSchema);
+
+export default ArticleModel;

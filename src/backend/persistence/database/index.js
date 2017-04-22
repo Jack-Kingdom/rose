@@ -3,10 +3,13 @@
  */
 
 import Sequelize from 'sequelize'
+import mongoose from 'mongoose'
+import bluebird from 'bluebird'
 import config from '../../config'
 
-let db_config = config.database;
+// plug in bluebird as promise manager to sweep warning
+mongoose.Promise = bluebird;
 
-let database = new Sequelize(db_config.database, db_config.username, db_config.password, db_config.options);
+let dbConnection = mongoose.createConnection(config.mongodbUrl);
 
-export default database;
+export default dbConnection;

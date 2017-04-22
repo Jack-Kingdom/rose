@@ -5,6 +5,7 @@
 import React from 'react';
 import MediumEditor from 'medium-editor'
 import Radium from 'radium'
+// import Katex from 'katex'
 import styles from '../../styles'
 
 @Radium
@@ -25,7 +26,7 @@ class Editor extends React.Component {
     render() {
         return (
             <div className="editor-container">
-                <input id="article-title" style={[styles.editor.base, styles.editor.title]}/>
+                <input id="article-title" style={[styles.editor.base, styles.editor.title]} value={this.state.title}/>
                 <div ref="editor" id="article-content"
                      style={[styles.editor.base, styles.editor.content]}>{this.state.content}</div>
             </div>

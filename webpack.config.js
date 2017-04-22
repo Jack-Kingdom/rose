@@ -54,6 +54,8 @@ module.exports = {
         'react-dom': 'ReactDOM',
         'react-router-dom':'ReactRouterDOM',
         'medium-editor':'MediumEditor',
+        'radium': 'Radium',
+        'katex': 'Katex',
     },
     plugins: [
         // home page
@@ -66,6 +68,6 @@ module.exports = {
         new ExtractTextPlugin("css/[name].css"),
 
         // minimize and compress javascript
-        // new UglifyJSPlugin()
+        new UglifyJSPlugin()
     ]
 };

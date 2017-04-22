@@ -2,27 +2,15 @@
  * Created by Jack on 12/18/16.
  */
 
-import Sequelize from 'sequelize'
-import database from '../database/index'
+import mongoose from 'mongoose'
+import dbConnection from '../database'
 
-let Tag = database.define('Tag', {
-
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-
-    uuid: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV1,
-    },
-
-    // current tag's name
-    name: Sequelize.STRING,
-
-},{
-    timestamps:false
+const TagSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    }
 });
 
-export default Tag;
+const TagModel = dbConnection.model('Tag', TagSchema);
+export default TagModel;

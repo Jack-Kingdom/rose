@@ -5,25 +5,26 @@
 let styles = {
     editor: {
         base: {
-            margin: 'auto',
-            width: '61.8%',
+            fontSize: '22px',
 
             outlineColor: 'initial',
             outlineStyle: 'none',
             outlineWidth: 'initial',
-
-            fontSize: '22px',
         },
         title: {
-            border: 'none',
             width: '100%',
 
             textAlign: 'center',
             fontSize: '1.7em',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+
+            border: 'none',
+            borderBottom: '1px solid #dbdbdb'
 
         },
         content: {
+            margin: 'auto',
+            width: '61.8%',
 
             lineHeight: '30px',
         }

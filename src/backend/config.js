@@ -14,29 +14,14 @@ let productionConfig = {
     // app's base dir
     appRoot: path.join(__dirname, '../..'),
 
-    database: {
-        username: 'root',
-        password: 'qiaohong',
-        database: "rose",
+    // session's secret string, modified it in production environment
+    session_secret: 'secret string',
 
-        option: {
-            host: 'localhost',
-            dialect: "mysql",
-
-            pool: {
-                max: 5,
-                min: 0,
-                idle: 10000
-            },
-
-            logging: false,
-            freezeTableName: true,
-        }
-    },
+    mongodbUrl: 'mongodb://localhost:27017/Rose',
 };
 
 let developmentConfig = {
-    // modified it to false on development environment
+    // modified it to false on development environmente
     debug: true,
 
     // listening port
@@ -45,27 +30,12 @@ let developmentConfig = {
     // app's base dir
     appRoot: path.join(__dirname, '../..'),
 
+    // session's secret string, modified it in production environment
+    session_secret: 'secret string',
+
     // database config
-    database: {
-        username: 'root',
-        password: 'qiaohong',
-        database: "rose",
+    mongodbUrl: 'mongodb://localhost:27017/Rose',
 
-        options: {
-            host: 'localhost',
-            dialect: "mysql",
-
-            pool: {
-                max: 5,
-                min: 0,
-                idle: 10000
-            },
-
-            logging: true,
-            benchmark:true,
-            freezeTableName: true,
-        }
-    },
 };
 
 let config = null;
