@@ -28,81 +28,52 @@ let QueryType = new GraphQLObjectType({
             categories: {
                 type: new GraphQLList(CategoryQueryType),
                 args: {
-                    limit: {
-                        type: GraphQLInt,
-                    },
-                    orderBy: {
-                        type: GraphQLString,
-                    }
+                    limit: {type: GraphQLInt,},
+                    sort: {type: GraphQLString,}
                 },
-                resolve: (root, args) => models.Category.findAll({
-                    where: {},
-                    limit: args.limit,
-                    orderBy: args.orderBy,
-                })
+                resolve: (root, args) => models.Category.find().limit(args.limit).sort(args.sort)
             },
 
             tags: {
                 type: new GraphQLList(TagQueryType),
                 args: {
-                    limit: {
-                        type: GraphQLInt,
-                    },
-                    orderBy: {
-                        type: GraphQLString,
-                    }
+                    limit: {type: GraphQLInt,},
+                    sort: {type: GraphQLString,}
                 },
-                resolve: (root, args) => models.Tag.findAll({
-                    where: {},
-                    limit: args.limit,
-                    orderBy: args.orderBy,
-                })
+                resolve: (root, args) => models.Tag.find().limit(args.limit).sort(args.sort)
             },
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: {
-                    limit: {
-                        type: GraphQLInt,
-                    },
-                    orderBy: {
-                        type: GraphQLString,
-                    }
+                    limit: {type: GraphQLInt,},
+                    sort: {type: GraphQLString,}
                 },
-                resolve: (root, args) => models.Article.find({
-                    where: {},
-                    limit: args.limit,
-                    orderBy: args.orderBy,
-                })
+                resolve: (root, args) => models.Article.find().limit(args.limit).sort(args.sort)
             },
 
             category: {
                 type: CategoryQueryType,
                 args: {
-                    id: {
-                        type: new GraphQLNonNull(GraphQLID),
-                    }
+                    id: {type: new GraphQLNonNull(GraphQLID),}
                 },
-                resolve: (root, args) => models.Category.find({where: {id: args.id}})
+                resolve: (root, args) => models.Category.findOne({_id: args.id})
             },
 
             tag: {
                 type: TagQueryType,
                 args: {
-                    id: {
-                        type: new GraphQLNonNull(GraphQLID),
-                    }
+                    id: {type: new GraphQLNonNull(GraphQLID),}
                 },
-                resolve: (root, args) => models.Tag.find({where: {id: args.id}})
+                resolve: (root, args) => models.Tag.findOne({_id: args.id})
             },
+
             article: {
                 type: ArticleQueryType,
                 args: {
-                    id: {
-                        type: new GraphQLNonNull(GraphQLID),
-                    }
+                    id: {type: new GraphQLNonNull(GraphQLID),}
                 },
-                resolve: (root, args) => models.Article.find({where: {id: args.id}})
+                resolve: (root, args) => models.Article.findOne({_id: args.id})
             }
         }
     }

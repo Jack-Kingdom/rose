@@ -16,29 +16,26 @@ import {
 } from 'graphql';
 
 import models from '../../../../persistence/models'
+import MutationResponseType from './response'
 
 const TagMutationType = new GraphQLObjectType({
     name: 'TagMutationType',
     fields: () => {
         return {
             addTag: {
-                type: GraphQLString,
+                type: MutationResponseType,
                 args: {
                     name: {
                         type: new GraphQLNonNull(GraphQLString),
                     }
                 },
                 resolve: async (root, args) => {
-                    let newTag = null;
-                    try {
-                        newTag = new models.Tag({
-                            name: args.name,
-                        });
-                        await newTag.save();
-                    } catch (error) {
-                        return error.message;
-                    }
-                    return 'success';
+                    let newTag = new models.Tag({name: args.name,});
+                    await newTag.save();
+                    return {
+                        success: true,
+                        message: null,
+                    };
                 }
             }
         }
