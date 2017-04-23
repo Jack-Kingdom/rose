@@ -27,6 +27,10 @@ let TagQueryType = new GraphQLObjectType({
             //articles of current category
             articles: {
                 type: new GraphQLList(ArticleQueryType),
+                args: {
+                    limit: {type: GraphQLInt,},
+                    sort: {type: GraphQLString,}
+                },
                 resolve: (root, args) => root.getArticles()
             }
         }
