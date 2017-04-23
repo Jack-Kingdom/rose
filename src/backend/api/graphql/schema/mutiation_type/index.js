@@ -20,8 +20,9 @@ const MutationType = new GraphQLObjectType({
     name: 'MutationType',
     description: 'root MutationType',
     fields: () => {
-        "use strict";
-
+        let merged = {};
+        // todo
+        return TagMutationType
     }
 });
 
