@@ -21,7 +21,8 @@ import MutationResponseType from './response'
 // todo Permission check
 
 const TagMutationType = new GraphQLObjectType({
-    name: 'ArticleMutationType',
+    name: 'TagMutationType',
+    description: "Tag's mutation method",
     fields: {
         createTag: {
             type: MutationResponseType,

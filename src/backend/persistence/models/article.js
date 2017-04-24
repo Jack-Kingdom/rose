@@ -11,6 +11,7 @@ const ArticleSchema = mongoose.Schema({
     },
     slug: {
         type: String,
+        required: true,
     },
     content: {
         type: String,
@@ -19,11 +20,12 @@ const ArticleSchema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
     },
     tagIds: {
-        type: Array,
+        type: [{type: mongoose.Schema.ObjectId}],
     },
     status: {
         type: String,
-        enumValues: ['published', 'draft', 'deleted']
+        enumValues: ['published', 'draft', 'deleted'],
+        defaultValue: 'draft'
     },
     createdAt: {
         type: Date,
@@ -34,6 +36,7 @@ const ArticleSchema = mongoose.Schema({
     },
     allowComments: {
         type: Boolean,
+        defaultValue: true,
     }
 });
 

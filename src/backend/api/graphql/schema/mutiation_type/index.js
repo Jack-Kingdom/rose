@@ -20,8 +20,8 @@ const MutationType = new GraphQLObjectType({
     name: 'MutationType',
     description: 'root MutationType',
     fields: () => {
-        // todo
-        return {}.push(TagMutationType).push()
+
+        return Object.assign({}, TagMutationType.fields)
     }
 });
 
