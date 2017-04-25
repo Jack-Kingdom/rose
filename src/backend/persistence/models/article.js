@@ -12,6 +12,7 @@ const ArticleSchema = mongoose.Schema({
     slug: {
         type: String,
         required: true,
+        unique:true,
     },
     content: {
         type: String,
