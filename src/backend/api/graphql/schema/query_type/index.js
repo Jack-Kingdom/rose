@@ -27,53 +27,47 @@ let QueryType = new GraphQLObjectType({
         return {
             categories: {
                 type: new GraphQLList(CategoryQueryType),
-                args: {
-                    limit: {type: GraphQLInt,},
-                    sort: {type: GraphQLString,}
-                },
-                resolve: (root, args) => models.Category.find().limit(args.limit).sort(args.sort)
+                args: require('../types/order-limit'),
+                resolve: async (root, args) => {
+                    let categories = await models.Category.sort(args.sort,args.order).limit(args.limit).find();
+                    return categories.map(tag => tag.get());
+                }
             },
 
             tags: {
                 type: new GraphQLList(TagQueryType),
-                args: {
-                    limit: {type: GraphQLInt,},
-                    sort: {type: GraphQLString,}
-                },
-                resolve: (root, args) => models.Tag.find().limit(args.limit).sort(args.sort)
+                args: require('../types/order-limit'),
+                resolve: async (root, args) => {
+                    let tags = await models.Tag.sort(args.sort,args.order).limit(args.limit).find();
+                    return tags.map(tag => tag.get());
+                }
             },
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
-                args: {
-                    limit: {type: GraphQLInt,},
-                    sort: {type: GraphQLString,}
-                },
-                resolve: (root, args) => models.Article.find().limit(args.limit).sort(args.sort)
+                args: require('../types/order-limit'),
+                resolve: async (root, args) => {
+                    let articles = await models.Article.sort(args.sort,args.order).limit(args.limit).find();
+                    return articles.map(tag => tag.get());
+                }
             },
 
             category: {
                 type: CategoryQueryType,
-                args: {
-                    id: {type: new GraphQLNonNull(GraphQLID),}
-                },
-                resolve: (root, args) => models.Category.findOne({_id: args.id})
+                args: require('../types/id'),
+                resolve: (root, args) => models.Category.findOne(args)
             },
 
             tag: {
                 type: TagQueryType,
-                args: {
-                    id: {type: new GraphQLNonNull(GraphQLID),}
-                },
-                resolve: (root, args) => models.Tag.findOne({_id: args.id})
+                args: require('../types/id'),
+                resolve: (root, args) => models.Tag.findOne({args})
             },
 
             article: {
                 type: ArticleQueryType,
-                args: {
-                    id: {type: new GraphQLNonNull(GraphQLID),}
-                },
-                resolve: (root, args) => models.Article.findOne({_id: args.id})
+                args: require('../types/id'),
+                resolve: (root, args) => models.Article.findOne({args})
             }
         }
     }

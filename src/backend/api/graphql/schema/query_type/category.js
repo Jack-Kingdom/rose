@@ -21,7 +21,7 @@ let CategoryQueryType = new GraphQLObjectType({
     description: 'Category Info',
     fields: () => {
         return {
-            id: {type: GraphQLInt},
+            _id: {type: GraphQLInt},
             name: {type: GraphQLString},
 
             //articles of current category todo

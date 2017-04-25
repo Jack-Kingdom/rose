@@ -23,7 +23,7 @@ let ArticleQueryType = new GraphQLObjectType({
     description: 'Article type',
     fields: () => {
         return {
-            id: {type: GraphQLID},
+            _id: {type: GraphQLID},
             title: {type: GraphQLString},
             slug: {type: GraphQLString},
             content: {type: GraphQLString},

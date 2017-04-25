@@ -21,8 +21,9 @@ let TagQueryType = new GraphQLObjectType({
     description: 'Tag Info',
     fields: () => {
         return {
-            id: {type: GraphQLID},
+            _id: {type: GraphQLID},
             name: {type: GraphQLString},
+            created_at:{type:GraphQLString},
 
             //articles of current category todo
             articles: {

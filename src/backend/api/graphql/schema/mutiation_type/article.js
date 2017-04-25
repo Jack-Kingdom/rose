@@ -1,5 +1,5 @@
 /**
- * Created by Jack on 4/22/2017.
+ * Created by Jack on 4/25/2017.
  */
 
 import {
@@ -14,98 +14,57 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-
 import models from '../../../../persistence/models'
-import MutationResponseType from './response'
 
-// todo Permission check
+module.exports = {
 
-// todo notice here, modified very mass
-
-const ArticleMutationType = new GraphQLObjectType({
-    name: 'ArticleMutationType',
-    fields: {
-        createArticle: {
-            type: MutationResponseType,
-            args: {
-                name: {type: new GraphQLNonNull(GraphQLString),}
-            },
-            resolve: async (root, args) => {
-                let category = null;
-                try {
-                    category = new models.Article({name: args.name,});
-                } catch (error) {
-                    return {
-                        success: false,
-                        message: error.message,
-                    }
-                }
-
-                // success return
-                category.save();
-                return {
-                    success: true,
-                    message: category._id,
-                };
-            }
+    createArticle: {
+        type: GraphQLID,
+        args: {
+            title: {type: new GraphQLNonNull(GraphQLString)},
+            slug: {type: new GraphQLNonNull(GraphQLString)},
+            content: {type: GraphQLString},
+            status: {type: GraphQLString},
+            createdAt: {type: GraphQLString},
+            updatedAt: {type: GraphQLString},
+            allowComments: {type: GraphQLBoolean},
         },
-        updateArticle: {
-            type: MutationResponseType,
-            args: {
-                id: {type: new GraphQLNonNull(GraphQLID),},
-                name: {type: new GraphQLNonNull(GraphQLString),}
-            },
-            resolve: async (root, args) => {
-                let category = null;
-                try {
-                    // catch error, cannot convert args.id to ObjectID
-                    category = await models.Category.findOne({_id: args.id});
-                    // catch error, tag not found
-                    if (!category) throw Error('Tag not Found');
-                } catch (error) {
-                    return {
-                        success: false,
-                        message: error.message,
-                    }
-                }
-                // success found, update data
-                category.name = args.name;
-                category.increment();    // increment version
-                category.save(); // update async
-                return {
-                    success: true,
-                    message: args.id,
-                }
-            }
-        },
-        deleteArticle: {
-            type: MutationResponseType,
-            args: {
-                id: {type: new GraphQLNonNull(GraphQLID),},
-            },
-            resolve: async (root, args) => {
-                let category = null;
-                try {
-                    // catch error, cannot convert args.id to ObjectID
-                    category = await models.Category.findOne({_id: args.id});
-                    // catch error, tag not found
-                    if (!category) throw Error('Tag not Found');
-                } catch (error) {
-                    return {
-                        success: false,
-                        message: error.message,
-                    }
-                }
+        resolve: async (root, args) => {
+            let article = new models.Article(args);
+            await article.save();
+            return article.id;
+        }
+    },
 
-                // success found, remove it
-                category.remove(); // update async
-                return {
-                    success: true,
-                    message: args.id,
-                }
-            }
+    updateArticle: {
+        type: GraphQLID,
+        args: {
+            _id: {type: new GraphQLNonNull(GraphQLID),},
+            title: {type: GraphQLString},
+            slug: {type: GraphQLString},
+            content: {type: GraphQLString},
+            status: {type: GraphQLString},
+            createdAt: {type: GraphQLString},
+            updatedAt: {type: GraphQLString},
+            allowComments: {type: GraphQLBoolean},
+        },
+        resolve: async (root, args) => {
+            let article = await models.Article.findOne({_id: args._id});
+            if (!article) throw Error('Article not Found');
+            article.set(args);
+            // todo: mongoose problem, no check here
+            await article.save();
+            return article.get('_id').toString();
+        }
+    },
+
+    deleteArticle:{
+        type:GraphQLID,
+        args:require('../types/id'),
+        resolve: async (root, args) => {
+            let article = await models.Article.findOne({_id: args.id});
+            await article.remove();
+            return article.id;
         }
     }
-});
-
-export default ArticleMutationType;
+};
