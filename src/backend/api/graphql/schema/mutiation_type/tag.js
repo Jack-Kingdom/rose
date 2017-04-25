@@ -34,7 +34,7 @@ module.exports = {
             if (!tag) throw Error('Tag not Found');
             tag.set('name',tag.name);
             await tag.save();
-            return tag.id;
+            return tag.get('_id').toString();
         }
     },
     // todo: remove article's tag id
@@ -42,13 +42,10 @@ module.exports = {
         type: GraphQLString,
         args:require('../types/id'),
         resolve: async (root, args) => {
-            // catch error, cannot convert args.id to ObjectID
             let tag = await models.Tag.findOne({_id: args.id});
-            // catch error, tag not found
             if (!tag) throw Error('Tag not Found');
-
-            tag.remove(); // update async
-            return tag.id;
+            await tag.remove();
+            return tag.get('_id').toString();
         }
     },
 };

@@ -34,7 +34,7 @@ module.exports = {
             if (!category) throw Error('category not Found');
             category.set('name',args.name);
             await category.save();
-            return 'success'
+            return category.get('_id').toString();
         }
     },
     // todo: remove article's category id
@@ -48,7 +48,7 @@ module.exports = {
             if (!category) throw Error('category not Found');
 
             category.remove(); // update async
-            return 'success'
+            return category.get('_id').toString();
         }
     },
 };
