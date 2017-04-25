@@ -2,19 +2,10 @@
  * Created by Jack on 12/18/16.
  */
 
-import mongoose from 'mongoose'
-import dbConnection from '../database'
+import mongorito from 'mongorito'
 
-const AccountSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    }
-});
+class Account extends mongorito.Model{
 
-const AccountModel = dbConnection.model('Account', AccountSchema);
-export default AccountModel;
+}
+
+module.exports = Account;

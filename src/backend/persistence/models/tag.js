@@ -2,16 +2,10 @@
  * Created by Jack on 12/18/16.
  */
 
-import mongoose from 'mongoose'
-import dbConnection from '../database'
+import mongorito from 'mongorito'
 
-const TagSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true,
-    }
-});
+class Tag extends mongorito.Model{
 
-const TagModel = dbConnection.model('Tag', TagSchema);
-export default TagModel;
+}
+
+module.exports = Tag;

@@ -2,16 +2,10 @@
  * Created by Jack on 3/16/17.
  */
 
-import mongoose from 'mongoose'
-import dbConnection from '../database'
+import mongorito from 'mongorito'
 
-const CategorySchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true,
-    }
-});
+class Category extends mongorito.Model{
 
-const CategoryModel = dbConnection.model('Category', CategorySchema);
-export default CategoryModel;
+}
+
+module.exports = Category;
