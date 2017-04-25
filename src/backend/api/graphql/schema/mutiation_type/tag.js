@@ -103,6 +103,22 @@ const TagMutationType = new GraphQLObjectType({
                     message: args.id,
                 }
             }
+        },
+        test:{
+            type:MutationResponseType,
+            args:{
+                arg:{type:GraphQLString},
+            },
+            resolve:(root,args)=>{
+                console.log(args.arg);
+                let input = JSON.parse(args.arg);
+                console.log(input);
+                console.log(input['hello']);
+                return{
+                    success:true,
+                    message:args.arg,
+                }
+            }
         }
     }
 });

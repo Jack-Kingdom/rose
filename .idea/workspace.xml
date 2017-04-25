@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f0e66ed-5933-449f-82de-bbcfe0e01905" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/index.js" afterPath="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js" afterPath="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backend/persistence/models/article.js" afterPath="$PROJECT_DIR$/src/backend/persistence/models/article.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tag.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tag.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+            <state relative-caret-position="270">
+              <caret line="111" column="34" lean-forward="true" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
               <folding>
                 <element signature="e#530#1227#0" expanded="false" />
                 <element signature="e#1248#2313#0" expanded="false" />
@@ -86,17 +83,17 @@
               <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
               <folding>
                 <element signature="e#42#251#0" expanded="true" />
-                <marker date="1493026715000" expanded="true" signature="332:410" ph="{&quot;name&quot;: 'MutationType'...}" />
+                <marker date="1493027131000" expanded="true" signature="332:410" ph="{&quot;name&quot;: 'MutationType'...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="article.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="article.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend/persistence/models/article.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="315">
+              <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -186,10 +183,10 @@
         <option value="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/category.js" />
         <option value="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/article.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js" />
         <option value="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/index.js" />
         <option value="$PROJECT_DIR$/src/backend/persistence/models/category.js" />
         <option value="$PROJECT_DIR$/src/backend/persistence/models/article.js" />
+        <option value="$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js" />
       </list>
     </option>
   </component>
@@ -742,7 +739,7 @@
       <workItem from="1492694535204" duration="47180000" />
       <workItem from="1492935720753" duration="4150000" />
       <workItem from="1492967541612" duration="557000" />
-      <workItem from="1493023247838" duration="2001000" />
+      <workItem from="1493023247838" duration="3464000" />
     </task>
     <task id="LOCAL-00001" summary="restructure code and complete editor demo">
       <created>1492702214851</created>
@@ -793,11 +790,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492938838709</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update models">
+      <created>1493027131927</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1493027131927</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53941000" />
+    <option name="totallyTimeSpent" value="55404000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -883,7 +887,8 @@
     <MESSAGE value="add MutationResponseType" />
     <MESSAGE value="delete MutationResponseType" />
     <MESSAGE value="add mutation type for tag and category" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mutation type for tag and category" />
+    <MESSAGE value="update models" />
+    <option name="LAST_COMMIT_MESSAGE" value="update models" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1230,25 +1235,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="79" column="9" lean-forward="true" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-          <folding>
-            <element signature="e#530#1227#0" expanded="false" />
-            <element signature="e#1248#2313#0" expanded="false" />
-            <element signature="e#2334#3240#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
           <folding>
             <element signature="e#42#251#0" expanded="true" />
-            <marker date="1493026715000" expanded="true" signature="332:410" ph="{&quot;name&quot;: 'MutationType'...}" />
+            <marker date="1493027131000" expanded="true" signature="332:410" ph="{&quot;name&quot;: 'MutationType'...}" />
           </folding>
         </state>
       </provider>
@@ -1271,9 +1264,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/persistence/models/article.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state relative-caret-position="315">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/api/graphql/schema/mutiation_type/tag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="111" column="34" lean-forward="true" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
+          <folding>
+            <element signature="e#530#1227#0" expanded="false" />
+            <element signature="e#1248#2313#0" expanded="false" />
+            <element signature="e#2334#3240#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
