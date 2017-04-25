@@ -24,7 +24,7 @@ let CategoryQueryType = new GraphQLObjectType({
             id: {type: GraphQLInt},
             name: {type: GraphQLString},
 
-            //articles of current category
+            //articles of current category todo
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: {

@@ -24,7 +24,7 @@ let TagQueryType = new GraphQLObjectType({
             id: {type: GraphQLID},
             name: {type: GraphQLString},
 
-            //articles of current category
+            //articles of current category todo
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: {

@@ -32,7 +32,7 @@ let ArticleQueryType = new GraphQLObjectType({
             updatedAt: {type: GraphQLString},
             allowComments: {type: GraphQLBoolean},
 
-            // query_type current article's category
+            // query_type current article's category todo
             category: {
                 type: CategoryQueryType,
                 resolve: (root, args) => root.getCategory()
