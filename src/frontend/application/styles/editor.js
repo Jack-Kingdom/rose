@@ -24,6 +24,7 @@ module.exports = {
     content: {
         margin: 'auto',
         width: '61.8%',
+        height:'100%',
 
         lineHeight: '30px',
     }

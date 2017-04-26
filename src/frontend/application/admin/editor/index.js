@@ -14,21 +14,27 @@ class Editor extends React.Component {
         super(props);
 
         this.state = {
-            title: props.title || "Article's title here",
-            content: props.content || "Article's content here",
+            title: props.title,
+            content: props.content,
         };
     }
 
     componentDidMount() {
-        let editor = new MediumEditor(this.refs.editor);
+        let editor = new MediumEditor(this.refs.editor, {
+            placeholder: {
+                text: "Article's content here",
+                hideOnClick: true
+            }
+        });
     }
 
     render() {
         return (
             <div className="editor-container">
-                <input id="article-title" style={[styles.editor.base, styles.editor.title]} value={this.state.title}/>
-                <div ref="editor" id="article-content"
-                     style={[styles.editor.base, styles.editor.content]}>{this.state.content}</div>
+                <input id="article-title" style={[styles.editor.base, styles.editor.title]}
+                       placeholder="Article's title here" value={this.state.title}/>
+                <textarea ref="editor" id="article-content"
+                          style={[styles.editor.base, styles.editor.content]}>{this.state.content}</textarea>
             </div>
         );
     }

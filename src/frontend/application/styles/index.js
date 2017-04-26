@@ -3,6 +3,7 @@
  */
 
 let styles = {
+    base: require('./base'),
     editor: require('./editor')
 };
 
