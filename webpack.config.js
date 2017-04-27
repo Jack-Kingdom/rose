@@ -68,6 +68,6 @@ module.exports = {
         new ExtractTextPlugin("css/[name].css"),
 
         // minimize and compress javascript
-        new UglifyJSPlugin()
+        // new UglifyJSPlugin()
     ]
 };
