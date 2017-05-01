@@ -8,7 +8,8 @@
     "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
     "webpack-dev-server": "nodemon --watch webpack.config.js --exec \"webpack-dev-server\"",
     "build": "babel src/backend -d build/backend --source-maps && webpack",
-    "serve": "node build/backend/index.js"
+    "serve": "node build/backend/index.js",
+    "relay": "relay-compiler --src ./src/frontend/application/home/article/src --schema ./src/frontend/application/home/article/article.graphqls"
   },
   "author": "Jack",
   "license": "ISC",
@@ -42,14 +43,19 @@
     "radium": "^0.18.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-relay": "^0.10.0",
+    "react-relay": "dev",
     "react-router-dom": "^4.1.0",
     "relay": "^0.8.0-1",
+    "relay-runtime": "dev",
     "style-loader": "^0.16.1",
     "uglify-js": "^2.8.22",
     "uglifyjs-webpack-plugin": "^0.4.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "dev",
+    "relay-compiler": "dev"
   }
 }
