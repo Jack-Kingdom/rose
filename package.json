@@ -9,7 +9,7 @@
     "webpack-dev-server": "nodemon --watch webpack.config.js --exec \"webpack-dev-server\"",
     "build": "babel src/backend -d build/backend --source-maps && webpack",
     "serve": "node build/backend/index.js",
-    "relay": "relay-compiler --src ./src/frontend/application/home/article/src --schema ./src/frontend/application/home/article/article.graphqls"
+    "relay": "relay-compiler --src ./src/frontend/application/home/article/src --schema ./src/frontend/application/home/article/article.graphql"
   },
   "author": "Jack",
   "license": "ISC",

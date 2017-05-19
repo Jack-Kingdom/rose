@@ -1,3 +1,6 @@
+## dev addition requirements
+1. facebook watchman
+
 ## Features
 
 1. 基于 React 与 Node.js
@@ -8,3 +11,4 @@
 TODO List:
 1. 迁移数据库至 MongoDB
 2. 构建后台编辑页面
+

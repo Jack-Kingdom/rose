@@ -5,7 +5,7 @@
 const DictionaryQuery = graphql`
     query DictionaryQuery {
         dictionary {
-            ...Dictionary_word
+            ...DictionaryComponent_word
         }
     }
 `

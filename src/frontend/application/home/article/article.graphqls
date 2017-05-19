@@ -13,5 +13,5 @@ type Word {
 
 type WordDefinition {
     text: String
-    image: Url
+    image: String
 }
