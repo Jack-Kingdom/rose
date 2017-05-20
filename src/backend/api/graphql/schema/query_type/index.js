@@ -17,7 +17,7 @@ import {
 import ArticleQueryType from './article'
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
-import models from '../../../../persistence/models';
+import models from '../../../../persistence/models/index';
 
 
 let QueryType = new GraphQLObjectType({

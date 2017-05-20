@@ -15,8 +15,8 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 
-import QueryType from './query_type'
-import MutationType from './mutiation_type'
+import QueryType from './query_type/index'
+import MutationType from './mutiation_type/index'
 
 let schema = new GraphQLSchema({
     query: QueryType,

@@ -14,7 +14,7 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import models from '../../../../persistence/models'
+import models from '../../../../persistence/models/index'
 
 module.exports = {
     createTag: {
