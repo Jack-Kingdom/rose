@@ -4,9 +4,9 @@
   "description": "my own blog app",
   "main": "src/backend/index.js",
   "scripts": {
-    "dev": "nodemon src/backend/index.js --exec \"babel-node\"",
-    "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
-    "webpack-dev-server": "nodemon --watch webpack.config.js --exec \"webpack-dev-server\"",
+    "backend": "nodemon src/backend/index.js --exec \"babel-node\"",
+    "frontend": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
+    "schema": "nodemon src/utils/updateSchema.js --exec \"babel-node\"",
     "build": "babel src/backend -d build/backend --source-maps && webpack",
     "serve": "node build/backend/index.js",
     "relay": "relay-compiler --src ./src/frontend/application/home/article/src --schema ./src/frontend/application/home/article/article.graphql"
