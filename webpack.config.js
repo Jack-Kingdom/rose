@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const babelRelayPlugin = require('babel-relay-plugin');
 const path = require('path');
 const config = require('./src/backend/config');
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "babel-loader"
+                loader: "babel-loader",
             },
             {
                 test: /\.css$/,
@@ -31,7 +32,7 @@ module.exports = {
                 })
             },
             {
-                test:  /\.less$/,
+                test: /\.less$/,
                 // loader:  "styles-loader!css-loader!less-loader"
                 loader: ExtractTextPlugin.extract({
                     fallback: 'styles-loader',
@@ -52,16 +53,17 @@ module.exports = {
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
-        'react-router-dom':'ReactRouterDOM',
-        'medium-editor':'MediumEditor',
+        'react-router-dom': 'ReactRouterDOM',
+        'medium-editor': 'MediumEditor',
         'radium': 'Radium',
         'katex': 'Katex',
     },
     plugins: [
+
         // home page
         new HtmlWebpackPlugin({
             template: 'src/frontend/index.html',
-            filename:'index.html',
+            filename: 'index.html',
         }),
 
         // combine css file

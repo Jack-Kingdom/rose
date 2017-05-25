@@ -36,28 +36,49 @@ const environment = new Environment({
     network,
 });
 
-// Render this somewhere with React:
-let Test = <QueryRenderer
-    environment={environment}
-    query={graphql`
-query articles{
-            id
-            title
-        }
 
-  `}
-    variables={{}}
-    render={({error, props}) => {
-        if (error) {
-            return <div>{error.message}</div>;
-        } else if (props) {
-            return <div>{props.page.name} is great!</div>;
-        }
-        return <div>Loading</div>;
-    }}
-/>;
+import ArticleList from './application/home/article/article-list'
+const RelayArticle = Relay.createFragmentContainer(ArticleList,{
+    fragments:{
+        articles:()=> Relay.QL`
+            fragment Article_Test on Article{
+                title
+            }
+        `,
+    }
+});
+
+// class RelayRoute export Relay.Route {
+//     static queries = {
+//         viewer: () => Relay.QL`
+//             query {
+//                 viewer
+//             }
+//         `,
+//     };
+// }
 
 ReactDOM.render(
-    <Test/>,
+    <QueryRenderer
+        environment={environment}
+        query={Relay.QL`
+    query {
+      article(_id:$ID) {
+        title
+      }
+    }
+  `}
+        variables={{
+            ID: '592067cb58af1e1008200166',
+        }}
+        render={(error, props) => {
+            if (error) {
+                return <div>{error.message}</div>;
+            } else if (props) {
+                return <div>{props.article.title} is great!</div>;
+            }
+            return <div>Loading</div>;
+        }}
+    />,
     document.getElementById('app')
 );

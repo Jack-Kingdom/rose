@@ -1,1 +1,4 @@
-module.exports = require('babel-relay-plugin')(require('../schema/schema.json').data);
+import BabelRelayPlugin from 'babel-relay-plugin'
+const schema = require('../../graphql.schema.json');
+
+module.exports = BabelRelayPlugin(schema.data);
