@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const babelRelayPlugin = require('babel-relay-plugin');
 const path = require('path');
 const config = require('./src/backend/config');
 module.exports = {

@@ -1,7 +1,8 @@
 {
   "presets": ["es2015", "react"],
   "plugins": [
-    "transform-decorators-legacy",
-    ["relay",{"schema":"./graphql.schema.json"}]
+//    "/home/jack/Documents/projects/Personal-Blog/src/utils/babelRelayPlugin.js",
+    ["relay",{"schema":"/home/jack/Documents/projects/Personal-Blog/graphql.schema.json"}],
+    "transform-decorators-legacy"
   ]
 }
