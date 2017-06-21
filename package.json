@@ -39,7 +39,6 @@
     "less-loader": "^4.0.3",
     "medium-editor": "^5.23.0",
     "mongodb": "^2.2.26",
-    "mongoose": "^4.9.5",
     "mongorito": "^2.2.0",
     "morgan": "^1.8.1",
     "nodemon": "^1.11.0",
