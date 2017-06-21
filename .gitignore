@@ -1,8 +1,17 @@
-build
-node_modules/
-yarn.lock
+# IDE configure file
+.idea
+
+# log info
 yarn-error.log
+npm-debug.log
+yarn.lock
+
+# generated Graphql Schema file
 graphql.schema.json
 schema.graphqls
-.idea
-npm-debug.log
+
+# installed packages
+node_modules/
+
+# build file
+build
