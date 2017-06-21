@@ -5,11 +5,11 @@
   "main": "src/backend/index.js",
   "scripts": {
     "dev": "nodemon src/backend/index.js --exec \"babel-node\"",
-    "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
+    "webpack-dev-server": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
+    "build": "cross-env NODE_ENV=production babel src/backend -d build/backend --source-maps && webpack",
+    "serve": "cross-env NODE_ENV=production node build/backend/index.js",
     "update-schema": "nodemon src/utils/updateSchema.js --exec \"babel-node\"",
-    "schema-json":"babel-node src/utils/schemaJson.js",
-    "build": "babel src/backend -d build/backend --source-maps && webpack",
-    "serve": "node build/backend/index.js",
+    "schema-json": "babel-node src/utils/schemaJson.js",
     "relay": "relay-compiler --src ./src/frontend/application --schema ./src/schema.graphql"
   },
   "author": "Jack",
@@ -26,6 +26,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "bluebird": "^3.5.0",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.0",
     "express": "^4.15.2",
     "express-graphql": "^0.6.4",
