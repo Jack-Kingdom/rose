@@ -22,28 +22,16 @@ let ArticleQueryType = new GraphQLObjectType({
     name: 'Article',
     description: 'Article type',
     fields: () => {
-        return {
-            _id: {type: GraphQLID},
-            title: {type: GraphQLString},
-            slug: {type: GraphQLString},
-            content: {type: GraphQLString},
-            status: {type: GraphQLString},
-            createdAt: {type: GraphQLString},
-            updatedAt: {type: GraphQLString},
-            allowComments: {type: GraphQLBoolean},
-
-            // query_type current article's category todo
-            category: {
-                type: CategoryQueryType,
-                resolve: (root, args) => root.getCategory()
-            },
-
-            // query_type current article's all tags
-            tags: {
-                type: new GraphQLList(TagQueryType),
-                resolve: (root, args) => root.getTags()
-            }
-        }
+        let obj = Object.assign({}, require('../types/id'), require('../types/article'));
+        obj.category={
+            type: CategoryQueryType,
+            resolve: (root, args) => root.getCategory()
+        };
+        obj.tags={
+            type: new GraphQLList(TagQueryType),
+            resolve: (root, args) => root.getTags()
+        };
+        return obj;
     }
 });
 

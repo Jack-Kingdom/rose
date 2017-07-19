@@ -8,7 +8,7 @@ import Radium from 'radium'
 // import Katex from 'katex'
 import styles from '../../styles'
 
-@Radium
+// @Radium
 class Editor extends React.Component {
     constructor(props) {
         super(props);

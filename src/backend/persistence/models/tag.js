@@ -4,12 +4,14 @@
 
 import mongoose from 'mongoose'
 
+let Types = mongoose.Schema.Types;
+
 let TagSchema = mongoose.Schema({
-    urlSlug:{
-        type:String,
-        unique:true
+    urlSlug: {
+        type: Types.String,
+        unique: true
     },
-    name:String,
+    name: Types.String,
 });
 
 module.exports = mongoose.model('tag', TagSchema);

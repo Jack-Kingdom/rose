@@ -4,19 +4,21 @@
 
 import mongoose from 'mongoose'
 
+let Types = mongoose.Schema.Types;
+
 let AccountSchema = mongoose.Schema({
     email: {
-        type: String,
+        type: Types.String,
         required: true,
         unique: true
     },
     password: {
-        type: String,
+        type: Types.String,
         required: true,
         minlength: 8,
     },
-    createdAt: Number,
-    lastLogin: Number,
+    createdAt: Types.Number,
+    lastLogin: Types.Number,
 });
 
 module.exports = mongoose.model('account', AccountSchema);

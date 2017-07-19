@@ -4,21 +4,41 @@
 
 import mongoose from 'mongoose'
 
+let Types = mongoose.Schema.Types;
+
 let ArticleSchema = mongoose.Schema({
-    urlSlug: {
-        type: String,
+    title: {
+        type: Types.String,
+        required: true,
+    },
+    slug: {
+        type: Types.String,
+        lowercase: true,
+        index: true,
         required: true,
         unique: true,
     },
-    title: String,
-    content: String,
-    renderedContent: String,
-    status: {
-        type: String,
-        enum: ['published', 'draft', 'deleted']
+    content: Types.String,
+    renderedContent: Types.String,
+    tags:{
+        type:Types.ObjectId,
+        ref:'tags'
     },
-    createdAt: Number,
-    updatedAt: Number,
+    category:{
+        type:Types.ObjectId,
+        ref:'category'
+    },
+    status: {
+        type: Types.String,
+        enum: ['published', 'draft', 'deleted'],
+        defaultValue: 'draft',
+    },
+    allowComments: {
+        type: Types.Boolean,
+        defaultValue: true,
+    },
+    createdAt: Types.Number,
+    updatedAt: Types.Number,
 });
 
 module.exports = mongoose.model('article', ArticleSchema);

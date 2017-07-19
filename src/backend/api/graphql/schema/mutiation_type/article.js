@@ -14,7 +14,7 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import models from '../../../../persistence/models/index'
+import models from '../../../../persistence/models'
 
 module.exports = {
 
@@ -24,7 +24,7 @@ module.exports = {
         resolve: async (root, args) => {
             let article = new models.Article(args);
             await article.save();
-            return article.get('_id').toString();
+            return article.get('id').toString();
         }
     },
 
