@@ -2,10 +2,10 @@
  * Created by Jack on 3/18/17.
  */
 
-import mongorito from 'mongorito'
+import mongoose from 'mongoose'
 import config from '../../config'
 
-mongorito.connect(config.mongodbUrl);
+mongoose.connect(config.mongodbUrl);
 
 // wrap model in a class
 const models = {

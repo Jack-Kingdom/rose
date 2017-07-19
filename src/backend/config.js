@@ -21,21 +21,8 @@ let productionConfig = {
 };
 
 let developmentConfig = {
-    // modified it to false on development environmente
     debug: true,
-
-    // listening port
-    port: 3000,
-
-    // app's base dir
-    appRoot: path.join(__dirname, '../..'),
-
-    // session's secret string, modified it in production environment
-    session_secret: 'secret string',
-
-    // database config
-    mongodbUrl: 'mongodb://localhost:27017/Rose',
-
+    mongodbUrl: 'mongodb://localhost:27017/DevRose',
 };
 
 let config = null;
@@ -44,7 +31,10 @@ switch (process.env.NODE_ENV) {
         config = productionConfig;
         break;
     default:
-        config = developmentConfig;
+        config = productionConfig;
+        for(let attr in developmentConfig){
+            productionConfig[attr]=developmentConfig[attr];
+        }
         break;
 }
 module.exports = config;

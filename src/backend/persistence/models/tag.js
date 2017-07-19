@@ -2,10 +2,14 @@
  * Created by Jack on 12/18/16.
  */
 
-import mongorito from 'mongorito'
+import mongoose from 'mongoose'
 
-class Tag extends mongorito.Model{
+let TagSchema = mongoose.Schema({
+    urlSlug:{
+        type:String,
+        unique:true
+    },
+    name:String,
+});
 
-}
-
-module.exports = Tag;
+module.exports = mongoose.model('tag', TagSchema);

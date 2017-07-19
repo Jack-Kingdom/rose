@@ -2,10 +2,23 @@
  * Created by Jack on 12/18/16.
  */
 
-import mongorito from 'mongorito'
+import mongoose from 'mongoose'
 
-class Article extends mongorito.Model{
+let ArticleSchema = mongoose.Schema({
+    urlSlug: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    title: String,
+    content: String,
+    renderedContent: String,
+    status: {
+        type: String,
+        enum: ['published', 'draft', 'deleted']
+    },
+    createdAt: Number,
+    updatedAt: Number,
+});
 
-}
-
-module.exports = Article;
+module.exports = mongoose.model('article', ArticleSchema);
