@@ -16,8 +16,8 @@ import {
 } from 'graphql';
 
 module.exports = {
-    title: {type: new GraphQLNonNull(GraphQLString)},
-    slug: {type: new GraphQLNonNull(GraphQLString)},
+    title: {type: GraphQLString},
+    slug: {type: GraphQLString},
     content: {type: GraphQLString},
     renderedContent: {type: GraphQLString},
     status: {type: GraphQLString},

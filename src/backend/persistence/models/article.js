@@ -30,7 +30,7 @@ let ArticleSchema = mongoose.Schema({
     },
     status: {
         type: Types.String,
-        enum: ['published', 'draft', 'deleted'],
+        enum: ['published', 'draft', 'removed'],
         defaultValue: 'draft',
     },
     allowComments: {

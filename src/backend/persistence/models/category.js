@@ -7,8 +7,9 @@ import mongoose from 'mongoose'
 let Types = mongoose.Schema.Types;
 
 let CategorySchema = mongoose.Schema({
-    urlSlug: {
+    slug: {
         type: Types.String,
+        required: true,
         unique: true
     },
     name: Types.String,

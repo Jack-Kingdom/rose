@@ -7,7 +7,7 @@ import mongoose from 'mongoose'
 let Types = mongoose.Schema.Types;
 
 let TagSchema = mongoose.Schema({
-    urlSlug: {
+    slug: {
         type: Types.String,
         unique: true
     },
