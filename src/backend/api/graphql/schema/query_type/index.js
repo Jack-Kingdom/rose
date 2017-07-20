@@ -29,7 +29,8 @@ let QueryType = new GraphQLObjectType({
                 type: new GraphQLList(CategoryQueryType),
                 args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
-                    let categories = await models.Category.sort(args.sort,args.order).limit(args.limit).find();
+                    let categories = await models.Category.find().sort(args.sort).limit(args.limit);
+                    return categories;
                     return categories.map(tag => tag.get());
                 }
             },
@@ -38,8 +39,8 @@ let QueryType = new GraphQLObjectType({
                 type: new GraphQLList(TagQueryType),
                 args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
-                    let tags = await models.Tag.sort(args.sort,args.order).limit(args.limit).find();
-                    return tags.map(tag => tag.get());
+                    let tags = await models.Tag.find().sort(args.sort).limit(args.limit);
+                    return tags;
                 }
             },
 
@@ -48,7 +49,6 @@ let QueryType = new GraphQLObjectType({
                 args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
                     let articles = await models.Article.find().sort(args.sort).limit(args.limit);
-                    console.log(articles);
                     return articles;
                     // return articles.map(tag => tag.get());
                 }
@@ -69,7 +69,7 @@ let QueryType = new GraphQLObjectType({
             article: {
                 type: ArticleQueryType,
                 args: require('../types/id'),
-                resolve: (root, args) => models.Article.findOne({args})
+                resolve: (root, args) => models.Article.findOne()
             }
         }
     }

@@ -20,20 +20,12 @@ let CategoryQueryType = new GraphQLObjectType({
     name: 'Category',
     description: 'Category Info',
     fields: () => {
-        return {
-            _id: {type: GraphQLInt},
-            name: {type: GraphQLString},
-
-            //articles of current category todo
-            articles: {
-                type: new GraphQLList(ArticleQueryType),
-                args: {
-                    limit: {type: GraphQLInt,},
-                    sort: {type: GraphQLString,}
-                },
-                resolve: (root, args) => root.getArticles()
-            }
-        }
+        let obj = Object.assign({}, require('../types/id'), require('../types/category'));
+        obj.articles = {
+            type: new GraphQLList(ArticleQueryType),
+            resolve: (root, args) => root.getTags()
+        };
+        return obj;
     }
 });
 
