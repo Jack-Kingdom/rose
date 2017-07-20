@@ -23,7 +23,7 @@ module.exports = {
         resolve: async (root, args) => {
             let tag = new models.Tag(args);
             await tag.save();
-            return tag.get('_id').toString();
+            return tag.get('id');
         }
     },
 
@@ -35,7 +35,7 @@ module.exports = {
             let tag = await models.Tag.findOne({_id: args.id});
             if (!tag) throw Error('Tag not Found');
             await tag.remove();
-            return tag.get('_id').toString();
+            return tag.get('id');
         }
     },
 
@@ -50,7 +50,7 @@ module.exports = {
             }
             tag.increment();
             await tag.save();
-            return tag.get('_id').toString();
+            return tag.get('id');
         }
     },
 };
