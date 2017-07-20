@@ -9,8 +9,10 @@ let Types = mongoose.Schema.Types;
 let CategorySchema = mongoose.Schema({
     slug: {
         type: Types.String,
+        lowercase: true,
+        index: true,
         required: true,
-        unique: true
+        unique: true,
     },
     name: Types.String,
 });

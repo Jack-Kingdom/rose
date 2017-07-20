@@ -9,7 +9,10 @@ let Types = mongoose.Schema.Types;
 let TagSchema = mongoose.Schema({
     slug: {
         type: Types.String,
-        unique: true
+        lowercase: true,
+        index: true,
+        required: true,
+        unique: true,
     },
     name: Types.String,
 });
