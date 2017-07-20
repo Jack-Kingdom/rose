@@ -16,15 +16,6 @@ import {
 } from 'graphql';
 
 module.exports = {
-    limit: {type: GraphQLInt,},
-    sort: {type: GraphQLString,},
-    order: {
-        type: new GraphQLEnumType({
-            name: 'order',
-            values: {
-                ascending: {value: 1},
-                descending: {value: -1},
-            }
-        })
-    }
+    sort: {type: GraphQLString},
+    limit: {type: GraphQLInt},
 };

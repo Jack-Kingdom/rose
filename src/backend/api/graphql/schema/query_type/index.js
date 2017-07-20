@@ -27,7 +27,7 @@ let QueryType = new GraphQLObjectType({
         return {
             categories: {
                 type: new GraphQLList(CategoryQueryType),
-                args: require('../types/order-limit'),
+                args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
                     let categories = await models.Category.sort(args.sort,args.order).limit(args.limit).find();
                     return categories.map(tag => tag.get());
@@ -36,7 +36,7 @@ let QueryType = new GraphQLObjectType({
 
             tags: {
                 type: new GraphQLList(TagQueryType),
-                args: require('../types/order-limit'),
+                args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
                     let tags = await models.Tag.sort(args.sort,args.order).limit(args.limit).find();
                     return tags.map(tag => tag.get());
@@ -45,9 +45,10 @@ let QueryType = new GraphQLObjectType({
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
-                args: require('../types/order-limit'),
+                args: require('../types/sort-limit'),
                 resolve: async (root, args) => {
-                    let articles = await models.Article.find().sort([[args.sort,args.order]]).limit(args.limit);
+                    let articles = await models.Article.find().sort(args.sort).limit(args.limit);
+                    console.log(articles);
                     return articles;
                     // return articles.map(tag => tag.get());
                 }
