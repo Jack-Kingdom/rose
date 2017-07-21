@@ -17,7 +17,7 @@ import {
 import ArticleQueryType from './article'
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
-import models from '../../../../persistence/models/index';
+import models from '../../../../persistence/models';
 
 
 let QueryType = new GraphQLObjectType({
@@ -28,48 +28,37 @@ let QueryType = new GraphQLObjectType({
             categories: {
                 type: new GraphQLList(CategoryQueryType),
                 args: require('../types/sort-limit'),
-                resolve: async (root, args) => {
-                    let categories = await models.Category.find().sort(args.sort).limit(args.limit);
-                    return categories;
-                    return categories.map(tag => tag.get());
-                }
+                resolve: async (root, args) => await models.Category.find().sort(args.sort).limit(args.limit)
             },
 
             tags: {
                 type: new GraphQLList(TagQueryType),
                 args: require('../types/sort-limit'),
-                resolve: async (root, args) => {
-                    let tags = await models.Tag.find().sort(args.sort).limit(args.limit);
-                    return tags;
-                }
+                resolve: async (root, args) => await models.Tag.find().sort(args.sort).limit(args.limit)
             },
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: require('../types/sort-limit'),
-                resolve: async (root, args) => {
-                    let articles = await models.Article.find().sort(args.sort).limit(args.limit);
-                    return articles;
-                    // return articles.map(tag => tag.get());
-                }
+                resolve: async (root, args) => await models.Article.find().sort(args.sort).limit(args.limit)
             },
 
             category: {
                 type: CategoryQueryType,
                 args: require('../types/id'),
-                resolve: (root, args) => models.Category.findOne(args)
+                resolve: async (root, args) => await models.Category.findOne({_id: args.id})
             },
 
             tag: {
                 type: TagQueryType,
                 args: require('../types/id'),
-                resolve: (root, args) => models.Tag.findOne({args})
+                resolve: async (root, args) => await models.Tag.findOne({_id: args.id})
             },
 
             article: {
                 type: ArticleQueryType,
                 args: require('../types/id'),
-                resolve: (root, args) => models.Article.findOne()
+                resolve: async (root, args) => await models.Article.findOne({_id: args.id})
             }
         }
     }

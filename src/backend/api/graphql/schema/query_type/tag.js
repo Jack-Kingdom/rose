@@ -15,15 +15,17 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 import ArticleQueryType from './article'
+import models from "../../../../persistence/models";
 
 let TagQueryType = new GraphQLObjectType({
     name: 'Tag',
     description: 'Tag Info',
     fields: () => {
         let obj = Object.assign({}, require('../types/id'), require('../types/tag'));
-        obj.articles={
+        obj.articles = {
             type: new GraphQLList(ArticleQueryType),
-            resolve: (root, args) => root.getTags()
+            args: require('../types/sort-limit'),
+            resolve: async (root, args) => await models.Article.find({tags: {'$all': [root.id]}})
         };
         return obj;
     }

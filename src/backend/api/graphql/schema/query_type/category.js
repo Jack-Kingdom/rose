@@ -15,6 +15,7 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 import ArticleQueryType from './article'
+import models from "../../../../persistence/models";
 
 let CategoryQueryType = new GraphQLObjectType({
     name: 'Category',
@@ -23,7 +24,8 @@ let CategoryQueryType = new GraphQLObjectType({
         let obj = Object.assign({}, require('../types/id'), require('../types/category'));
         obj.articles = {
             type: new GraphQLList(ArticleQueryType),
-            resolve: (root, args) => root.getTags()
+            args: require('../types/sort-limit'),
+            resolve: async (root, args) => await models.Article.find({category: root.id}).sort(args.sort).limit(args.limit)
         };
         return obj;
     }

@@ -20,6 +20,8 @@ module.exports = {
     slug: {type: GraphQLString},
     content: {type: GraphQLString},
     renderedContent: {type: GraphQLString},
+    category: {type: GraphQLID},
+    tags: {type: new GraphQLList(GraphQLID)},
     status: {type: GraphQLString},
     allowComments: {type: GraphQLBoolean},
     createdAt: {type: GraphQLInt},

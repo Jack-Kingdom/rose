@@ -20,13 +20,13 @@ let ArticleSchema = mongoose.Schema({
     },
     content: Types.String,
     renderedContent: Types.String,
-    tags:{
-        type:Types.ObjectId,
-        ref:'tags'
-    },
-    category:{
-        type:Types.ObjectId,
-        ref:'category'
+    tags: [{
+        type: Types.ObjectId,
+        ref: 'tags'
+    }],
+    category: {
+        type: Types.ObjectId,
+        ref: 'category'
     },
     status: {
         type: Types.String,
