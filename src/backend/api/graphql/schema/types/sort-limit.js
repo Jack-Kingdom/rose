@@ -16,5 +16,6 @@ import {
 } from 'graphql';
 
 module.exports = {
-    name: {type: new GraphQLNonNull(GraphQLString),}
+    sort: {type: GraphQLString},
+    limit: {type: GraphQLInt},
 };

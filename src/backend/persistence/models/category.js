@@ -2,10 +2,19 @@
  * Created by Jack on 3/16/17.
  */
 
-import mongorito from 'mongorito'
+import mongoose from 'mongoose'
 
-class Category extends mongorito.Model{
+let Types = mongoose.Schema.Types;
 
-}
+let CategorySchema = mongoose.Schema({
+    slug: {
+        type: Types.String,
+        lowercase: true,
+        index: true,
+        required: true,
+        unique: true,
+    },
+    name: Types.String,
+});
 
-module.exports = Category;
+module.exports = mongoose.model('category', CategorySchema);

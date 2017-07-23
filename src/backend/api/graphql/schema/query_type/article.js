@@ -17,33 +17,22 @@ import {
 
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
+import models from '../../../../persistence/models';
 
 let ArticleQueryType = new GraphQLObjectType({
     name: 'Article',
     description: 'Article type',
     fields: () => {
-        return {
-            _id: {type: GraphQLID},
-            title: {type: GraphQLString},
-            slug: {type: GraphQLString},
-            content: {type: GraphQLString},
-            status: {type: GraphQLString},
-            createdAt: {type: GraphQLString},
-            updatedAt: {type: GraphQLString},
-            allowComments: {type: GraphQLBoolean},
-
-            // query_type current article's category todo
-            category: {
-                type: CategoryQueryType,
-                resolve: (root, args) => root.getCategory()
-            },
-
-            // query_type current article's all tags
-            tags: {
-                type: new GraphQLList(TagQueryType),
-                resolve: (root, args) => root.getTags()
-            }
-        }
+        let obj = Object.assign({}, require('../types/id'), require('../types/article'));
+        obj.category = {
+            type: CategoryQueryType,
+            resolve: async (root, args) => await models.Category.findOne({_id: root.category})
+        };
+        obj.tags = {
+            type: new GraphQLList(TagQueryType),
+            resolve: async (root, args) => root.tags.map(async id => await models.Tag.findOne({_id: id}))
+        };
+        return obj;
     }
 });
 

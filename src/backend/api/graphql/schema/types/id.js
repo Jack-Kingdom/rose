@@ -16,5 +16,5 @@ import {
 } from 'graphql';
 
 module.exports = {
-    _id: {type: new GraphQLNonNull(GraphQLID),}
+    id: {type: new GraphQLNonNull(GraphQLID),}
 };

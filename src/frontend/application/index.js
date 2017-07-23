@@ -7,32 +7,72 @@
 // import Home from './home'
 // import Admin from './admin'
 
-// class App extends React.Component {
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.status = {
+        }
+    }
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="site-wrapper">
+                    <Route exact path="/" component={ Home }/>
+                    <Route exact path="/admin" component={ Admin }/>
+                </div>
+            </BrowserRouter>
+        );
+    }
+}
+export default App;
+
+// import Relay, {QueryRenderer, graphql,} from 'react-relay';
+// import {Environment, Network}  from 'relay-runtime';
 //
-//     constructor(props) {
-//         super(props);
+// // Define a function that fetches the results of an operation (query/mutation/etc)
+// // and returns its results as a Promise:
+// function fetchQuery(operation,
+//                     variables,
+//                     cacheConfig,
+//                     uploadables,) {
+//     return fetch('/graphql', {
+//         method: 'POST',
+//         headers: {
+//             'content-type': 'application/json'
+//         }, // Add authentication and other headers here
+//         body: JSON.stringify({
+//             query: operation.text, // GraphQL text from input
+//             variables,
+//         }),
+//     }).then(response => {
+//         return response.json();
+//     });
+// }
 //
-//         this.status = {
+// // Create a network layer from the fetch function
+// const network = Network.create(fetchQuery);
+//
+// // Create an environment using this network:
+// const environment = new Environment({
+//     // other options
+//     network,
+// });
+//
+//
+//
+// export default <QueryRenderer
+//     environment={environment}
+//     query={graphql`
+//     query {
+//         articles{
+//         title
 //         }
-//     }
-//
-//     render() {
-//
-//         return (
-//             <BrowserRouter>
-//                 <div className="site-wrapper">
-//                     <Route exact path="/" component={ Home }/>
-//                     <Route exact path="/admin" component={ Admin }/>
-//                 </div>
-//             </BrowserRouter>
-//         );
 //     }
 // }
 
-
-import React from 'react';
 import Relay, {QueryRenderer, graphql,} from 'react-relay';
-import {Environment, Network,  RecordSource, Store,}  from 'relay-runtime';
+import {Environment, Network}  from 'relay-runtime';
 
 // Define a function that fetches the results of an operation (query/mutation/etc)
 // and returns its results as a Promise:
@@ -54,12 +94,13 @@ function fetchQuery(operation,
     });
 }
 
+// Create a network layer from the fetch function
+const network = Network.create(fetchQuery);
 
 // Create an environment using this network:
 const environment = new Environment({
     // other options
-    network: Network.create(fetchQuery),
-    store: new Store(new RecordSource()),
+    network,
 });
 
 
@@ -67,7 +108,7 @@ const environment = new Environment({
 export default <QueryRenderer
     environment={environment}
     query={graphql`
-    query Query {
+    query {
         articles{
         title
         }

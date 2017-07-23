@@ -9,6 +9,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const config = require('./src/backend/config');
+
 module.exports = {
     entry: {
         home: './src/frontend/entry.js',

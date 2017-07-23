@@ -14,41 +14,43 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import models from '../../../../persistence/models/index'
+import models from '../../../../persistence/models'
 
 module.exports = {
     createCategory: {
         type: GraphQLString,
-        args: require('../types/name'),
+        args: require('../types/category'),
         resolve: async (root, args) => {
             let category = new models.Category(args);
             await category.save();
-            return category.get('_id').toString();
+            return category.get('id');
         }
     },
-    updateCategory: {
-        type: GraphQLString,
-        args: Object.assign({},require('../types/id'),require('../types/name')),
-        resolve: async (root, args) => {
-            let category = await models.Category.findOne({_id: args._id});
-            if (!category) throw Error('category not Found');
-            category.set('name',args.name);
-            await category.save();
-            return category.get('_id').toString();
-        }
-    },
+
     // todo: remove article's category id
     deleteCategory: {
         type: GraphQLString,
-        args:require('../types/id'),
+        args: require('../types/id'),
         resolve: async (root, args) => {
-            // catch error, cannot convert args.id to ObjectID
             let category = await models.Category.findOne({_id: args.id});
-            // catch error, category not found
             if (!category) throw Error('category not Found');
+            await category.remove();
+            return category.get('id');
+        }
+    },
 
-            category.remove(); // update async
-            return category.get('_id').toString();
+    updateCategory: {
+        type: GraphQLString,
+        args: Object.assign({}, require('../types/id'), require('../types/category')),
+        resolve: async (root, args) => {
+            let category = await models.Category.findOne({_id: args.id});
+            if (!category) throw Error('category not Found');
+            for (let key in args) {
+                if (key !== 'id') category.set(key, args[key]);
+            }
+            category.increment();
+            await category.save();
+            return category.get('id');
         }
     },
 };

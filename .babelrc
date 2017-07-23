@@ -3,7 +3,6 @@
   "plugins": [
 //    "/home/jack/Documents/projects/Personal-Blog/src/utils/babelRelayPlugin.js",
 //    ["relay",{"schema":"/home/jack/Documents/projects/Personal-Blog/graphql.schema.json"}],
-    "relay",
-    "transform-decorators-legacy"
+//    "transform-decorators-legacy"
   ]
 }

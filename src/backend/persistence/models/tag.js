@@ -2,10 +2,19 @@
  * Created by Jack on 12/18/16.
  */
 
-import mongorito from 'mongorito'
+import mongoose from 'mongoose'
 
-class Tag extends mongorito.Model{
+let Types = mongoose.Schema.Types;
 
-}
+let TagSchema = mongoose.Schema({
+    slug: {
+        type: Types.String,
+        lowercase: true,
+        index: true,
+        required: true,
+        unique: true,
+    },
+    name: Types.String,
+});
 
-module.exports = Tag;
+module.exports = mongoose.model('tag', TagSchema);
