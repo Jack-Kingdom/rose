@@ -72,6 +72,6 @@ let webpackConfig = {
 };
 
 // minimize and compress javascript
-if(config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
+if(!config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
 
 module.exports = webpackConfig;

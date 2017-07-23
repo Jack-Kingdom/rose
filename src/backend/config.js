@@ -26,15 +26,21 @@ let developmentConfig = {
 };
 
 let config = null;
+if (process.env.NODE_ENV === 'production') {
+    // todo
+}
+
 switch (process.env.NODE_ENV) {
     case 'production':
         config = productionConfig;
         break;
-    default:
+    case 'development':
         config = productionConfig;
-        for(let attr in developmentConfig){
-            productionConfig[attr]=developmentConfig[attr];
+        for (let attr in developmentConfig) {
+            productionConfig[attr] = developmentConfig[attr];
         }
         break;
+    default:
+        throw Error('NODE_ENV not match')
 }
 module.exports = config;
