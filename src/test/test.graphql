@@ -1,0 +1,7 @@
+{
+    articles{
+        _id
+        title
+        content
+    }
+}

@@ -2,10 +2,10 @@
  * Created by Jack on 4/1/2017.
  */
 
-import React from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom'
-import Home from './home'
-import Admin from './admin'
+// import React from 'react';
+// import {BrowserRouter, Route, Link} from 'react-router-dom'
+// import Home from './home'
+// import Admin from './admin'
 
 // class App extends React.Component {
 //
@@ -29,8 +29,10 @@ import Admin from './admin'
 //     }
 // }
 
+
+import React from 'react';
 import Relay, {QueryRenderer, graphql,} from 'react-relay';
-import {Environment, Network}  from 'relay-runtime';
+import {Environment, Network,  RecordSource, Store,}  from 'relay-runtime';
 
 // Define a function that fetches the results of an operation (query/mutation/etc)
 // and returns its results as a Promise:
@@ -52,13 +54,12 @@ function fetchQuery(operation,
     });
 }
 
-// Create a network layer from the fetch function
-const network = Network.create(fetchQuery);
 
 // Create an environment using this network:
 const environment = new Environment({
     // other options
-    network,
+    network: Network.create(fetchQuery),
+    store: new Store(new RecordSource()),
 });
 
 
@@ -66,7 +67,7 @@ const environment = new Environment({
 export default <QueryRenderer
     environment={environment}
     query={graphql`
-    query {
+    query Query {
         articles{
         title
         }

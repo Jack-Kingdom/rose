@@ -7,10 +7,10 @@
     "dev": "nodemon src/backend/index.js --exec \"babel-node\"",
     "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
     "update-schema": "nodemon src/utils/updateSchema.js --exec \"babel-node\"",
-    "schema-json":"babel-node src/utils/schemaJson.js",
+    "schema-json": "babel-node src/utils/schemaJson.js",
     "build": "babel src/backend -d build/backend --source-maps && webpack",
     "serve": "node build/backend/index.js",
-    "relay": "relay-compiler --src ./src/frontend/application --schema ./src/schema.graphql"
+    "relay": "relay-compiler --src ./src/frontend --schema ./src/backend/api/graphql/schema.graphqls"
   },
   "author": "Jack",
   "license": "ISC",
@@ -31,7 +31,7 @@
     "express-graphql": "^0.6.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
-    "graphql": "^0.9.2",
+    "graphql": "^0.10.0",
     "html-webpack-plugin": "^2.28.0",
     "katex": "^0.7.1",
     "less": "^2.7.2",
