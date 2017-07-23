@@ -10,7 +10,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const config = require('./src/backend/config');
 
-module.exports = {
+let webpackConfig = {
     entry: {
         home: './src/frontend/entry.js',
     },
@@ -68,8 +68,10 @@ module.exports = {
 
         // combine css file
         new ExtractTextPlugin("css/[name].css"),
-
-        // minimize and compress javascript
-        // new UglifyJSPlugin()
     ]
 };
+
+// minimize and compress javascript
+if(config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
+
+module.exports = webpackConfig;

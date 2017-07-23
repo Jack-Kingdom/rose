@@ -9,6 +9,7 @@ yarn.lock
 # generated Graphql Schema file
 graphql.schema.json
 schema.graphqls
+__generated__
 
 # installed packages
 node_modules/
