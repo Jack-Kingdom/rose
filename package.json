@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon src/backend/index.js --exec \"babel-node\"",
     "webpack": "babel-node  ./src/utils/webpack.js",
-    "build": "cross-env NODE_ENV=production babel src/backend -d build/backend --source-maps && webpack",
-    "serve": "cross-env NODE_ENV=production node build/backend/index.js",
+    "build": "babel src/backend -d build/backend --source-maps && npm run webpack",
+    "serve": "node build/backend/index.js",
     "update-schema": "babel-node src/utils/updateSchema.js",
     "schema-json": "babel-node src/utils/schemaJson.js",
     "relay": "relay-compiler --src ./src/frontend --schema ./graphql.schema.json --watch"
@@ -24,7 +24,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
-    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",

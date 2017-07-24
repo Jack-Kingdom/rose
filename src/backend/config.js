@@ -19,7 +19,6 @@ let developmentConfig = {
 
 };
 
-//overwrite development config at production environment
 let productionConfig = {
     debug: false,
     session_secret: 'secret string',
@@ -27,13 +26,11 @@ let productionConfig = {
 };
 
 let config = developmentConfig;
+logger.info(`config set to ${process.env.NODE_ENV || 'development'}`);
 if (process.env.NODE_ENV === 'production') {
-    logger.info('application run under production env');
     for (let attr in productionConfig) {
         config[attr] = productionConfig[attr]
     }
-} else {
-    logger.info('application run under development env');
 }
 
 export default config;
