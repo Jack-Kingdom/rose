@@ -5,8 +5,7 @@
   "main": "src/backend/index.js",
   "scripts": {
     "dev": "nodemon src/backend/index.js --exec \"babel-node\"",
-    "webpack": "nodemon --watch webpack.config.js --exec \"webpack --watch\"",
-    "pack": "babel-node webpack.config.js",
+    "webpack": "babel-node  ./src/utils/webpack.js",
     "build": "cross-env NODE_ENV=production babel src/backend -d build/backend --source-maps && webpack",
     "serve": "cross-env NODE_ENV=production node build/backend/index.js",
     "update-schema": "babel-node src/utils/updateSchema.js",

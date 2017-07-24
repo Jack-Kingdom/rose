@@ -8,14 +8,14 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
-import config from './src/backend/config'
+import config from '../backend/config'
 
 let webpackConfig = {
     entry: {
         home: './src/frontend/entry.js',
     },
     output: {
-        path: path.join(__dirname, 'build/frontend'),
+        path: path.join(config.appRoot, 'build/frontend'),
         filename: "js/[name].js"
     },
     module: {
@@ -81,5 +81,3 @@ webpack(webpackConfig, (err, stats) => {
 });
 
 // todo webpack-dev-server support
-
-// todo move this file to utils
