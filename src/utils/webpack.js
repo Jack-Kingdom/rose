@@ -61,8 +61,6 @@ let webpackConfig = {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'react-router-dom': 'ReactRouterDOM',
-        'medium-editor': 'MediumEditor',
-        'radium': 'Radium',
         'katex': 'Katex',
     },
     plugins: [

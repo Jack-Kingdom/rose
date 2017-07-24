@@ -3,19 +3,21 @@
  */
 
 import React from 'react';
-import Relay, {QueryRenderer, graphql,} from 'react-relay';
+import Relay, {QueryRenderer, graphql, createFragmentContainer} from 'react-relay';
 import ArticleItem from './article-item'
 
 class ArticleList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            articles: props.articles
-        }
+        // this.state = {
+        //     articles: props.data
+        // };
+        this.articles = props.data;
     }
 
     render() {
+        console.log(this.articles);
         return (
             <div>
                 <ArticleItem/>
@@ -27,4 +29,11 @@ class ArticleList extends React.Component {
 }
 
 
-export default ArticleList;
+export default createFragmentContainer(ArticleList, graphql`
+    fragment articleList_lst on Article{
+        id
+        title
+        slug
+    }
+`)
+

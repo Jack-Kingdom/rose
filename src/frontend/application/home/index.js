@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Sidebar from './sidebar'
-import ArticleList from './article/article-list'
+import ArticleList from './article/articleList'
 
 class Home extends React.Component{
     render(){

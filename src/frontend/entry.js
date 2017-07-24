@@ -12,6 +12,7 @@ import {
     QueryRenderer,
     graphql,
 } from 'react-relay';
+
 import {
     Environment,
     Network,
@@ -39,16 +40,13 @@ const modernEnvironment = new Environment({
     store: new Store(new RecordSource()),
 });
 
-
 ReactDOM.render(
     <QueryRenderer
         environment={modernEnvironment}
         query={graphql`
       query entryQuery {
         articles{
-            id
-            title
-            slug
+            ...articleList_lst
         }
       }
     `}

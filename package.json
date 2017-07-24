@@ -34,7 +34,7 @@
     "katex": "^0.7.1",
     "medium-editor": "^5.23.1",
     "mongodb": "^2.2.30",
-    "mongoose": "^4.11.3",
+    "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",
@@ -48,7 +48,7 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.1",
+    "webpack-dev-server": "^2.6.1",
     "winston": "^2.3.1"
   }
 }
