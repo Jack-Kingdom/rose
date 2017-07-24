@@ -1,10 +1,12 @@
 # IDE configure file
 .idea
 
-# log info
+# npm and yarn log file
 yarn-error.log
 npm-debug.log
 yarn.lock
+
+# log file todo
 
 # generated Graphql Schema file
 graphql.schema.json
