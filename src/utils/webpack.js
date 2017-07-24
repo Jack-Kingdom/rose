@@ -93,7 +93,6 @@ if (config.debug) {
 } else {
     webpack(webpackConfig, (err, stats) => {
         if (err) throw err;
-        // todo: print with color
         console.log(stats.toString());
     });
 }
