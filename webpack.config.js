@@ -3,12 +3,12 @@
  */
 
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const path = require('path');
-const config = require('./src/backend/config');
+import path from 'path'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import config from './src/backend/config'
 
 let webpackConfig = {
     entry: {
@@ -72,6 +72,14 @@ let webpackConfig = {
 };
 
 // minimize and compress javascript
-if(!config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
+if (!config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
 
-module.exports = webpackConfig;
+webpack(webpackConfig, (err, stats) => {
+    if (err) throw err;
+    // todo: print with color
+    console.log(stats.toString());
+});
+
+// todo webpack-dev-server support
+
+// todo move this file to utils

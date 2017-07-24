@@ -1,8 +1,5 @@
-/**
- * Created by Jack on 4/4/2017.
- */
-
 import path from 'path'
+import logger from './logic/logger';
 
 let developmentConfig = {
 
@@ -31,9 +28,12 @@ let productionConfig = {
 
 let config = developmentConfig;
 if (process.env.NODE_ENV === 'production') {
+    logger.info('application run under production env');
     for (let attr in productionConfig) {
         config[attr] = productionConfig[attr]
     }
+} else {
+    logger.info('application run under development env');
 }
 
-module.exports = config;
+export default config;
