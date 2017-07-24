@@ -41,17 +41,22 @@ const modernEnvironment = new Environment({
 });
 
 ReactDOM.render(
+    /*
     <QueryRenderer
         environment={modernEnvironment}
         query={graphql`
       query entryQuery {
         articles{
-            ...articleList_lst
+            ...articleList_viewer
         }
       }
     `}
         variables={{}}
-        render={({error, props}) => <App/>}
-    />,
+        render={({error, props}) => {
+            console.log(props);
+            return <App/>
+        }}
+    />,*/
+    <App/>,
     document.getElementById('app')
 );

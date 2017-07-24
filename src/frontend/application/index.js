@@ -13,12 +13,15 @@ class App extends React.Component {
     }
     render() {
         return (
+            /*
             <BrowserRouter>
                 <div className="site-wrapper">
                     <Route exact path="/" component={ Home }/>
                     <Route exact path="/admin" component={ Admin }/>
                 </div>
             </BrowserRouter>
+            */
+            Home
         );
     }
 }

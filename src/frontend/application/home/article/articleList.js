@@ -13,7 +13,7 @@ class ArticleList extends React.Component {
         // this.state = {
         //     articles: props.data
         // };
-        this.articles = props.data;
+        this.articles = props;
     }
 
     render() {
@@ -30,7 +30,7 @@ class ArticleList extends React.Component {
 
 
 export default createFragmentContainer(ArticleList, graphql`
-    fragment articleList_lst on Article{
+    fragment articleList_viewer on Article{
         id
         title
         slug
