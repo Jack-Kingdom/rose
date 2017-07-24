@@ -5,6 +5,7 @@
 
 import path from 'path'
 import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
@@ -17,6 +18,12 @@ let webpackConfig = {
     output: {
         path: path.join(config.appRoot, 'build/frontend'),
         filename: "js/[name].js"
+    },
+    devServer: {
+        port: 8080,
+        hot: true,
+        inline: true,
+        stats: {colors: true},
     },
     module: {
         loaders: [
@@ -41,7 +48,7 @@ let webpackConfig = {
             },
             {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader?limit=8192&name=img/[hash:8].[name].[ext]'
+                loader: 'url-loader?limit=8192&name=img/[hash:8].[ext]'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|svg)$/,
@@ -74,10 +81,19 @@ let webpackConfig = {
 // minimize and compress javascript
 if (!config.debug) webpackConfig.plugins.push(new UglifyJSPlugin());
 
-webpack(webpackConfig, (err, stats) => {
-    if (err) throw err;
-    // todo: print with color
-    console.log(stats.toString());
-});
+if (config.debug) {
+    const options = {
+        proxy: {"**": "http://localhost:" + config.port},
+    };
+    const server = new WebpackDevServer(webpack(webpackConfig), options);
+    server.listen(webpackConfig.devServer.port, 'localhost', (err) => {
+        if (err) throw err;
+    })
 
-// todo webpack-dev-server support
+} else {
+    webpack(webpackConfig, (err, stats) => {
+        if (err) throw err;
+        // todo: print with color
+        console.log(stats.toString());
+    });
+}
