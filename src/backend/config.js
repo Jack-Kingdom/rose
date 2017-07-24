@@ -2,11 +2,12 @@
  * Created by Jack on 4/4/2017.
  */
 
-let path = require('path');
+import path from 'path'
 
-let productionConfig = {
+let developmentConfig = {
+
     // modified it to false on development environment
-    debug: false,
+    debug: true,
 
     // listening port
     port: 3000,
@@ -17,30 +18,22 @@ let productionConfig = {
     // session's secret string, modified it in production environment
     session_secret: 'secret string',
 
+    mongodbUrl: 'mongodb://localhost:27017/DevRose',
+
+};
+
+//overwrite development config at production environment
+let productionConfig = {
+    debug: false,
+    session_secret: 'secret string',
     mongodbUrl: 'mongodb://localhost:27017/Rose',
 };
 
-let developmentConfig = {
-    debug: true,
-    mongodbUrl: 'mongodb://localhost:27017/DevRose',
-};
-
-let config = null;
+let config = developmentConfig;
 if (process.env.NODE_ENV === 'production') {
-    // todo
+    for (let attr in productionConfig) {
+        config[attr] = productionConfig[attr]
+    }
 }
 
-switch (process.env.NODE_ENV) {
-    case 'production':
-        config = productionConfig;
-        break;
-    case 'development':
-        config = productionConfig;
-        for (let attr in developmentConfig) {
-            productionConfig[attr] = developmentConfig[attr];
-        }
-        break;
-    default:
-        throw Error('NODE_ENV not match')
-}
 module.exports = config;
