@@ -10,7 +10,7 @@ let developmentConfig = {
     port: 3000,
 
     // app's base dir
-    appRoot: path.join(__dirname, '../..'),
+    appRoot: path.join(__dirname, '..'),
 
     // session's secret string, modified it in production environment
     session_secret: 'secret string',
