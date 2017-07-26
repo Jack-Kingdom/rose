@@ -1,12 +1,12 @@
-/**
- * Created by Jack on 4/13/2017.
- */
+"use strict";
 
 import express from 'express'
-import graphqlRouter from './graphql'
+import restfulRouter from '../../api/restful'
+// import graphqlRouter from '../../api/graphql'
 
-let router = express.Router();
+const router = express.Router();
 
-router.use(graphqlRouter);
+router.use(restfulRouter);
+// router.use(graphqlRouter);
 
 export default router;
