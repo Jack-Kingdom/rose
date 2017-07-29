@@ -10,7 +10,8 @@ let AccountSchema = mongoose.Schema({
     email: {
         type: Types.String,
         required: true,
-        unique: true
+        unique: true,
+        index:true
     },
     password: {
         type: Types.String,

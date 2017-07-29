@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 4/13/2017.
- */
+"use strict";
 
 import express from 'express'
 import graphqlHTTP from 'express-graphql'

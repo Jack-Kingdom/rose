@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 4/12/2017.
- */
+"use strict";
 
 import {
     graphql,
@@ -14,7 +12,7 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import ArticleQueryType from './article'
+import ArticleQueryType from './article';
 import models from "../../../../persistence/models";
 
 let TagQueryType = new GraphQLObjectType({

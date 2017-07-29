@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 12/18/16.
- */
+"use strict";
 
 import mongoose from 'mongoose'
 

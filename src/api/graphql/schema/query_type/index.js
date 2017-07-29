@@ -1,6 +1,5 @@
-/**
- * Created by Jack on 4/12/2017.
- */
+"use strict";
+
 import {
     graphql,
     GraphQLSchema,
@@ -14,9 +13,9 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 
-import ArticleQueryType from './article'
-import CategoryQueryType from './category'
-import TagQueryType from './tag'
+import ArticleQueryType from './article';
+import CategoryQueryType from './category';
+import TagQueryType from './tag';
 import models from '../../../../persistence/models';
 
 
