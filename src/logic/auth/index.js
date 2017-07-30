@@ -25,7 +25,11 @@ class Auth {
         if (typeof(email) !== 'string' || typeof(password) !== 'string') throw new TypeError('email,password or remember illegal.');
         let check = await models.Account.findOne({email: email});
         if (!check) return RangeError('email not exist');
-        else return check.password === _sha256(_sha256(email) + _sha256(password));
+        else if (check.password === _sha256(_sha256(email) + _sha256(password))) {
+            check.lastLogin = Date.now();
+            await check.save();
+            return true;
+        } else return false;
     }
 }
 

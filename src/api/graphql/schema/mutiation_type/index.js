@@ -19,6 +19,6 @@ import {
 const MutationType = new GraphQLObjectType({
     name: 'MutationType',
     description: 'root MutationType',
-    fields: Object.assign({},require('./article'),require('./category'),require('./tag'))
+    fields: Object.assign({},require('./article'),require('./category'),require('./tag'),require('./auth'))
 });
 export default MutationType;
