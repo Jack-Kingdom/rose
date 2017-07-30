@@ -1,22 +1,27 @@
-/**
- * Created by Jack on 12/18/16.
- */
+"use strict";
 
 import mongoose from 'mongoose'
+import isEmail from 'validator/lib/isEmail'
 
-let Types = mongoose.Schema.Types;
-
-let AccountSchema = mongoose.Schema({
+const Types = mongoose.Schema.Types;
+const AccountSchema = mongoose.Schema({
     email: {
         type: Types.String,
-        required: true,
-        unique: true,
-        index:true
+        required: [true, 'Email cannot be empty'],
+        unique: [true, 'Email has been signed up'],
+        index: true,
+        validate: {
+            isAsync: false,
+            validator: isEmail,
+            message: 'Email not valid'
+        },
     },
     password: {
         type: Types.String,
-        required: true,
-        minlength: 8,
+        required: [true, 'Password cannot be empty'],
+        min: [8, 'password is too short'],
+        max: [100, 'password is too long'],
+
     },
     createdAt: Types.Number,
     lastLogin: Types.Number,

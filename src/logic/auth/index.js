@@ -5,11 +5,11 @@ import models from '../../persistence/models';
 const _sha256 = (msg) => {
     const hash = crypto.createHash('sha256');
     hash.update(msg);
-    return hash.digest('latin1');
+    return hash.digest('hex');
 };
 
 class Auth {
-    async register(email, password) {
+    static async register(email, password) {
         if (typeof(email) !== 'string' || typeof(password) !== 'string') throw new TypeError('email or password illegal.');
         let check = await models.Account.findOne({email: email});
         if (check) throw new RangeError('email has been registered.');
@@ -17,19 +17,27 @@ class Auth {
             let hashPassword = _sha256(_sha256(email) + _sha256(password));
             let account = new models.Account({email: email, password: hashPassword, createdAt: Date.now()});
             await account.save();
-            return true;
         }
     }
 
-    async login(email, password) {
-        if (typeof(email) !== 'string' || typeof(password) !== 'string') throw new TypeError('email,password or remember illegal.');
-        let check = await models.Account.findOne({email: email});
-        if (!check) return RangeError('email not exist');
-        else if (check.password === _sha256(_sha256(email) + _sha256(password))) {
-            check.lastLogin = Date.now();
-            await check.save();
-            return true;
-        } else return false;
+    static async login(email, password) {
+        if (typeof(email) !== 'string' || typeof(password) !== 'string') throw new TypeError('email or password illegal.');
+        let account = await models.Account.findOne({email: email});
+        if (!account) throw new RangeError('email not exist');
+        else if (account.password === _sha256(_sha256(email) + _sha256(password))) {
+            account.lastLogin = Date.now();
+            await account.save();
+        } else throw new RangeError('email and password not match');
+    }
+
+    static async changePassword(email,oldPassword, newPassword){
+        if(typeof (email)!=='string' || typeof(oldPassword)!== 'string' || typeof(newPassword)!=='string') throw TypeError('email,oldPassword or newPassword type illegal.');
+        let account = await models.Account.findOne({email: email});
+        if (!account) throw new RangeError('email not exist');
+        else if (account.password === _sha256(_sha256(email) + _sha256(oldPassword))) {
+            account.password = _sha256(_sha256(email) + _sha256(newPassword));
+            await account.save();
+        } else throw new RangeError('email and password not match');
     }
 }
 

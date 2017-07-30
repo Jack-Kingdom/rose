@@ -9,7 +9,11 @@ import config from './config';
 import router from './logic/router';
 
 let app = express();
-app.use(session({secret: config.session_secret}));
+app.use(session({
+    secret: config.session_secret,
+    resave:false,
+    saveUninitialized: false
+}));
 
 // load http logger
 app.use(morgan('short'));
@@ -19,5 +23,5 @@ app.use(router);
 
 // start app
 app.listen(config.port, () => {
-    console.log("App started at port %s.", config.port)
+    console.log(`App started at port ${config.port}.`)
 });

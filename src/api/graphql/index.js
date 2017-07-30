@@ -7,7 +7,7 @@ import schema from './schema/index';
 
 const graphqlRouter = express.Router();
 
-graphqlRouter.use('/graphql', graphqlHTTP({
+graphqlRouter.use(graphqlHTTP({
     schema: schema,
     graphiql: config.debug,
 }));

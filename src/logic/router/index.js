@@ -7,8 +7,8 @@ import graphqlRouter from '../../api/graphql';
 
 const router = express.Router();
 
-router.use(authRouter);
+router.use('/api/auth',authRouter);
 router.use('/api/v1',restfulRouter);
-router.use(graphqlRouter);
+router.use('/api/graphql',graphqlRouter);
 
 export default router;
