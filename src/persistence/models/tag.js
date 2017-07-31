@@ -1,12 +1,9 @@
-/**
- * Created by Jack on 12/18/16.
- */
+"use strict";
 
 import mongoose from 'mongoose'
 
-let Types = mongoose.Schema.Types;
-
-let TagSchema = mongoose.Schema({
+const Types = mongoose.Schema.Types;
+const TagSchema = mongoose.Schema({
     slug: {
         type: Types.String,
         lowercase: true,

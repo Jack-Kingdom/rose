@@ -13,6 +13,7 @@ const models = {
     Category: require('./category'),
     Tag: require('./tag'),
     Account: require('./account'),
+    Media:require('./media')
 };
 
 export default models;
