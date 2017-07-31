@@ -1,25 +1,9 @@
 "use strict";
 
 import express from 'express';
-import bodyParser from 'body-parser';
 import Auth from '../../logic/auth';
-import logger from '../../logic/logger';
-import models from "../../persistence/models/index";
 
 const authRouter = express.Router();
-authRouter.use(bodyParser.json());
-authRouter.use((err, req, res, next) => {
-    if (err) {
-        logger.warn(JSON.stringify({
-            timestamp: Date.now(),
-            event: "body parse error",
-            source: req.headers['x-forwarded-for'] || req.ip
-        }));
-        res.sendStatus(400);
-    }
-    else next();
-});
-
 authRouter.post('/register', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
