@@ -16,6 +16,7 @@ const mediaSchema = mongoose.Schema({
     // alt:Types.String,
     contentType: String,
     data: Types.Buffer,
+    size: Types.Number
 });
 
 module.exports = mongoose.model('media', mediaSchema);
