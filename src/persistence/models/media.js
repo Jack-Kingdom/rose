@@ -18,4 +18,4 @@ const mediaSchema = mongoose.Schema({
     data: Types.Buffer,
 });
 
-models.exports = mongoose.model('media', mediaSchema);
+module.exports = mongoose.model('media', mediaSchema);
