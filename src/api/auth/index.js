@@ -1,11 +1,17 @@
 "use strict";
 
 import express from 'express';
+import bodyParser from 'body-parser';
 import Auth from '../../logic/auth';
+import logger from '../../logic/logger';
 
 // todo: add csrf check
 
 const authRouter = express.Router();
+
+// use body-parser to load json data
+authRouter.use(bodyParser.json());
+
 authRouter.post('/register', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -62,5 +68,17 @@ authRouter.post('/change-password', async (req, res) => {
     } else res.sendStatus(400);
 });
 
+// catch err
+authRouter.use((err, req, res, next) => {
+    if (err) {
+        logger.warn(JSON.stringify({
+            timestamp: Date.now(),
+            event: `body-parser error: ${err.message}`,
+            source: req.headers['x-forwarded-for'] || req.ip
+        }));
+        res.sendStatus(400);
+    }
+    else next();
+});
 
 export default authRouter;
