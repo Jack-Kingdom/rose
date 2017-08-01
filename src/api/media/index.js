@@ -33,7 +33,6 @@ mediaRouter.post('/upload', (req, res) => {
 //todo
 mediaRouter.get('/download/:slug', async (req, res) => {
     const slug = req.params['slug'];
-    console.log(slug);
     if (slug) {
         // todo rewrite here, add error catch
         const media = await models.Media.findOne({slug: slug});
