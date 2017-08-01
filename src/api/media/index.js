@@ -31,7 +31,6 @@ mediaRouter.get('/download/:slug', async (req, res) => {
     const slug = req.params['slug'];
     try {
         let media = await models.Media.findOne({slug: slug});
-        console.log(media.mimetype);
         if (media) res.set({'content-type': media.mimetype,}).send(media.data);
         else res.sendStatus(404);
     } catch (err) {
