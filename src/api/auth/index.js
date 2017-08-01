@@ -71,12 +71,8 @@ authRouter.post('/change-password', async (req, res) => {
 // catch err
 authRouter.use((err, req, res, next) => {
     if (err) {
-        logger.warn(JSON.stringify({
-            timestamp: Date.now(),
-            event: `body-parser error: ${err.message}`,
-            source: req.headers['x-forwarded-for'] || req.ip
-        }));
-        res.sendStatus(400);
+        logger.warn(`authRouter-error: ${err.message}`);
+        res.status(400).json({error:err.message});
     }
     else next();
 });

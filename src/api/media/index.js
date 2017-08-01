@@ -49,4 +49,17 @@ mediaRouter.get('/download/:slug', async (req, res) => {
     }
 });
 
+// catch err
+mediaRouter.use((err, req, res, next) => {
+    if (err) {
+        logger.warn(JSON.stringify({
+            timestamp: Date.now(),
+            event: `body-parser error: ${err.message}`,
+            source: req.headers['x-forwarded-for'] || req.ip
+        }));
+        res.sendStatus(400);
+    }
+    else next();
+});
+
 export default mediaRouter;
