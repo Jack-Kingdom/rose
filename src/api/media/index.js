@@ -36,13 +36,13 @@ mediaRouter.get('/download/:slug', async (req, res) => {
     if (slug) {
         // todo rewrite here, add error catch
         const media = await models.Media.findOne({slug: slug});
-        if(media){
+        if (media) {
             res.write(media.data);
             res.end();
-        }else {
+        } else {
             res.sendStatus(400);
         }
-    }else{
+    } else {
         // not find return
         console.log(`arguments is ${slug}`);
         res.json(req.params);
@@ -52,12 +52,8 @@ mediaRouter.get('/download/:slug', async (req, res) => {
 // catch err
 mediaRouter.use((err, req, res, next) => {
     if (err) {
-        logger.warn(JSON.stringify({
-            timestamp: Date.now(),
-            event: `body-parser error: ${err.message}`,
-            source: req.headers['x-forwarded-for'] || req.ip
-        }));
-        res.sendStatus(400);
+        logger.warn(`mediaRouter-error: ${err.message}`);
+        res.status(400).json({error: err.message});
     }
     else next();
 });
