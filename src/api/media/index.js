@@ -6,46 +6,35 @@ import logger from '../../logic/logger';
 import models from '../../persistence/models';
 
 const mediaRouter = express.Router();
-const upload = multer({
-    inMemory: true,
-    limits: {fileSize: 15 * 1024 * 1024},
-}).single('media');
+
+// only media less than 15 MB allow to upload
+const upload = multer({inMemory: true, limits: {fileSize: 15 * 1024 * 1024},});
 
 // todo add auth check here
-// todo catch error here
-mediaRouter.post('/upload', (req, res) => {
-    upload(req, res, async (err) => {
-        if (err) {
-            logger.warn(`media upload error: ${err.message}`);
-            res.sendStatus(400);
-            return;
-        }
+mediaRouter.post('/upload', upload.single('media'), async (req, res) => {
+    try {
         let media = new models.Media({
             slug: req.file.originalname,
             mimetype: req.file.mimeTypes,
             data: req.file.buffer
         });
         await media.save();
-        res.sendStatus(200);
-    });
+        res.status(200).json({success: true});
+    } catch (err) {
+        logger.warn(`mediaRouter-upload-error: ${err.message}`);
+        res.status(400).json({error: err.message});
+    }
 });
 
-//todo
 mediaRouter.get('/download/:slug', async (req, res) => {
     const slug = req.params['slug'];
-    if (slug) {
-        // todo rewrite here, add error catch
-        const media = await models.Media.findOne({slug: slug});
-        if (media) {
-            res.write(media.data);
-            res.end();
-        } else {
-            res.sendStatus(400);
-        }
-    } else {
-        // not find return
-        console.log(`arguments is ${slug}`);
-        res.json(req.params);
+    try {
+        let media = await models.Media.findOne({slug: slug});
+        if (media) res.send(media.data);
+        else res.sendStatus(404);
+    } catch (err) {
+        logger.warn(`mediaRouter-download-error: ${err.message}`);
+        res.status(400).json({error: err.message});
     }
 });
 
