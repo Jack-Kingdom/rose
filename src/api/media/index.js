@@ -13,9 +13,10 @@ const upload = multer({inMemory: true, limits: {fileSize: 15 * 1024 * 1024},});
 // todo add auth check here
 mediaRouter.post('/upload', upload.single('media'), async (req, res) => {
     try {
+        if(!req.session.hasLogged) res.status(403).json({error: "permission deny!"});
         let media = new models.Media({
             slug: req.file.originalname,
-            mimetype: req.file.mimeTypes,
+            mimetype: req.file.mimetype,
             data: req.file.buffer
         });
         await media.save();
@@ -30,7 +31,8 @@ mediaRouter.get('/download/:slug', async (req, res) => {
     const slug = req.params['slug'];
     try {
         let media = await models.Media.findOne({slug: slug});
-        if (media) res.send(media.data);
+        console.log(media.mimetype);
+        if (media) res.set({'content-type': media.mimetype,}).send(media.data);
         else res.sendStatus(404);
     } catch (err) {
         logger.warn(`mediaRouter-download-error: ${err.message}`);
