@@ -3,6 +3,8 @@
 import express from 'express';
 import Auth from '../../logic/auth';
 
+// todo: add csrf check
+
 const authRouter = express.Router();
 authRouter.post('/register', async (req, res) => {
     const email = req.body.email;
