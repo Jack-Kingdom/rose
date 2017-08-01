@@ -20,16 +20,41 @@ mediaRouter.post('/upload', (req, res) => {
             res.sendStatus(400);
             return;
         }
-        console.log('received file:', req.file, req.body);
-        let media = new models.Media({slug: req.file.originalname, contentType: req.file.mimeTypes, data: req.file.buffer});
+        let media = new models.Media({
+            slug: req.file.originalname,
+            mimetype: req.file.mimeTypes,
+            data: req.file.buffer
+        });
         await media.save();
         res.sendStatus(200);
     });
 });
 
 //todo
-mediaRouter.get('slug', (req, res) => {
-
+mediaRouter.get('/download/:slug', async (req, res) => {
+    const slug = req.params['slug'];
+    console.log(slug);
+    if (slug) {
+        // const media = await models.Media.findOne({slug: slug});
+        // console.log(media);
+        // if(media){
+        //     res.contentType(media.contentType);
+        //     // res.write(media.data);
+        //     res.end();
+        // }
+        models.Media.findOne({slug: slug}).exec((err, media) => {
+            if(err) throw err;
+            // console.log(media.contentType);
+            // res.contentType(media.contentType);
+            console.log(media.data);
+            res.write(media.data);
+            res.end();
+        })
+    }else{
+        // not find return
+        console.log(`arguments is ${slug}`);
+        res.json(req.params);
+    }
 });
 
 export default mediaRouter;

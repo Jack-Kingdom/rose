@@ -14,7 +14,7 @@ const mediaSchema = mongoose.Schema({
     },
     //todo consider this, maybe add alt support at next version
     // alt:Types.String,
-    contentType: String,
+    mimetype: Types.String,
     data: Types.Buffer,
     size: Types.Number
 });
