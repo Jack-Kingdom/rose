@@ -35,21 +35,14 @@ mediaRouter.get('/download/:slug', async (req, res) => {
     const slug = req.params['slug'];
     console.log(slug);
     if (slug) {
-        // const media = await models.Media.findOne({slug: slug});
-        // console.log(media);
-        // if(media){
-        //     res.contentType(media.contentType);
-        //     // res.write(media.data);
-        //     res.end();
-        // }
-        models.Media.findOne({slug: slug}).exec((err, media) => {
-            if(err) throw err;
-            // console.log(media.contentType);
-            // res.contentType(media.contentType);
-            console.log(media.data);
+        // todo rewrite here, add error catch
+        const media = await models.Media.findOne({slug: slug});
+        if(media){
             res.write(media.data);
             res.end();
-        })
+        }else {
+            res.sendStatus(400);
+        }
     }else{
         // not find return
         console.log(`arguments is ${slug}`);
