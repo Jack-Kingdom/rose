@@ -7,13 +7,12 @@ import models from '../../persistence/models';
 
 const mediaRouter = express.Router();
 
-// only media less than 15 MB allow to upload
+// only media less than 15 MB allow to be upload
 const upload = multer({inMemory: true, limits: {fileSize: 15 * 1024 * 1024},});
 
-// todo add auth check here
 mediaRouter.post('/upload', upload.single('media'), async (req, res) => {
     try {
-        if(!req.session.hasLogged) res.status(403).json({error: "permission deny!"});
+        if(!req.session.hasLogged) return res.sendStatus(401);
         let media = new models.Media({
             slug: req.file.originalname,
             mimetype: req.file.mimetype,
