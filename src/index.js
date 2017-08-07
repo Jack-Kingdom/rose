@@ -14,9 +14,12 @@ const app = express();
 app.use(session({
     secret: config.session_secret,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        HttpOnly: true,
+        sameSite: 'strict',
+    }
 }));
-
 
 
 // load http logger
