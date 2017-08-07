@@ -17,7 +17,7 @@ import CategoryQueryType from './category'
 import TagQueryType from './tag'
 import models from '../../../../persistence/models';
 
-let ArticleQueryType = new GraphQLObjectType({
+const ArticleQueryType = new GraphQLObjectType({
     name: 'Article',
     description: 'Article type',
     fields: () => {

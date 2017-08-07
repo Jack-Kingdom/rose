@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 4/22/2017.
- */
+"use strict";
 
 import {
     graphql,
