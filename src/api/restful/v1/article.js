@@ -8,10 +8,9 @@ const router = express.Router();
 router.get('/articles', async (req, res) => {
     try {
         const data = await models.Article.find();
-        res.type('application/json');
-        return res.send(data);
+        return res.json(data);
     } catch (err) {
-        return res.send({error: err})
+        return res.json({error: err})
     }
 });
 
