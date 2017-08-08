@@ -1,10 +1,10 @@
 "use strict";
 
 import express from 'express';
-import authRouter from '../../api/auth';
-import restfulRouter from '../../api/restful';
-import graphqlRouter from '../../api/graphql';
-import mediaRouter from '../../api/media';
+import authRouter from './view/auth/index';
+import restfulRouter from './view/restful/index';
+import graphqlRouter from './view/graphql/index';
+import mediaRouter from './view/media/index';
 
 const router = express.Router();
 

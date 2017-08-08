@@ -6,7 +6,7 @@ import express from 'express';
 import session from 'express-session'
 import morgan from 'morgan';
 import config from './config';
-import router from './logic/router';
+import router from './router';
 
 const app = express();
 
