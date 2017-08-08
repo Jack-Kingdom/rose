@@ -1,5 +1,5 @@
 import path from 'path'
-import logger from './logic/logger';
+import logger from './utils/logger';
 
 let developmentConfig = {
 

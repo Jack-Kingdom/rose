@@ -3,7 +3,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Auth from '../../logic/auth';
-import logger from '../../logic/logger';
+import logger from '../../utils/logger';
 
 // todo: add csrf check
 

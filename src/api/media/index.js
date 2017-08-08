@@ -2,7 +2,7 @@
 
 import express from 'express';
 import multer from 'multer';
-import logger from '../../logic/logger';
+import logger from '../../utils/logger';
 import models from '../../persistence/models';
 
 const mediaRouter = express.Router();
