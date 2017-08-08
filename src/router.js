@@ -23,7 +23,7 @@ router.use(morgan('short'));
 
 router.use('/api/graphql', require('./view/graphql'));
 router.use('/api/restful', require('./view/restful'));
-router.use('/api/auth', require('./view/auth'));
 router.use('/api/media', require('./view/media'));
+router.use('/api/auth', require('./view/auth'));
 
 export default router;
