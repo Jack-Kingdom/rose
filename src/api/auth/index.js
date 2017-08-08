@@ -11,6 +11,7 @@ const authRouter = express.Router();
 // use body-parser to load json data
 authRouter.use(bodyParser.json());
 
+// todo rewrite log print
 authRouter.post('/register', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
