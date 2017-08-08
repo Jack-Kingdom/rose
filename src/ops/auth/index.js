@@ -1,4 +1,5 @@
 "use strict";
+
 import crypto from 'crypto'
 import models from '../../persistence/models';
 
@@ -30,8 +31,8 @@ class Auth {
         } else throw new RangeError('email and password not match');
     }
 
-    static async changePassword(email,oldPassword, newPassword){
-        if(typeof (email)!=='string' || typeof(oldPassword)!== 'string' || typeof(newPassword)!=='string') throw TypeError('email,oldPassword or newPassword type illegal.');
+    static async changePassword(email, oldPassword, newPassword) {
+        if (typeof (email) !== 'string' || typeof(oldPassword) !== 'string' || typeof(newPassword) !== 'string') throw TypeError('email,oldPassword or newPassword type illegal.');
         let account = await models.Account.findOne({email: email});
         if (!account) throw new RangeError('email not exist');
         else if (account.password === _sha256(_sha256(email) + _sha256(oldPassword))) {
