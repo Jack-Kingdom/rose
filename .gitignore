@@ -6,8 +6,6 @@ yarn-error.log
 npm-debug.log
 yarn.lock
 
-# log file todo
-
 # installed packages
 node_modules/
 

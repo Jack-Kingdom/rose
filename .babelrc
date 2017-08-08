@@ -1,5 +1,14 @@
 {
-  "presets": ["es2015"],
+  "presets": [
+    "es2015"
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        "babili"
+      ]
+    }
+  },
   "plugins": [
     "transform-decorators"
   ]
