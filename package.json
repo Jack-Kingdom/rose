@@ -1,7 +1,7 @@
 {
-  "name": "ownblog",
-  "version": "0.0.1",
-  "description": "my own blog app",
+  "name": "rose",
+  "version": "0.1.0",
+  "description": "another cms backend",
   "main": "src/backend/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
@@ -9,14 +9,14 @@
     "serve": "cross-env NODE_ENV=production node build/index.js"
   },
   "author": "Jack",
-  "license": "ISC",
+  "email": "email@qiaohong.org",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
     "cross-env": "^5.0.4",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "express-session": "^1.15.4",
-    "global": "^4.3.2",
     "graphql": "^0.10.5",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.4",
