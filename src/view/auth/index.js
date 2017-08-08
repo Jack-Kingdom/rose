@@ -77,4 +77,4 @@ authRouter.use((err, req, res, next) => {
     else next();
 });
 
-export default authRouter;
+module.exports=authRouter;

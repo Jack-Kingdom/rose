@@ -12,4 +12,4 @@ graphqlRouter.use(graphqlHTTP({
     graphiql: config.debug,
 }));
 
-export default graphqlRouter;
+module.exports = graphqlRouter;

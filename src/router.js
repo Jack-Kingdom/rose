@@ -1,16 +1,29 @@
 "use strict";
 
 import express from 'express';
-import authRouter from './view/auth/index';
-import restfulRouter from './view/restful/index';
-import graphqlRouter from './view/graphql/index';
-import mediaRouter from './view/media/index';
+import morgan from 'morgan';
+import session from 'express-session';
+import config from './config';
 
 const router = express.Router();
 
-router.use('/api/auth', authRouter);
-router.use('/api', restfulRouter);
-router.use('/api/graphql', graphqlRouter);
-router.use('/api/media', mediaRouter);
+// load session
+router.use(session({
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        HttpOnly: true,
+        sameSite: 'strict',
+    }
+}));
+
+// load http logger
+router.use(morgan('short'));
+
+router.use('/api/auth', require('./view/auth'));
+router.use('/api', require('./view/restful'));
+router.use('/api/graphql', require('./view/graphql'));
+router.use('/api/media', require('./view/media'));
 
 export default router;
