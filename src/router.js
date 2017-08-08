@@ -21,9 +21,9 @@ router.use(session({
 // load http logger
 router.use(morgan('short'));
 
-router.use('/api/graphql', require('./view/graphql'));
-router.use('/api/restful', require('./view/restful'));
-router.use('/api/media', require('./view/media'));
-router.use('/api/auth', require('./view/auth'));
+router.use('/api/graphql', require('./api/graphql'));
+router.use('/api/restful', require('./api/restful'));
+router.use('/api/media', require('./api/media'));
+router.use('/api/auth', require('./api/auth'));
 
 export default router;

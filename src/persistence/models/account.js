@@ -1,7 +1,7 @@
 "use strict";
 
-import mongoose from 'mongoose'
-import isEmail from 'validator/lib/isEmail'
+import mongoose from 'mongoose';
+import isEmail from 'validator/lib/isEmail';
 
 const Types = mongoose.Schema.Types;
 const AccountSchema = mongoose.Schema({
