@@ -7,3 +7,4 @@
 todo:
 
 - restructure project 
+- add cross-env on project
