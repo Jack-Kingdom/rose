@@ -1,7 +1,6 @@
-import path from 'path'
-import logger from './utils/logger';
+"use strict";
 
-let developmentConfig = {
+const developmentConfig = {
 
     // modified it to false on development environment
     debug: true,
@@ -15,18 +14,19 @@ let developmentConfig = {
     mongodbUrl: 'mongodb://localhost:27017/DevRose',
 };
 
-let productionConfig = {
+const productionConfig = {
     debug: false,
     session_secret: "secret string",
     mongodbUrl: 'mongodb://localhost:27017/Rose',
 };
 
-let config = developmentConfig;
-logger.info(`NODE_ENV set to ${process.env.NODE_ENV || 'development'}`);
+console.log(`NODE_ENV set to ${process.env.NODE_ENV}`);
+
+let config = {};
+for (let attr in developmentConfig) config[attr] = developmentConfig[attr];
 if (process.env.NODE_ENV === 'production') {
-    for (let attr in productionConfig) {
-        config[attr] = productionConfig[attr]
-    }
+    for (let attr in developmentConfig) config[attr] = developmentConfig[attr];
+    //todo
 }
 
 export default config;
