@@ -9,9 +9,6 @@ let developmentConfig = {
     // listening port
     port: 3000,
 
-    // app's base dir
-    appRoot: path.join(__dirname, '..'),
-
     // session's secret string, modified it in production environment
     session_secret: 'secret string',
 
@@ -25,7 +22,7 @@ let productionConfig = {
 };
 
 let config = developmentConfig;
-logger.info(`config set to ${process.env.NODE_ENV || 'development'}`);
+logger.info(`NODE_ENV set to ${process.env.NODE_ENV || 'development'}`);
 if (process.env.NODE_ENV === 'production') {
     for (let attr in productionConfig) {
         config[attr] = productionConfig[attr]
