@@ -3,7 +3,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import isEmail from 'validator/lib/isEmail';
-import Auth from '../../meta/auth';
+import Meta from '../../meta';
 import logger from '../../utils/logger';
 
 const authRouter = express.Router();
@@ -24,7 +24,7 @@ authRouter.post('/register', async (req, res) => {
     }
 
     try {
-        await Auth.register(email, password);
+        await Meta.Auth.register(email, password);
         req.session.hasLogged = true;
         logger.info('register success', {account: email});
         return res.json({success: true});
@@ -48,7 +48,7 @@ authRouter.post('/login', async (req, res) => {
     }
 
     try {
-        await Auth.login(email, password);
+        await Meta.Auth.login(email, password);
         req.session.hasLogged = true;
         logger.info('login success', {account: email});
         return res.json({success: true});
@@ -84,7 +84,7 @@ authRouter.post('/change-password', async (req, res) => {
     }
 
     try {
-        await Auth.changePassword(email, originPassword, newPassword);
+        await Meta.Auth.changePassword(email, originPassword, newPassword);
         logger.info('change password success', {account: email});
         return res.json({success: true});
     } catch (err) {
