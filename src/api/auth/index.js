@@ -11,7 +11,6 @@ const authRouter = express.Router();
 // use body-parser to load json data
 authRouter.use(bodyParser.json());
 
-// todo rewrite log print
 authRouter.post('/register', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -62,8 +61,10 @@ authRouter.post('/login', async (req, res) => {
 authRouter.use('/logout', async (req, res) => {
     if (req.session.hasLogged) {
         req.session.hasLogged = false;
+        logger.info('logout success');
         return res.json({success: true});
     } else {
+        logger.warn("account that haven't logged try to logout");
         return res.json({success: false, msg: "please login first"});
     }
 });
