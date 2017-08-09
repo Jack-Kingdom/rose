@@ -24,9 +24,9 @@ console.log(`NODE_ENV set to ${process.env.NODE_ENV}`);
 
 let config = {};
 for (let attr in developmentConfig) config[attr] = developmentConfig[attr];
+// overwrite config under production env
 if (process.env.NODE_ENV === 'production') {
-    for (let attr in developmentConfig) config[attr] = developmentConfig[attr];
-    //todo
+    for (let attr in productionConfig) config[attr] = productionConfig[attr];
 }
 
 export default config;
