@@ -8,3 +8,5 @@
 - add cache support
 - add api shield
 - add memcached support
+- add sitemap.xml and robots.txt
+- add rss subcribe atom support
