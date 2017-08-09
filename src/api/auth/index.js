@@ -20,17 +20,17 @@ authRouter.post('/register', async (req, res) => {
         if (!(typeof (email) === 'string' && isEmail(email))) throw new RangeError('email type illegal.');
         if (!(typeof (password) === 'string')) throw new RangeError('password type illegal.');
     } catch (err) {
-        logger.info({event: 'register with illegal args', msg: err.message});
+        logger.info('register with illegal args', {msg: err.message});
         return res.json({success: false, msg: err.message});
     }
 
     try {
         await Auth.register(email, password);
         req.session.hasLogged = true;
-        logger.info({account: email, event: 'register success'});
+        logger.info('register success', {account: email});
         return res.json({success: true});
     } catch (err) {
-        logger.info({account: email, event: 'register fails', msg: err.message});
+        logger.info('register fails', {account: email, msg: err.message});
         return res.json({success: false, msg: err.message});
     }
 
@@ -44,17 +44,17 @@ authRouter.post('/login', async (req, res) => {
         if (!(typeof (email) === 'string' && isEmail(email))) throw new RangeError('email type illegal.');
         if (!(typeof (password) === 'string')) throw new RangeError('password type illegal.');
     } catch (err) {
-        logger.info({event: 'login with illegal args', msg: err.message});
+        logger.info('login with illegal args', {msg: err.message});
         return res.json({success: false, msg: err.message});
     }
 
     try {
         await Auth.login(email, password);
         req.session.hasLogged = true;
-        logger.info({account: email, event: 'login success'});
+        logger.info('login success', {account: email});
         return res.json({success: true});
     } catch (err) {
-        logger.info({account: email, event: 'login fails', msg: err.message});
+        logger.info('login fails', {account: email, msg: err.message});
         return res.json({success: false, msg: "email or password not match"})
     }
 });
@@ -62,7 +62,7 @@ authRouter.post('/login', async (req, res) => {
 authRouter.use('/logout', async (req, res) => {
     if (req.session.hasLogged) {
         req.session.hasLogged = false;
-        return res.json({success: true, msg: "you has been logged out"});
+        return res.json({success: true});
     } else {
         return res.json({success: false, msg: "please login first"});
     }
@@ -78,16 +78,16 @@ authRouter.post('/change-password', async (req, res) => {
         if (!(typeof (originPassword) === 'string')) throw new RangeError('origin password type illegal.');
         if (!(typeof (newPassword) === 'string')) throw new RangeError('new password type illegal.');
     } catch (err) {
-        logger.info({event: 'change-password with illegal args', msg: err.message});
+        logger.info('change-password with illegal args', {msg: err.message});
         return res.json({success: false, msg: err.message});
     }
 
     try {
         await Auth.changePassword(email, originPassword, newPassword);
-        logger.info({account: email, event: 'change password success'});
+        logger.info('change password success', {account: email});
         return res.json({success: true});
     } catch (err) {
-        logger.info({account: email, event: 'change password success'});
+        logger.info('change password success', {account: email});
         return res.json({success: false, msg: "origin password not match"})
     }
 });
@@ -95,7 +95,7 @@ authRouter.post('/change-password', async (req, res) => {
 // catch err
 authRouter.use((err, req, res, next) => {
     if (err) {
-        logger.error({event: 'authRouter-error', msg: err.message});
+        logger.error('authRouter-error', {err: err});
         return res.status(500);
     }
     else next();
