@@ -7,3 +7,4 @@
 - move low-level query and update to meta
 - add cache support
 - add api shield
+- add memcached support
