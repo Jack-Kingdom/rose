@@ -16,10 +16,10 @@ class Article {
 
     }
 
-    static async queryArticle(slug) {
-        if(!(typeof (slug)==='string')) throw new RangeError('slug type illegal');
+    static async queryArticle(id) {
+        if (!(typeof (id) === 'string')) throw new RangeError('slug type illegal');
 
-        return await models.Article.findOne({slug: slug});
+        return await models.Article.findOne({_id: id});
     }
 
     // todo rewrite _id to id

@@ -57,8 +57,8 @@ let QueryType = new GraphQLObjectType({
 
             article: {
                 type: ArticleQueryType,
-                args: require('../types/slug'),
-                resolve: async (root, args) => await Meta.Article.queryArticle(args.slug)
+                args: require('../types/id'),
+                resolve: async (root, args) => await Meta.Article.queryArticle(args.id)
             }
         };
     }
