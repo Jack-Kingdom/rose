@@ -16,6 +16,7 @@ import {
 import ArticleQueryType from './article';
 import CategoryQueryType from './category';
 import TagQueryType from './tag';
+import Meta from '../../../../meta';
 import models from '../../../../persistence/models';
 
 
@@ -56,10 +57,10 @@ let QueryType = new GraphQLObjectType({
 
             article: {
                 type: ArticleQueryType,
-                args: require('../types/id'),
-                resolve: async (root, args) => await models.Article.findOne({_id: args.id})
+                args: require('../types/slug'),
+                resolve: async (root, args) => await Meta.Article.queryArticle(args.slug)
             }
-        }
+        };
     }
 });
 

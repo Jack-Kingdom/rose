@@ -16,8 +16,10 @@ class Article {
 
     }
 
-    static async queryArticle() {
+    static async queryArticle(slug) {
+        if(!(typeof (slug)==='string')) throw new RangeError('slug type illegal');
 
+        return await models.Article.findOne({slug: slug});
     }
 
     // todo rewrite _id to id
@@ -30,4 +32,4 @@ class Article {
     }
 }
 
-export default Article;
+module.exports = Article;

@@ -10,3 +10,4 @@
 - add memcached support
 - add sitemap.xml and robots.txt
 - add rss subcribe atom support
+- option set cookie to secure

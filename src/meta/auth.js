@@ -51,4 +51,4 @@ class Auth {
     }
 }
 
-export default Auth;
+module.exports = Auth;
