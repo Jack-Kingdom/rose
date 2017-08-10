@@ -17,7 +17,7 @@ class Article {
     }
 
     static async queryArticle(id) {
-        if (!(typeof (id) === 'string')) throw new RangeError('slug type illegal');
+        if (!(typeof (id) === 'string')) throw new RangeError('id type illegal');
 
         return await models.Article.findOne({_id: id});
     }
