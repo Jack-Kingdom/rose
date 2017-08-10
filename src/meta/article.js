@@ -4,22 +4,27 @@ import models from '../persistence/models';
 
 class Article {
 
-    static async createArticle() {
+    static async createArticle(args) {
+        let article = new models.Article(args);
+        await article.save();
+    }
+
+    static async deleteArticle(slug) {
+        if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal');
+
+        let article = await models.Article.findOne({slug: slug});
+        if (!article) throw Error('Article not Found');
+        await article.remove();
+    }
+
+    static async updateArticle(slug, args) {
 
     }
 
-    static async deleteArticle() {
+    static async queryArticle(slug) {
+        if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal');
 
-    }
-
-    static async updateArticle() {
-
-    }
-
-    static async queryArticle(id) {
-        if (!(typeof (id) === 'string')) throw new RangeError('id type illegal');
-
-        return await models.Article.findOne({_id: id});
+        return await models.Article.findOne({slug: slug});
     }
 
     // todo rewrite _id to id
