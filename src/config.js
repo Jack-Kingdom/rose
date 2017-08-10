@@ -1,32 +1,24 @@
 "use strict";
 
 const developmentConfig = {
-
-    // modified it to false on development environment
-    debug: true,
-
     // listening port
     port: 3000,
 
-    // session's secret string, modified it in production environment
     session_secret: 'secret string',
 
     mongodbUrl: 'mongodb://localhost:27017/DevRose',
 };
 
+// rewrite those config under production environment
 const productionConfig = {
-    debug: false,
     session_secret: "secret string",
     mongodbUrl: 'mongodb://localhost:27017/Rose',
 };
 
 console.log(`NODE_ENV set to ${process.env.NODE_ENV}`);
 
-let config = {};
-for (let attr in developmentConfig) config[attr] = developmentConfig[attr];
-// overwrite config under production env
-if (process.env.NODE_ENV === 'production') {
-    for (let attr in productionConfig) config[attr] = productionConfig[attr];
-}
+let config = developmentConfig;
+config.debug = (process.env.NODE_ENV === 'production');
+if (process.env.NODE_ENV === 'production') Object.assign(config, productionConfig);
 
 export default config;
