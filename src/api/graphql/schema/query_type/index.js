@@ -27,19 +27,19 @@ let QueryType = new GraphQLObjectType({
         return {
             categories: {
                 type: new GraphQLList(CategoryQueryType),
-                args: require('../types/sort-limit'),
+                args: require('../types/constraint'),
                 resolve: async (root, args) => await models.Category.find().sort(args.sort).limit(args.limit)
             },
 
             tags: {
                 type: new GraphQLList(TagQueryType),
-                args: require('../types/sort-limit'),
+                args: require('../types/constraint'),
                 resolve: async (root, args) => await models.Tag.find().sort(args.sort).limit(args.limit)
             },
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
-                args: require('../types/sort-limit'),
+                args: require('../types/constraint'),
                 resolve: async (root, args) => await models.Article.find().sort(args.sort).limit(args.limit)
             },
 

@@ -18,7 +18,7 @@ const productionConfig = {
 console.log(`NODE_ENV set to ${process.env.NODE_ENV}`);
 
 let config = developmentConfig;
-config.debug = (process.env.NODE_ENV === 'production');
+config.debug = (process.env.NODE_ENV === 'development');
 if (process.env.NODE_ENV === 'production') Object.assign(config, productionConfig);
 
 export default config;

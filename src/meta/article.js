@@ -9,16 +9,19 @@ class Article {
         await article.save();
     }
 
-    static async deleteArticle(slug) {
-        if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal');
+    static async deleteArticle(id) {
+        if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('id type illegal');
 
-        let article = await models.Article.findOne({slug: slug});
+        let article = await models.Article.findOne({_id: id});
         if (!article) throw Error('Article not Found');
         await article.remove();
     }
 
-    static async updateArticle(slug, args) {
+    static async updateArticle(id, args) {
+        if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('slug type illegal');
 
+        let article = await models.Article.findOne({slug: id});
+        console.log(models.Article);
     }
 
     static async queryArticle(slug) {
