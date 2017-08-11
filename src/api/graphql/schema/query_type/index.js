@@ -40,7 +40,7 @@ let QueryType = new GraphQLObjectType({
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: require('../types/constraint'),
-                resolve: async (root, args) => await models.Article.find().sort(args.sort).limit(args.limit)
+                resolve: async (root, args) => await Meta.Article.queryMultiArticle(args.order, args.offset, args.limit)
             },
 
             category: {
@@ -57,8 +57,8 @@ let QueryType = new GraphQLObjectType({
 
             article: {
                 type: ArticleQueryType,
-                args: require('../types/slug'),
-                resolve: async (root, args) => await Meta.Article.queryArticle(args.slug)
+                args: require('../types/id'),
+                resolve: async (root, args) => await Meta.Article.queryArticle(args.id)
             }
         };
     }

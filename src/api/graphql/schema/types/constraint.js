@@ -15,6 +15,6 @@ import {
 
 module.exports = {
     order: {type: GraphQLString},
-    offset: {type:GraphQLInt},
-    limit: {type: GraphQLInt},
+    offset: {type: GraphQLInt, defaultValue: 0},
+    limit: {type: GraphQLInt, defaultValue: 10},
 };
