@@ -2,10 +2,14 @@
 
 import models from '../persistence/models';
 
+const _articleField = Object.keys(models.Article.schema.obj);
+
 class Article {
 
-    static async createArticle(args) {
-        let article = new models.Article(args);
+    static async createArticle(articleArgs) {
+        if (!(Object.keys(articleArgs).every((arg) => _articleField.includes(arg)))) throw new RangeError('article type illegal');
+
+        let article = new models.Article(articleArgs);
         await article.save();
     }
 
@@ -17,17 +21,22 @@ class Article {
         await article.remove();
     }
 
-    static async updateArticle(id, args) {
+    static async updateArticle(id, articleArgs) {
         if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('slug type illegal');
+        if (!(typeof (articleArgs) === 'object')) throw new RangeError('article args cannot be null');
+        if (!(Object.keys(articleArgs).every((arg) => _articleField.includes(arg)))) throw new RangeError('article type illegal');
 
-        let article = await models.Article.findOne({slug: id});
-        console.log(models.Article);
+        let article = await models.Article.findOne({_id: id});
+        if (!article) throw new RangeError('article not found');
+
+        Object.keys(articleArgs).forEach((arg) => article[arg] = articleArgs[arg]);
+        await article.save();
     }
 
+    // todo rewrite _id to id
     static async queryArticle(id) {
         if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('slug type illegal');
 
-        // todo rethink here, suggest fetch all data in at once query
         return await models.Article.findOne({_id: id});
     }
 

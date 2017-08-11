@@ -12,7 +12,7 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import models from '../../../../persistence/models'
+import Meta from '../../../../meta';
 
 // todo: add permission check
 module.exports = {
@@ -21,9 +21,7 @@ module.exports = {
         type: GraphQLID,
         args: require('../types/article'),
         resolve: async (root, args) => {
-            let article = new models.Article(args);
-            await article.save();
-            return article.get('id');
+            await Meta.Article.createArticle(args);
         }
     },
 
@@ -31,10 +29,7 @@ module.exports = {
         type: GraphQLID,
         args: require('../types/id'),
         resolve: async (root, args) => {
-            let article = await models.Article.findOne({_id: args.id});
-            if (!article) throw Error('Article not Found');
-            await article.remove();
-            return article.get('id');
+            await Meta.Article.deleteArticle(args.id);
         }
     },
 
@@ -42,14 +37,10 @@ module.exports = {
         type: GraphQLID,
         args: Object.assign({}, require('../types/id'), require('../types/article')),
         resolve: async (root, args) => {
-            let article = await models.Article.findOne({_id: args.id});
-            if (!article) throw Error('Article not Found');
-            for (let key in args) {
-                if (key !== 'id') article.set(key, args[key]);
-            }
-            article.increment();
-            await article.save();
-            return article.get('id');
+            const id = args.id;
+            delete args.id;
+            console.log(args);
+            await Meta.Article.updateArticle(id, args);
         }
     },
 };
