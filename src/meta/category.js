@@ -2,12 +2,12 @@
 
 import models from '../persistence/models';
 
-const _articleField = Object.keys(models.Category.schema.obj);
+const _categoryField = Object.keys(models.Category.schema.obj);
 
 class Category {
 
     static async createCategory(categoryArgs) {
-        if (!(Object.keys(categoryArgs).every((arg) => _articleField.includes(arg)))) throw new RangeError('article type illegal');
+        if (!(Object.keys(categoryArgs).every((arg) => _categoryField.includes(arg)))) throw new RangeError('article type illegal');
 
         let category = new models.Category(categoryArgs);
         await category.save();
@@ -24,7 +24,7 @@ class Category {
     static async updateCategory(id, categoryArgs) {
         if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('slug type illegal');
         if (!(typeof (categoryArgs) === 'object')) throw new RangeError('category args cannot be null');
-        if (!(Object.keys(categoryArgs).every((arg) => _articleField.includes(arg)))) throw new RangeError('category type illegal');
+        if (!(Object.keys(categoryArgs).every((arg) => _categoryField.includes(arg)))) throw new RangeError('category type illegal');
 
         let category = await models.Category.findOne({_id: id});
         if (!category) throw new RangeError('category not found');

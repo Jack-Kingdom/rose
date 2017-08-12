@@ -4,6 +4,7 @@ import models from '../persistence/models';
 
 const _articleField = Object.keys(models.Article.schema.obj);
 
+// todo think about reuse Article,Category,Tag in Meta
 class Article {
 
     static async createArticle(articleArgs) {
