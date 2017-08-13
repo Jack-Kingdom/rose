@@ -21,7 +21,7 @@ module.exports = {
         type: GraphQLID,
         args: require('../types/article'),
         resolve: async (root, args) => {
-            await Meta.Article.createArticle(args);
+            await Meta.Article.create(args);
         }
     },
 
@@ -29,7 +29,7 @@ module.exports = {
         type: GraphQLID,
         args: require('../types/id'),
         resolve: async (root, args) => {
-            await Meta.Article.deleteArticle(args.id);
+            await Meta.Article.delete(args.id);
         }
     },
 
@@ -39,8 +39,7 @@ module.exports = {
         resolve: async (root, args) => {
             const id = args.id;
             delete args.id;
-            console.log(args);
-            await Meta.Article.updateArticle(id, args);
+            await Meta.Article.update(id, args);
         }
     },
 };

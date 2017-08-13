@@ -27,37 +27,37 @@ let QueryType = new GraphQLObjectType({
             categories: {
                 type: new GraphQLList(CategoryQueryType),
                 args: require('../types/constraint'),
-                resolve: async (root, args) => await Meta.Category.queryMultiCategory(args.order,args.offset,args.limit)
+                resolve: async (root, args) => await Meta.Category.retrieveMultiple(args.order,args.offset,args.limit)
             },
 
             tags: {
                 type: new GraphQLList(TagQueryType),
                 args: require('../types/constraint'),
-                resolve: async (root, args) => await Meta.Tag.queryMultiTag(args.order,args.offset,args.type)
+                resolve: async (root, args) => await Meta.Tag.retrieveMultiple(args.order,args.offset,args.type)
             },
 
             articles: {
                 type: new GraphQLList(ArticleQueryType),
                 args: require('../types/constraint'),
-                resolve: async (root, args) => await Meta.Article.queryMultiArticle(args.order, args.offset, args.limit)
+                resolve: async (root, args) => await Meta.Article.retrieveMultiple(args.order, args.offset, args.limit)
             },
 
             category: {
                 type: CategoryQueryType,
                 args: require('../types/id'),
-                resolve: async (root, args) => await Meta.Category.queryCategory(args.id)
+                resolve: async (root, args) => await Meta.Category.retrieve(args.id)
             },
 
             tag: {
                 type: TagQueryType,
                 args: require('../types/id'),
-                resolve: async (root, args) => await Meta.Tag.queryTag(args.id)
+                resolve: async (root, args) => await Meta.Tag.retrieve(args.id)
             },
 
             article: {
                 type: ArticleQueryType,
                 args: require('../types/id'),
-                resolve: async (root, args) => await Meta.Article.queryArticle(args.id)
+                resolve: async (root, args) => await Meta.Article.retrieve(args.id)
             }
         };
     }

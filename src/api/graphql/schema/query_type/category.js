@@ -15,7 +15,6 @@ import {
 import ArticleQueryType from './article';
 import Meta from '../../../../meta';
 
-import models from "../../../../persistence/models";
 
 let CategoryQueryType = new GraphQLObjectType({
     name: 'Category',
@@ -25,7 +24,7 @@ let CategoryQueryType = new GraphQLObjectType({
         obj.articles = {
             type: new GraphQLList(ArticleQueryType),
             args: require('../types/sort-limit'),
-            resolve: async (root, args) => await models.Article.find({category: root.id}).sort(args.sort).limit(args.limit)
+            resolve: async (root, args) => await Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, {category: root.id})
         };
         return obj;
     }

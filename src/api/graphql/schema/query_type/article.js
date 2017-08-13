@@ -25,11 +25,11 @@ const ArticleQueryType = new GraphQLObjectType({
         let obj = Object.assign({}, require('../types/id'), require('../types/article'));
         obj.category = {
             type: CategoryQueryType,
-            resolve: async (root, args) => await Meta.Category.queryCategory(root.category)
+            resolve: async (root, args) => await Meta.Category.retrieve(root.id)
         };
         obj.tags = {
             type: new GraphQLList(TagQueryType),
-            resolve: async (root, args) => root.tags.map(async id => await Meta.Tag.queryTag(id))
+            resolve: async (root, args) => root.tags.map(async id => await Meta.Tag.retrieve(id))
         };
         return obj;
     }

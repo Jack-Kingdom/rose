@@ -12,16 +12,14 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import models from '../../../../persistence/models/index'
+import Meta from '../../../../meta';
 
 module.exports = {
     createTag: {
         type: GraphQLString,
         args: require('../types/tag'),
         resolve: async (root, args) => {
-            let tag = new models.Tag(args);
-            await tag.save();
-            return tag.get('id');
+            return Meta.Tag.create(args);
         }
     },
 
@@ -30,10 +28,7 @@ module.exports = {
         type: GraphQLString,
         args: require('../types/id'),
         resolve: async (root, args) => {
-            let tag = await models.Tag.findOne({_id: args.id});
-            if (!tag) throw Error('Tag not Found');
-            await tag.remove();
-            return tag.get('id');
+            return Meta.Tag.delete(args.id);
         }
     },
 
@@ -41,14 +36,9 @@ module.exports = {
         type: GraphQLID,
         args: Object.assign({}, require('../types/id'), require('../types/tag')),
         resolve: async (root, args) => {
-            let tag = await models.Tag.findOne({_id: args.id});
-            if (!tag) throw Error('Tag not Found');
-            for (let key in args) {
-                if (key !== 'id') tag.set(key, args[key]);
-            }
-            tag.increment();
-            await tag.save();
-            return tag.get('id');
+            const id = args.id;
+            delete args.id;
+            return Meta.Tag.update(id, args);
         }
     },
 };

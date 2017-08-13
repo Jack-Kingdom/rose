@@ -14,7 +14,6 @@ import {
 } from 'graphql';
 import ArticleQueryType from './article';
 import Meta from '../../../../meta';
-import models from "../../../../persistence/models";
 
 const TagQueryType = new GraphQLObjectType({
     name: 'Tag',
@@ -23,8 +22,8 @@ const TagQueryType = new GraphQLObjectType({
         let obj = Object.assign({}, require('../types/id'), require('../types/tag'));
         obj.articles = {
             type: new GraphQLList(ArticleQueryType),
-            args: require('../types/sort-limit'),
-            resolve: async (root, args) => await models.Article.find({tags: {'$all': [root.id]}})
+            args: require('../types/constraint'),
+            resolve: async (root, args) => await Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, {tags: {'$all': [root.id]}})
         };
         return obj;
     }
