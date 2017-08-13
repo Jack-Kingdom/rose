@@ -54,7 +54,7 @@ authRouter.post('/login', async (req, res) => {
         return res.json({success: true});
     } catch (err) {
         logger.info('login fails', {account: email, msg: err.message});
-        return res.json({success: false, msg: "email or password not match"})
+        return res.json({success: false, msg: "email or password not match"});
     }
 });
 
@@ -89,7 +89,7 @@ authRouter.post('/change-password', async (req, res) => {
         return res.json({success: true});
     } catch (err) {
         logger.info('change password success', {account: email});
-        return res.json({success: false, msg: "origin password not match"})
+        return res.json({success: false, msg: "origin password not match"});
     }
 });
 

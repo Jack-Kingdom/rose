@@ -1,8 +1,6 @@
-/**
- * Created by Jack on 3/16/17.
- */
+"use strict";
 
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 let Types = mongoose.Schema.Types;
 

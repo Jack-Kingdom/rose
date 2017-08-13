@@ -33,7 +33,7 @@ let QueryType = new GraphQLObjectType({
             tags: {
                 type: new GraphQLList(TagQueryType),
                 args: require('../types/constraint'),
-                resolve: async (root, args) => await Meta.Tag.retrieveMultiple(args.order,args.offset,args.type)
+                resolve: async (root, args) => await Meta.Tag.retrieveMultiple(args.order,args.offset,args.limit)
             },
 
             articles: {

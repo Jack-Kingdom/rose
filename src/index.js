@@ -11,5 +11,5 @@ app.use(router);
 
 // start app
 app.listen(config.port, () => {
-    console.log(`App started at port ${config.port}.`)
+    console.log(`App started at port ${config.port}.`);
 });

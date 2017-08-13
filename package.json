@@ -2,15 +2,18 @@
   "name": "rose",
   "version": "0.1.0",
   "description": "another cms backend",
-  "main": "src/backend/index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
-    "build": "babel src -d build --source-maps",
-    "serve": "cross-env NODE_ENV=production node build/index.js"
-  },
   "author": "Jack",
   "email": "email@qiaohong.org",
   "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
+    "build": "babel src -d dist --source-maps",
+    "serve": "cross-env NODE_ENV=production node dist/index.js",
+    "eslint": "eslint --ext .js,.jsx src/"
+  },
+  "pre-commit": [
+    "eslint"
+  ],
   "dependencies": {
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
@@ -34,6 +37,7 @@
     "babel-register": "^6.24.1",
     "eslint": "^4.3.0",
     "file-loader": "^0.11.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2"
   }
 }

@@ -1,10 +1,8 @@
-/**
- * Created by Jack on 3/17/17.
- */
+"use strict";
 
-import mongoose from 'mongoose'
-import bluebird from 'bluebird'
-import config from '../../config'
+import mongoose from 'mongoose';
+import bluebird from 'bluebird';
+import config from '../../config';
 
 // plug in bluebird as promise manager to sweep warning
 // mongoose.Promise = bluebird;

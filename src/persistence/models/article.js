@@ -1,6 +1,6 @@
 "use strict";
 
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 let Types = mongoose.Schema.Types;
 

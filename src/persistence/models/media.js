@@ -1,7 +1,6 @@
 "use strict";
 
-import mongoose from 'mongoose'
-import models from "./index";
+import mongoose from 'mongoose';
 
 const Types = mongoose.Schema.Types;
 const mediaSchema = mongoose.Schema({

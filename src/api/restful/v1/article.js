@@ -1,6 +1,6 @@
 "use strict";
 
-import express from 'express'
+import express from 'express';
 import models from '../../../persistence/models/index';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ router.get('/articles', async (req, res) => {
         const data = await models.Article.find().sort(sort).limit(limit);
         return res.json(data);
     } catch (err) {
-        return res.json({error: err})
+        return res.json({error: err});
     }
 });
 

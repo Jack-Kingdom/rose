@@ -13,8 +13,8 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 
-import CategoryQueryType from './category'
-import TagQueryType from './tag'
+import CategoryQueryType from './category';
+import TagQueryType from './tag';
 import Meta from '../../../../meta';
 
 

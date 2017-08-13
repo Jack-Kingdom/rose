@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 4/12/2017.
- */
+"use strict";
 
 import {
     graphql,
@@ -14,9 +12,8 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-
-import QueryType from './query_type/index'
-import MutationType from './mutiation_type/index'
+import QueryType from './query_type/index';
+import MutationType from './mutiation_type/index';
 
 let schema = new GraphQLSchema({
     query: QueryType,
