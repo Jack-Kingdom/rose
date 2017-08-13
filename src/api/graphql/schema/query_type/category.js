@@ -12,7 +12,9 @@ import {
     GraphQLList,
     GraphQLNonNull,
 } from 'graphql';
-import ArticleQueryType from './article'
+import ArticleQueryType from './article';
+import Meta from '../../../../meta';
+
 import models from "../../../../persistence/models";
 
 let CategoryQueryType = new GraphQLObjectType({

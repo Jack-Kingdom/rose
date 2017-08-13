@@ -13,6 +13,7 @@ import {
     GraphQLNonNull,
 } from 'graphql';
 import ArticleQueryType from './article';
+import Meta from '../../../../meta';
 import models from "../../../../persistence/models";
 
 const TagQueryType = new GraphQLObjectType({

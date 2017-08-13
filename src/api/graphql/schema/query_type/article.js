@@ -15,7 +15,8 @@ import {
 
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
-import models from '../../../../persistence/models';
+import Meta from '../../../../meta';
+
 
 const ArticleQueryType = new GraphQLObjectType({
     name: 'Article',
@@ -24,11 +25,11 @@ const ArticleQueryType = new GraphQLObjectType({
         let obj = Object.assign({}, require('../types/id'), require('../types/article'));
         obj.category = {
             type: CategoryQueryType,
-            resolve: async (root, args) => await models.Category.findOne({_id: root.category})
+            resolve: async (root, args) => await Meta.Category.queryCategory(root.category)
         };
         obj.tags = {
             type: new GraphQLList(TagQueryType),
-            resolve: async (root, args) => root.tags.map(async id => await models.Tag.findOne({_id: id}))
+            resolve: async (root, args) => root.tags.map(async id => await Meta.Tag.queryTag(id))
         };
         return obj;
     }
