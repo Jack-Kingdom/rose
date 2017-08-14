@@ -1,4 +1,3 @@
-"use strict";
 
 import express from 'express';
 import morgan from 'morgan';
@@ -9,13 +8,13 @@ const router = express.Router();
 
 // load session
 router.use(session({
-    secret: config.session_secret,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        HttpOnly: true,
-        sameSite: 'strict',
-    }
+  secret: config.session_secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    HttpOnly: true,
+    sameSite: 'strict',
+  },
 }));
 
 // load http logger

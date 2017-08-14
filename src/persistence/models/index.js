@@ -5,15 +5,15 @@
 import mongoose from 'mongoose';
 import config from '../../../config';
 
-mongoose.connect(config.mongodbUrl, {useMongoClient: true});
+mongoose.connect(config.mongodbUrl, { useMongoClient: true });
 
 // wrap model in a class
 const models = {
-    Article: require('./article'),
-    Category: require('./category'),
-    Tag: require('./tag'),
-    Account: require('./account'),
-    Media: require('./media')
+  Article: require('./article'),
+  Category: require('./category'),
+  Tag: require('./tag'),
+  Account: require('./account'),
+  Media: require('./media'),
 };
 
 export default models;

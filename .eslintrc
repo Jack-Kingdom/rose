@@ -1,4 +1,6 @@
 {
+  // think about use airbnb
+//  "extends": "airbnb",
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module",
@@ -8,6 +10,10 @@
   },
   "rules": {
     "strict":["error","global"],
-    "semi": "error"
+    "semi": "error",
+    // todo notice here
+//    "jsx-a11y/href-no-hash": "off",
+//    "global-require": ["off"],
+//    "no-unused-vars":"warn"
   }
 }
