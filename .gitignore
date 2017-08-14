@@ -2,8 +2,9 @@
 .idea
 
 # npm and yarn log file
-yarn-error.log
 npm-debug.log
+package-lock.json
+yarn-error.log
 yarn.lock
 
 # installed packages
