@@ -1,9 +1,8 @@
 
+import mongoose from 'mongoose'
+import isEmail from 'validator/lib/isEmail'
 
-import mongoose from 'mongoose';
-import isEmail from 'validator/lib/isEmail';
-
-const Types = mongoose.Schema.Types;
+const Types = mongoose.Schema.Types
 const AccountSchema = mongoose.Schema({
   email: {
     type: Types.String,
@@ -13,18 +12,18 @@ const AccountSchema = mongoose.Schema({
     validate: {
       isAsync: false,
       validator: isEmail,
-      message: 'Email not valid',
-    },
+      message: 'Email not valid'
+    }
   },
   password: {
     type: Types.String,
     required: [true, 'Password cannot be empty'],
     min: [8, 'password is too short'],
-    max: [100, 'password is too long'],
+    max: [100, 'password is too long']
 
   },
   createdAt: Types.Number,
-  lastLogin: Types.Number,
-});
+  lastLogin: Types.Number
+})
 
-module.exports = mongoose.model('account', AccountSchema);
+module.exports = mongoose.model('account', AccountSchema)

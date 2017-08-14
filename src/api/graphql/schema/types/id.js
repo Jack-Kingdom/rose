@@ -1,18 +1,6 @@
 
-
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLBoolean,
-  GraphQLEnumType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-} from 'graphql';
+import { GraphQLID, GraphQLNonNull } from 'graphql'
 
 module.exports = {
-  id: { type: new GraphQLNonNull(GraphQLID) },
-};
+  id: { type: new GraphQLNonNull(GraphQLID) }
+}

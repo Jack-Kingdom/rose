@@ -1,9 +1,8 @@
 
+import express from 'express'
 
-import express from 'express';
+const restfulRouter = express.Router()
 
-const restfulRouter = express.Router();
+restfulRouter.use(require('./article'))
 
-restfulRouter.use(require('./article'));
-
-export default restfulRouter;
+export default restfulRouter

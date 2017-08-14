@@ -1,19 +1,7 @@
 
-
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLBoolean,
-  GraphQLEnumType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-} from 'graphql';
+import { GraphQLInt, GraphQLString } from 'graphql'
 
 module.exports = {
   sort: { type: GraphQLString },
-  limit: { type: GraphQLInt },
-};
+  limit: { type: GraphQLInt }
+}

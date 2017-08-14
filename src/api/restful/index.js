@@ -1,11 +1,8 @@
+import express from 'express'
+import restfulV1 from './v1'
 
+const restfulRouter = express.Router()
 
-import express from 'express';
-import restfulV1 from './v1';
-import models from '../../persistence/models/index';
+restfulRouter.use('/v1', restfulV1)
 
-const restfulRouter = express.Router();
-
-restfulRouter.use('/v1', restfulV1);
-
-module.exports = restfulRouter;
+module.exports = restfulRouter

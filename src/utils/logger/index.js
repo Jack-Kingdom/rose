@@ -1,4 +1,4 @@
-import winston from 'winston';
+import winston from 'winston'
 
 const logger = new winston.Logger({
   transports: [
@@ -6,11 +6,10 @@ const logger = new winston.Logger({
       formatter: options =>
       // Return string will be passed to logger.
         `${options.level.toUpperCase()} ${Date.now()} ${options.message ? options.message : ''
-        }${options.meta && Object.keys(options.meta).length ? `\n\t${JSON.stringify(options.meta)}` : ''}`,
+        }${options.meta && Object.keys(options.meta).length ? `\n\t${JSON.stringify(options.meta)}` : ''}`
 
-    }),
-  ],
-});
+    })
+  ]
+})
 
-
-export default logger;
+export default logger

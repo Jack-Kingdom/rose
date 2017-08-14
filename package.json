@@ -6,13 +6,13 @@
   "email": "email@qiaohong.org",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
+    "start": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
     "build": "babel src -d dist --source-maps",
     "serve": "cross-env NODE_ENV=production node dist/index.js",
-    "eslint": "eslint --ext .js,.jsx src/ --fix"
+    "standard": "standard --fix"
   },
   "pre-commit": [
-    "eslint"
+    "standard"
   ],
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -36,13 +36,9 @@
     "babel-preset-babili": "^0.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.24.1",
-    "eslint": "^4.4.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.2.0",
     "file-loader": "^0.11.2",
     "nodemon": "^1.11.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "standard": "^10.0.3"
   }
 }

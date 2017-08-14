@@ -1,41 +1,40 @@
 
+import mongoose from 'mongoose'
 
-import mongoose from 'mongoose';
-
-const Types = mongoose.Schema.Types;
+const Types = mongoose.Schema.Types
 
 const ArticleSchema = mongoose.Schema({
   title: {
     type: Types.String,
-    required: true,
+    required: true
   },
   slug: {
     type: Types.String,
     index: true,
     required: true,
-    unique: true,
+    unique: true
   },
   content: Types.String,
   renderedContent: Types.String,
   tags: [{
     type: Types.ObjectId,
-    ref: 'tags',
+    ref: 'tags'
   }],
   category: {
     type: Types.ObjectId,
-    ref: 'category',
+    ref: 'category'
   },
   status: {
     type: Types.String,
     enum: ['published', 'draft', 'removed'],
-    defaultValue: 'draft',
+    defaultValue: 'draft'
   },
   allowComments: {
     type: Types.Boolean,
-    defaultValue: true,
+    defaultValue: true
   },
   createdAt: Types.Number,
-  updatedAt: Types.Number,
-});
+  updatedAt: Types.Number
+})
 
-module.exports = mongoose.model('article', ArticleSchema);
+module.exports = mongoose.model('article', ArticleSchema)

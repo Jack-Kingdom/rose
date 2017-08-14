@@ -1,17 +1,16 @@
 
+import mongoose from 'mongoose'
 
-import mongoose from 'mongoose';
-
-const Types = mongoose.Schema.Types;
+const Types = mongoose.Schema.Types
 const TagSchema = mongoose.Schema({
   slug: {
     type: Types.String,
     lowercase: true,
     index: true,
     required: true,
-    unique: true,
+    unique: true
   },
-  name: Types.String,
-});
+  name: Types.String
+})
 
-module.exports = mongoose.model('tag', TagSchema);
+module.exports = mongoose.model('tag', TagSchema)

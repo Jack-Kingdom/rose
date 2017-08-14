@@ -1,17 +1,6 @@
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLBoolean,
-  GraphQLEnumType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-} from 'graphql';
+import { GraphQLString } from 'graphql'
 
 module.exports = {
   slug: { type: GraphQLString },
-  name: { type: GraphQLString },
-};
+  name: { type: GraphQLString }
+}

@@ -1,40 +1,27 @@
-
-
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLBoolean,
-  GraphQLEnumType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-} from 'graphql';
-import Meta from '../../../../meta';
+import { GraphQLString } from 'graphql'
+import Meta from '../../../../meta'
 
 module.exports = {
   createCategory: {
     type: GraphQLString,
     args: require('../types/category'),
-    resolve: async (root, args) => Meta.Category.create(args),
+    resolve: async (root, args) => Meta.Category.create(args)
   },
 
   // todo: remove article's category id
   deleteCategory: {
     type: GraphQLString,
     args: require('../types/id'),
-    resolve: async (root, args) => Meta.Category.retrieve(args.id),
+    resolve: async (root, args) => Meta.Category.retrieve(args.id)
   },
 
   updateCategory: {
     type: GraphQLString,
     args: Object.assign({}, require('../types/id'), require('../types/category')),
     resolve: async (root, args) => {
-      const id = args.id;
-      delete args.id;
-      return Meta.Category.update(id, args);
-    },
-  },
-};
+      const id = args.id
+      delete args.id
+      return Meta.Category.update(id, args)
+    }
+  }
+}

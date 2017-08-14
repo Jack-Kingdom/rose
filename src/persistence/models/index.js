@@ -2,10 +2,10 @@
  * Created by Jack on 3/18/17.
  */
 
-import mongoose from 'mongoose';
-import config from '../../../config';
+import mongoose from 'mongoose'
+import config from '../../../config'
 
-mongoose.connect(config.mongodbUrl, { useMongoClient: true });
+mongoose.connect(config.mongodbUrl, { useMongoClient: true })
 
 // wrap model in a class
 const models = {
@@ -13,7 +13,7 @@ const models = {
   Category: require('./category'),
   Tag: require('./tag'),
   Account: require('./account'),
-  Media: require('./media'),
-};
+  Media: require('./media')
+}
 
-export default models;
+export default models
