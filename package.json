@@ -7,9 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
-    "build": "babel src -d dist --source-maps",
-    "serve": "cross-env NODE_ENV=production node dist/index.js",
-    "standard": "standard --fix"
+    "standard": "standard --fix",
+    "build": "babel main -d dist --source-map",
+    "serve": "cross-env NODE_ENV=production node dist/src/index.js",
+    "clean": "rm -rf dist && mkdir dist"
   },
   "pre-commit": [
     "standard"
