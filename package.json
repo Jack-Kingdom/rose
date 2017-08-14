@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
     "build": "babel src -d dist --source-maps",
     "serve": "cross-env NODE_ENV=production node dist/index.js",
-    "eslint": "eslint --ext .js,.jsx src/"
+    "eslint": "eslint --ext .js,.jsx src/ --fix"
   },
   "pre-commit": [
     "eslint"
