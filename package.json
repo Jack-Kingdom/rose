@@ -6,7 +6,7 @@
   "email": "email@qiaohong.org",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
+    "start": "cross-env NODE_ENV=development nodemon main/src/index.js --exec \"babel-node\"",
     "standard": "standard --fix",
     "build": "babel main -d dist --source-map",
     "serve": "cross-env NODE_ENV=production node dist/src/index.js",
