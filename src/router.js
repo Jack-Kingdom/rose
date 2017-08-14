@@ -3,7 +3,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import session from 'express-session';
-import config from './config';
+import config from '../config';
 
 const router = express.Router();
 
