@@ -12,3 +12,4 @@
 - add rss subcribe atom support
 - option set cookie to secure
 - graphql recurive deep limit
+- compose README.md file
