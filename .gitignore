@@ -11,4 +11,4 @@ yarn.lock
 node_modules/
 
 # build file
-build
+dist
