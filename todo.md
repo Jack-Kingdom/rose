@@ -13,3 +13,4 @@
 - option set cookie to secure
 - graphql recurive deep limit
 - compose README.md file
+- add monitor support
