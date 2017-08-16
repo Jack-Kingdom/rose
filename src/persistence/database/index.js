@@ -1,9 +1,12 @@
 import mongoose from 'mongoose'
-import bluebird from 'bluebird'
 import config from '../../../config'
 
-// plug in bluebird as promise manager to sweep warning
-const options = {promiseLibrary: bluebird}
+// plug in ES6 native promise manager to sweep warning
+mongoose.Promise = Promise
+
+const options = {
+  useMongoClient: true
+}
 
 const dbConnection = mongoose.createConnection(config.mongodbUrl, options)
 

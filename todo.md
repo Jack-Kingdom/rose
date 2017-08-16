@@ -14,3 +14,6 @@
 - graphql recurive deep limit
 - compose README.md file
 - add monitor support
+- unify graphql mutation return type
+- unify restful mutation return type
+- think about migrate database to mysql

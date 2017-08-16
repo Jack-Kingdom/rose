@@ -1,19 +1,8 @@
-/**
- * Created by Jack on 3/18/17.
- */
-
-import mongoose from 'mongoose'
-import config from '../../../config'
-
-mongoose.connect(config.mongodbUrl, { useMongoClient: true })
-
 // wrap model in a class
-const models = {
+export default {
   Article: require('./article'),
   Category: require('./category'),
   Tag: require('./tag'),
   Account: require('./account'),
   Media: require('./media')
 }
-
-export default models

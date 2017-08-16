@@ -1,5 +1,5 @@
-
 import mongoose from 'mongoose'
+import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
 
@@ -14,4 +14,4 @@ const CategorySchema = mongoose.Schema({
   name: Types.String
 })
 
-module.exports = mongoose.model('category', CategorySchema)
+module.exports = dbConnection.model('category', CategorySchema)

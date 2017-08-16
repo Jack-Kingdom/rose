@@ -1,5 +1,5 @@
-
 import mongoose from 'mongoose'
+import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
 const TagSchema = mongoose.Schema({
@@ -13,4 +13,4 @@ const TagSchema = mongoose.Schema({
   name: Types.String
 })
 
-module.exports = mongoose.model('tag', TagSchema)
+module.exports = dbConnection.model('tag', TagSchema)

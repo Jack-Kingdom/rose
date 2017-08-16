@@ -1,5 +1,5 @@
-
 import mongoose from 'mongoose'
+import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
 
@@ -37,4 +37,4 @@ const ArticleSchema = mongoose.Schema({
   updatedAt: Types.Number
 })
 
-module.exports = mongoose.model('article', ArticleSchema)
+module.exports = dbConnection.model('article', ArticleSchema)

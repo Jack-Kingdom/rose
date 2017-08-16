@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose'
+import dbConnection from '../database'
 import isEmail from 'validator/lib/isEmail'
 
 const Types = mongoose.Schema.Types
@@ -26,4 +27,4 @@ const AccountSchema = mongoose.Schema({
   lastLogin: Types.Number
 })
 
-module.exports = mongoose.model('account', AccountSchema)
+module.exports = dbConnection.model('account', AccountSchema)

@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose'
+import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
 const mediaSchema = mongoose.Schema({
@@ -17,4 +18,4 @@ const mediaSchema = mongoose.Schema({
   size: Types.Number
 })
 
-module.exports = mongoose.model('media', mediaSchema)
+module.exports = dbConnection.model('media', mediaSchema)
