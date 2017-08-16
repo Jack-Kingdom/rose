@@ -5,17 +5,21 @@ import Meta from '../../../../meta'
 module.exports = {
 
   createArticle: {
-    type: GraphQLID,
+    type: require('../types/return'),
     args: require('../types/article'),
-    resolve: async (root, args) => {
-      await Meta.Article.create(args)
+    resolve: async (parent, args, req) => {
+      try {
+        await Meta.Article.create(args)
+      } catch (err) {
+        return {success: false, msg: err.message}
+      }
     }
   },
 
   deleteArticle: {
     type: GraphQLID,
     args: require('../types/id'),
-    resolve: async (root, args) => {
+    resolve: async (parent, args, req) => {
       await Meta.Article.delete(args.id)
     }
   },
@@ -23,7 +27,7 @@ module.exports = {
   updateArticle: {
     type: GraphQLID,
     args: Object.assign({}, require('../types/id'), require('../types/article')),
-    resolve: async (root, args) => {
+    resolve: async (parent, args, req) => {
       const id = args.id
       delete args.id
       await Meta.Article.update(id, args)

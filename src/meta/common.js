@@ -1,5 +1,3 @@
-
-// todo think about reuse Article,Category,Tag in Meta
 class Common {
   constructor (model) {
     this.Model = model
@@ -17,7 +15,7 @@ class Common {
   async delete (id) {
     if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('id illegal')
 
-    const obj = await this.Model.findOne({ _id: id })
+    const obj = await this.Model.findOne({_id: id})
     if (!obj) throw Error(`${this.modelName} not Found`)
     await obj.remove()
   }
@@ -27,7 +25,7 @@ class Common {
     if (!(typeof (args) === 'object')) throw new RangeError('args cannot be null')
     if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${this.modelName} args illegal`)
 
-    const obj = await this.Model.findOne({ _id: id })
+    const obj = await this.Model.findOne({_id: id})
     if (!obj) throw new RangeError(`${this.modelName} not found`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
@@ -38,7 +36,7 @@ class Common {
   async retrieve (id) {
     if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('slug type illegal')
 
-    return this.Model.findOne({ _id: id })
+    return this.Model.findOne({_id: id})
   }
 
   // todo rewrite _id to id
