@@ -1,4 +1,3 @@
-
 import { GraphQLObjectType, GraphQLList } from 'graphql'
 import ArticleQueryType from './article'
 import Meta from '../../../../meta'
@@ -11,7 +10,7 @@ const TagQueryType = new GraphQLObjectType({
     obj.articles = {
       type: new GraphQLList(ArticleQueryType),
       args: require('../types/constraint'),
-      resolve: async (root, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, { tags: { $all: [root.id] } })
+      resolve: async (parent, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, {tags: {$all: [parent.id]}})
     }
     return obj
   }

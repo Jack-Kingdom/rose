@@ -1,6 +1,12 @@
-import { GraphQLString, GraphQLBoolean, GraphQLNonNull } from 'graphql'
+import { GraphQLObjectType, GraphQLNonNull, GraphQLBoolean, GraphQLString } from 'graphql'
 
-module.exports = {
-  success: {type: new GraphQLNonNull(GraphQLBoolean)},
-  msg: {type: GraphQLString}
-}
+const MutationReturnType = new GraphQLObjectType({
+  name: 'MutationReturnType',
+  description: 'return type of every mutation',
+  fields: {
+    success: {type: new GraphQLNonNull(GraphQLBoolean)},
+    msg: {type: GraphQLString}
+  }
+})
+
+export default MutationReturnType

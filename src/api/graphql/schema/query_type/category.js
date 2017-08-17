@@ -10,7 +10,7 @@ const CategoryQueryType = new GraphQLObjectType({
     obj.articles = {
       type: new GraphQLList(ArticleQueryType),
       args: require('../types/constraint'),
-      resolve: async (root, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, {category: root.id})
+      resolve: async (parent, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit, {category: parent.id})
     }
     return obj
   }

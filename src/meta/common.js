@@ -39,8 +39,8 @@ class Common {
     return this.Model.findOne({_id: id})
   }
 
-  // todo rewrite _id to id
   async retrieveMultiple (order, offset, limit, conditions = {}) {
+    console.log(arguments)
     if (!(typeof (order) === 'string')) throw new RangeError('order type illegal')
     if (!(typeof (offset) === 'number')) throw new RangeError('offset type illegal.')
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')

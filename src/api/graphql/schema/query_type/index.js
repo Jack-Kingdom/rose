@@ -1,6 +1,4 @@
-
 import { GraphQLObjectType, GraphQLList } from 'graphql'
-
 import ArticleQueryType from './article'
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
@@ -13,37 +11,37 @@ const QueryType = new GraphQLObjectType({
     categories: {
       type: new GraphQLList(CategoryQueryType),
       args: require('../types/constraint'),
-      resolve: async (root, args) => Meta.Category.retrieveMultiple(args.order, args.offset, args.limit)
+      resolve: async (parent, args) => Meta.Category.retrieveMultiple(args.order, args.offset, args.limit)
     },
 
     tags: {
       type: new GraphQLList(TagQueryType),
       args: require('../types/constraint'),
-      resolve: async (root, args) => Meta.Tag.retrieveMultiple(args.order, args.offset, args.limit)
+      resolve: async (parent, args) => Meta.Tag.retrieveMultiple(args.order, args.offset, args.limit)
     },
 
     articles: {
       type: new GraphQLList(ArticleQueryType),
       args: require('../types/constraint'),
-      resolve: async (root, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit)
+      resolve: async (parent, args) => Meta.Article.retrieveMultiple(args.order, args.offset, args.limit)
     },
 
     category: {
       type: CategoryQueryType,
       args: require('../types/id'),
-      resolve: async (root, args) => Meta.Category.retrieve(args.id)
+      resolve: async (parent, args) => Meta.Category.retrieve(args.id)
     },
 
     tag: {
       type: TagQueryType,
       args: require('../types/id'),
-      resolve: async (root, args) => Meta.Tag.retrieve(args.id)
+      resolve: async (parent, args) => Meta.Tag.retrieve(args.id)
     },
 
     article: {
       type: ArticleQueryType,
       args: require('../types/id'),
-      resolve: async (root, args) => Meta.Article.retrieve(args.id)
+      resolve: async (parent, args) => Meta.Article.retrieve(args.id)
     }
   })
 })

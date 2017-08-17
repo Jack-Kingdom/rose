@@ -1,19 +1,18 @@
-
 import express from 'express'
-import models from '../../../persistence/models/index'
+import Meta from '../../../meta'
 
 const router = express.Router()
 
 router.get('/articles', async (req, res) => {
-  const sort = req.query.sort || 'id'
+  const order = req.query.order || 'updateAt'
+  const offset = req.query.offset || 0
   const limit = req.query.limit || 10
 
-  console.log(sort)
   try {
-    const data = await models.Article.find().sort(sort).limit(limit)
+    const data = await Meta.Article.retrieveMultiple(order, offset, limit)
     return res.json(data)
   } catch (err) {
-    return res.json({ error: err })
+    return res.json({error: err.message})
   }
 })
 
