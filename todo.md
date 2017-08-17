@@ -1,6 +1,7 @@
 ##todo:
 
-- add auth check for api
+- ~~add auth check for graphql mutation~~
+- add auth check for restful api
 - add cache support
 - add api shield
 - add memcached support
