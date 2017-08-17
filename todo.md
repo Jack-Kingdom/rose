@@ -15,3 +15,4 @@
 - ~~think about migrate database to mysql~~
 - migrate media to meta
 - wrap business code in ops folder
+- delete article's relationship if delete category or tag

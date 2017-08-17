@@ -1,4 +1,4 @@
-
 export default {
-  rewriteId: require('./rewriteId')
+  rewriteId: require('./rewriteId'),
+  loginRequired: require('./loginRequired')
 }

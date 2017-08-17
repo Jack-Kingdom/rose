@@ -1,27 +1,29 @@
-import { GraphQLString } from 'graphql'
+import MutationReturnType from '../types/return'
 import Meta from '../../../../meta'
+
+const factory = require('./factory')
 
 module.exports = {
   createCategory: {
-    type: GraphQLString,
+    type: MutationReturnType,
     args: require('../types/category'),
-    resolve: async (parent, args, req) => Meta.Category.create(args)
+    resolve: (parent, args, req) => factory(req, () => Meta.Category.create(args))
+
   },
 
-  // todo: remove article's category id
   deleteCategory: {
-    type: GraphQLString,
+    type: MutationReturnType,
     args: require('../types/id'),
-    resolve: async (parent, args, req) => Meta.Category.retrieve(args.id)
+    resolve: (parent, args, req) => factory(req, () => Meta.Category.retrieve(args.id))
   },
 
   updateCategory: {
-    type: GraphQLString,
+    type: MutationReturnType,
     args: Object.assign({}, require('../types/id'), require('../types/category')),
-    resolve: async (parent, args, req) => {
+    resolve: (parent, args, req) => factory(req, () => {
       const id = args.id
       delete args.id
       return Meta.Category.update(id, args)
-    }
+    })
   }
 }

@@ -1,39 +1,29 @@
-import { GraphQLID } from 'graphql'
 import MutationReturnType from '../types/return'
 import Meta from '../../../../meta'
 
-// todo: add permission check
+const factory = require('./factory')
+
 module.exports = {
 
   createArticle: {
     type: MutationReturnType,
     args: require('../types/article'),
-    resolve: async (parent, args, req) => {
-      if (!req.hasLogged) return {success: false, msg: 'Permission deny.'}
-      try {
-        await Meta.Article.create(args)
-        return {success: true}
-      } catch (err) {
-        return {success: false, msg: err.message}
-      }
-    }
+    resolve: (parent, args, req) => factory(req, () => Meta.Article.create(args))
   },
 
   deleteArticle: {
-    type: GraphQLID,
+    type: MutationReturnType,
     args: require('../types/id'),
-    resolve: async (parent, args, req) => {
-      await Meta.Article.delete(args.id)
-    }
+    resolve: (parent, args, req) => factory(req, () => Meta.Article.delete(args.id))
   },
 
   updateArticle: {
-    type: GraphQLID,
+    type: MutationReturnType,
     args: Object.assign({}, require('../types/id'), require('../types/article')),
-    resolve: async (parent, args, req) => {
+    resolve: (parent, args, req) => factory(req, () => {
       const id = args.id
       delete args.id
-      await Meta.Article.update(id, args)
-    }
+      return Meta.Article.update(id, args)
+    })
   }
 }
