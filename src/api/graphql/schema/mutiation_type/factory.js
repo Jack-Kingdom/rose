@@ -1,5 +1,5 @@
 /*
- factory.js contains a function that include mutation resolve function's basic operate,
+ factory.js is a function that include mutation resolve function's basic operate,
  such as permission check, return type.
  */
 
