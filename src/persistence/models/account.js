@@ -1,7 +1,6 @@
-
 import mongoose from 'mongoose'
-import dbConnection from '../database'
 import isEmail from 'validator/lib/isEmail'
+import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
 const AccountSchema = mongoose.Schema({
@@ -19,9 +18,6 @@ const AccountSchema = mongoose.Schema({
   password: {
     type: Types.String,
     required: [true, 'Password cannot be empty'],
-    min: [8, 'password is too short'],
-    max: [100, 'password is too long']
-
   },
   createdAt: Types.Number,
   lastLogin: Types.Number
