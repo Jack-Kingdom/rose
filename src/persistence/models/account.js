@@ -17,7 +17,7 @@ const AccountSchema = mongoose.Schema({
   },
   password: {
     type: Types.String,
-    required: [true, 'Password cannot be empty'],
+    required: [true, 'Password cannot be empty']
   },
   createdAt: Types.Number,
   lastLogin: Types.Number
