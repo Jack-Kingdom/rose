@@ -1,5 +1,5 @@
-const gulp = require('gulp');
+const gulp = require('gulp')
 
-gulp.task('default', function() {
-  console.log("hello world")
-});
+gulp.task('default', function () {
+  console.log('hello world')
+})
