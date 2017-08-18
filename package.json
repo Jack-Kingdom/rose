@@ -6,11 +6,11 @@
   "email": "email@qiaohong.org",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon src/index.js --exec \"babel-node\"",
-    "standard": "standard --fix",
+    "start": "export NODE_ENV=development && nodemon src/index.js --exec \"babel-node\"",
     "build": "babel config -d dist/config && babel src -d dist/src",
-    "serve": "cross-env NODE_ENV=production node dist/src/index.js",
-    "clean": "rm -rf dist && mkdir dist"
+    "serve": "export NODE_ENV=production && node dist/src/index.js",
+    "clean": "rm -rf dist && mkdir dist",
+    "standard": "standard --fix"
   },
   "pre-commit": [
     "standard"
@@ -19,7 +19,6 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
-    "cross-env": "^5.0.5",
     "express": "^4.15.4",
     "express-graphql": "^0.6.6",
     "express-session": "^1.15.5",
