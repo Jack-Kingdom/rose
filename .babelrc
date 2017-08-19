@@ -5,7 +5,7 @@
   "env": {
     "production": {
       "presets": [
-        "babili"
+        "minify"
       ]
     }
   },

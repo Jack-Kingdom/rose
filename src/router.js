@@ -1,6 +1,4 @@
-
 import express from 'express'
-import morgan from 'morgan'
 import session from 'express-session'
 import config from '../config'
 
@@ -16,9 +14,6 @@ router.use(session({
     sameSite: 'strict'
   }
 }))
-
-// load http logger
-router.use(morgan('short'))
 
 router.use('/api/graphql', require('./api/graphql'))
 router.use('/api/restful', require('./api/restful'))
