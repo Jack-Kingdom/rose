@@ -14,4 +14,4 @@ const CategorySchema = mongoose.Schema({
   name: Types.String
 })
 
-module.exports = dbConnection.model('category', CategorySchema)
+export default dbConnection.model('category', CategorySchema)

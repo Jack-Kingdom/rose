@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose'
 import dbConnection from '../database'
 
@@ -18,4 +17,4 @@ const mediaSchema = mongoose.Schema({
   size: Types.Number
 })
 
-module.exports = dbConnection.model('media', mediaSchema)
+export default dbConnection.model('media', mediaSchema)

@@ -4,26 +4,27 @@ import dbConnection from '../database'
 const Types = mongoose.Schema.Types
 
 const ArticleSchema = mongoose.Schema({
-  title: {
-    type: Types.String,
-    required: true
-  },
   slug: {
     type: Types.String,
+    lowercase: true,
     index: true,
     required: true,
     unique: true
   },
+  title: {
+    type: Types.String,
+    defaultValue: 'Untitled'
+  },
   content: Types.String,
   renderedContent: Types.String,
-  tags: [{
-    type: Types.ObjectId,
-    ref: 'tags'
-  }],
   category: {
     type: Types.ObjectId,
     ref: 'category'
   },
+  tags: [{
+    type: Types.ObjectId,
+    ref: 'tags'
+  }],
   status: {
     type: Types.String,
     enum: ['published', 'draft', 'removed'],
@@ -37,4 +38,4 @@ const ArticleSchema = mongoose.Schema({
   updatedAt: Types.Number
 })
 
-module.exports = dbConnection.model('article', ArticleSchema)
+export default dbConnection.model('article', ArticleSchema)

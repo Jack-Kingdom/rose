@@ -1,8 +1,17 @@
-// wrap model in a class
+/*
+  wrap models together
+ */
+
+import Account from './account'
+import Article from './article'
+import Category from './category'
+import Tag from './tag'
+import Media from './media'
+
 export default {
-  Article: require('./article'),
-  Category: require('./category'),
-  Tag: require('./tag'),
-  Account: require('./account'),
-  Media: require('./media')
+  Account,
+  Article,
+  Category,
+  Tag,
+  Media
 }

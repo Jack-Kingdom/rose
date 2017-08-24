@@ -13,4 +13,4 @@ const TagSchema = mongoose.Schema({
   name: Types.String
 })
 
-module.exports = dbConnection.model('tag', TagSchema)
+export default dbConnection.model('tag', TagSchema)

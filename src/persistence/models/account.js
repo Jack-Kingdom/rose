@@ -23,4 +23,4 @@ const AccountSchema = mongoose.Schema({
   lastLogin: Types.Number
 })
 
-module.exports = dbConnection.model('account', AccountSchema)
+export default dbConnection.model('account', AccountSchema)
