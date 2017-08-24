@@ -11,8 +11,8 @@ const sha256 = (msg) => {
 const hashPass = (email, password) => sha256(sha256(email) + sha256(password))
 
 // todo consider reuse validate code
-class Auth {
-  static async register (email, password) {
+export default {
+  async register (email, password) {
     if (typeof (email) !== 'string' || typeof (password) !== 'string') throw new TypeError('parameter type illegal.')
     if (isEmail(email) === false) throw new RangeError('email value illegal.')
 
@@ -23,9 +23,9 @@ class Auth {
       const account = new models.Account({email, password: hashPassword, createdAt: Date.now()})
       await account.save()
     }
-  }
+  },
 
-  static async login (email, password) {
+  async login (email, password) {
     if (typeof (email) !== 'string' || typeof (password) !== 'string') throw new TypeError('parameter type illegal.')
     if (isEmail(email) === false) throw new RangeError('email value illegal.')
 
@@ -35,9 +35,9 @@ class Auth {
       account.lastLogin = Date.now()
       await account.save()
     } else throw new RangeError('email and password not match')
-  }
+  },
 
-  static async changePassword (email, oldPassword, newPassword) {
+  async changePassword (email, oldPassword, newPassword) {
     if (typeof (email) !== 'string' || typeof (oldPassword) !== 'string' || typeof (newPassword) !== 'string') throw TypeError('parameter type illegal.')
     if (isEmail(email) === false) throw new RangeError('email value illegal.')
 
@@ -49,5 +49,3 @@ class Auth {
     } else throw new RangeError('email and password not match')
   }
 }
-
-module.exports = Auth

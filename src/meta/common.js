@@ -12,7 +12,7 @@ class Common {
     await obj.save()
   }
 
-  async delete (id) {
+  async remove (id) {
     if (!(typeof (id) === 'string') && id.length > 0) throw new RangeError('id illegal')
 
     const obj = await this.Model.findOne({_id: id})
