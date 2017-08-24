@@ -1,5 +1,5 @@
 import Article from './article'
 
-export {
+export default {
   Article
 }

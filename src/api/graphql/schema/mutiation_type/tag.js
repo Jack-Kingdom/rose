@@ -1,28 +1,22 @@
 import MutationReturnType from '../types/return'
-import Meta from '../../../../meta'
-
-const factory = require('./factory')
+import Ops from '../../../../ops'
 
 module.exports = {
   createTag: {
     type: MutationReturnType,
     args: require('../types/tag'),
-    resolve: (parent, args, req) => factory(req, () => Meta.Tag.create(args))
+    resolve: (parent, args, req) => Ops.Tag.create(req, args)
   },
 
   deleteTag: {
     type: MutationReturnType,
-    args: require('../types/id'),
-    resolve: (parent, args, req) => factory(req, () => Meta.Tag.delete(args.id))
+    args: require('../types/slug'),
+    resolve: (parent, args, req) => Ops.Tag.delete(req, args.slug)
   },
 
   updateTag: {
     type: MutationReturnType,
-    args: Object.assign({}, require('../types/id'), require('../types/tag')),
-    resolve: (parent, args, req) => factory(req, () => {
-      const id = args.id
-      delete args.id
-      return Meta.Tag.update(id, args)
-    })
+    args: Object.assign({}, require('../types/slug'), require('../types/tag')),
+    resolve: (parent, args, req) => Ops.Tag.update(req, args)
   }
 }

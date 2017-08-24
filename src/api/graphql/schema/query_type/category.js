@@ -6,7 +6,7 @@ const CategoryQueryType = new GraphQLObjectType({
   name: 'Category',
   description: 'Category Info',
   fields: () => {
-    const obj = Object.assign({}, require('../types/id'), require('../types/category'))
+    const obj = Object.assign({}, require('../types/category'))
     obj.articles = {
       type: new GraphQLList(ArticleQueryType),
       args: require('../types/constraint'),

@@ -4,7 +4,7 @@ import Category from './category'
 import Tag from './tag'
 import Media from './media'
 
-export {
+export default {
   Auth,
   Article,
   Category,

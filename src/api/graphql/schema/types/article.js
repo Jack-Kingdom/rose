@@ -1,8 +1,8 @@
 import { GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList } from 'graphql'
 
 module.exports = {
-  title: {type: GraphQLString},
   slug: {type: GraphQLString},
+  title: {type: GraphQLString},
   content: {type: GraphQLString},
   renderedContent: {type: GraphQLString},
   category: {type: GraphQLID},
