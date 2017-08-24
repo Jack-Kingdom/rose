@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLList } from 'graphql'
 import ArticleQueryType from './article'
 import CategoryQueryType from './category'
 import TagQueryType from './tag'
-import Meta from '../../../../meta'
+import Ops from '../../../../ops'
 
 const QueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -28,19 +28,19 @@ const QueryType = new GraphQLObjectType({
 
     category: {
       type: CategoryQueryType,
-      args: require('../types/id'),
+      args: require('../types/slug'),
       resolve: async (parent, args) => Meta.Category.retrieve(args.id)
     },
 
     tag: {
       type: TagQueryType,
-      args: require('../types/id'),
+      args: require('../types/slug'),
       resolve: async (parent, args) => Meta.Tag.retrieve(args.id)
     },
 
     article: {
       type: ArticleQueryType,
-      args: require('../types/id'),
+      args: require('../types/slug'),
       resolve: async (parent, args) => Meta.Article.retrieve(args.id)
     }
   })

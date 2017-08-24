@@ -13,13 +13,13 @@ module.exports = {
 
   deleteArticle: {
     type: MutationReturnType,
-    args: require('../types/id'),
+    args: require('../types/slug'),
     resolve: (parent, args, req) => factory(req, () => Meta.Article.delete(args.id))
   },
 
   updateArticle: {
     type: MutationReturnType,
-    args: Object.assign({}, require('../types/id'), require('../types/article')),
+    args: Object.assign({}, require('../types/slug'), require('../types/article')),
     resolve: (parent, args, req) => factory(req, () => {
       const id = args.id
       delete args.id
