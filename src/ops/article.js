@@ -15,7 +15,8 @@ export default {
   },
 
   multipleRetrieve (req, order, offset, limit, status) {
-    if (!(typeof (order) === 'string')) throw RangeError('order argument illegal')
+    if (!(typeof (order) === 'string')) throw TypeError('order argument illegal')
+
     // todo
     if (status === 'published' || req.hasLogged) {
       return Meta.Article.multipleRetrieve(order, offset, limit, {status: status})
