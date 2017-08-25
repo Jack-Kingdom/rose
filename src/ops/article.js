@@ -2,6 +2,11 @@ import Meta from '../meta'
 
 export default {
 
+  async create (req, args) {
+    if (req.hasLogged) return Meta.Article.create(args)
+    else throw RangeError('Permission deny.')
+  },
+
   async retrieve (req, slug) {
     const article = await Meta.Article.retrieve(slug)
     if (article && (req.hasLogged || article.status === 'published')) return article
@@ -14,8 +19,4 @@ export default {
     else throw Error('Permission deny.')
   },
 
-  async create (req, args) {
-    if (req.hasLogged) return Meta.Article.create(args)
-    else throw RangeError('Permission deny.')
-  }
 }

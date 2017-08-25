@@ -43,6 +43,6 @@ export default {
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
     if (!(Object.keys(conditions).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    return Model.find().sort(order).skip(offset).limit(limit)
+    return Model.find(conditions).sort(order).skip(offset).limit(limit)
   }
 }
