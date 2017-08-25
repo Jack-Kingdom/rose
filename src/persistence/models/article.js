@@ -13,7 +13,7 @@ const ArticleSchema = mongoose.Schema({
   },
   title: {
     type: Types.String,
-    defaultValue: 'Untitled'
+    default: 'Untitled',
   },
   content: Types.String,
   renderedContent: Types.String,
@@ -28,7 +28,7 @@ const ArticleSchema = mongoose.Schema({
   status: {
     type: Types.String,
     enum: ['published', 'draft', 'removed'],
-    defaultValue: 'draft'
+    default: 'draft'
   },
   allowComments: {
     type: Types.Boolean,
