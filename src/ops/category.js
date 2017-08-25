@@ -14,13 +14,8 @@ export default {
     return Meta.Category.retrieve(slug)
   },
 
-  multipleRetrieve (req, order, offset, limit, status) {
-    if (!(typeof (order) === 'string')) throw TypeError('order argument illegal')
-
-    // todo
-    if (status === 'published' || req.hasLogged) {
-      return Meta.Article.multipleRetrieve(order, offset, limit, {status: status})
-    } else throw Error('Permission deny.')
+  multipleRetrieve (req, order, offset, limit) {
+    return Meta.Category.multipleRetrieve(order, offset, limit)
   },
 
   delete (req, slug) {
