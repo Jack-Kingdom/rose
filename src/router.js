@@ -15,7 +15,7 @@ router.use(session({
   }
 }))
 
-router.use('/api/graphql', require('./api/graphql'))
+router.use('/api/graphql', require('./api/graphql/v1/index'))
 router.use('/api/rest', require('./api/rest'))
 router.use('/api/media', require('./api/media'))
 router.use('/api/auth', require('./api/auth'))

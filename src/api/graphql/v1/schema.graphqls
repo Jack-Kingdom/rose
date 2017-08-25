@@ -16,7 +16,17 @@ type Query {
 
 type Mutation {
 
-    createArticle(params:ArticleInput):
+#    createArticle(params:ArticleInput):ReturnType
+#    updateArticle(params:ArticleInput):ReturnType
+#    deleteArticle(slug:ID!):ReturnType
+#
+#    createCategory(params:CategoryInput):ReturnType
+#    updateCategory(params:CategoryInput):ReturnType
+#    deleteCategory(slug:ID!):ReturnType
+#
+    createTag(params:TagInput):ReturnType
+#    updateTag(params:TagInput):ReturnType
+#    deleteTag(slug:ID!):ReturnType
 }
 
 interface Base{
@@ -42,8 +52,8 @@ input ArticleInput{
     title:String
     content:String
     renderedContent:String
-    category: Category
-    tags: [Tag]
+    category: String    # use slug as reference
+    tags: [String]      # as same
     status: status
     allowComments: Boolean
     createdAt: Int
@@ -77,4 +87,9 @@ enum status {
     published
     draft
     removed
+}
+
+type ReturnType {
+    success:Boolean!
+    message:String
 }
