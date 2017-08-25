@@ -1,8 +1,4 @@
-import Ops from '../../../../ops/index'
+import Mutation from './mutation'
+import Query from './query'
 
-export default {
-  articles: (sort, offset, limit, status) => {
-    console.log(sort, offset, limit, status)
-    return []
-  }
-}
+export default Object.assign({}, Mutation, Query)

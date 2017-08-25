@@ -1,8 +1,12 @@
 import express from 'express'
+import morgan from 'morgan'
 import session from 'express-session'
 import config from '../config'
 
 const router = express.Router()
+
+// add http logger
+router.use(morgan('short'))
 
 // load session
 router.use(session({
@@ -14,7 +18,6 @@ router.use(session({
     sameSite: 'strict'
   }
 }))
-
 
 router.use('/api/graphql', require('./api/graphql'))
 router.use('/api/rest', require('./api/rest'))

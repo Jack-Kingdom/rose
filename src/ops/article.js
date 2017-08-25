@@ -14,8 +14,11 @@ export default {
     }
   },
 
-  multipleRetrieve (req, order, offset, limit, condition) {
-    //todo type check
-
+  multipleRetrieve (req, order, offset, limit, status) {
+    if (!(typeof (order) === 'string')) throw RangeError('order argument illegal')
+    // todo
+    if (status === 'published' || req.hasLogged) {
+      return Meta.Article.multipleRetrieve(order, offset, limit, {status: status})
+    } else throw Error('Permission deny.')
   }
 }

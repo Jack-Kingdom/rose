@@ -31,18 +31,18 @@ export default {
     await obj.save()
   },
 
-  async retrieve (slug) {
+  retrieve (slug) {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal')
 
     return model.findOne({slug: slug})
   },
 
-  multipleRetrieve: async (order, offset, limit, conditions = {}) => {
+  multipleRetrieve(order, offset, limit, conditions = {}) {
     if (!(typeof (order) === 'string')) throw new RangeError('order type illegal')
     if (!(typeof (offset) === 'number')) throw new RangeError('offset type illegal.')
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
-    if (!(Object.keys(conditions).every(arg => this.fields.includes(arg)))) throw new RangeError(`${model.modelName} args illegal`)
+    if (!(Object.keys(conditions).every(arg => fields.includes(arg)))) throw new RangeError(`${model.modelName} args illegal`)
 
-    return model.find().sort(order).skip(offset).limit(limit)
+    return model.find(conditions).sort(order).skip(offset).limit(limit)
   }
 }

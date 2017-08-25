@@ -5,9 +5,9 @@ schema {
 
 type Query {
 
-    articles(sort:String = updatedAt,offset: Int = 0,limit:Int = 10, status:status=published):[Article]
-    categories(sort:String = updatedAt,offset: Int = 0,limit:Int = 10):[Category]
-    tags(sort:String = updatedAt,offset: Int = 0,limit:Int = 10):[Tag]
+    articles(order:String = "updatedAt",offset: Int = 0,limit:Int = 10, status:status=published):[Article]
+    categories(order:String = "updatedAt",offset: Int = 0,limit:Int = 10):[Category]
+    tags(order:String = "updatedAt",offset: Int = 0,limit:Int = 10):[Tag]
 
     article(slug:String!):Article
     category(slug:String!):Category
@@ -16,17 +16,17 @@ type Query {
 
 type Mutation {
 
-#    createArticle(params:ArticleInput):ReturnType
-#    updateArticle(params:ArticleInput):ReturnType
-#    deleteArticle(slug:ID!):ReturnType
-#
-#    createCategory(params:CategoryInput):ReturnType
-#    updateCategory(params:CategoryInput):ReturnType
-#    deleteCategory(slug:ID!):ReturnType
-#
+    #    createArticle(params:ArticleInput):ReturnType
+    #    updateArticle(params:ArticleInput):ReturnType
+    #    deleteArticle(slug:ID!):ReturnType
+    #
+    #    createCategory(params:CategoryInput):ReturnType
+    #    updateCategory(params:CategoryInput):ReturnType
+    #    deleteCategory(slug:ID!):ReturnType
+    #
     createTag(params:TagInput):ReturnType
-#    updateTag(params:TagInput):ReturnType
-#    deleteTag(slug:ID!):ReturnType
+    #    updateTag(params:TagInput):ReturnType
+    #    deleteTag(slug:ID!):ReturnType
 }
 
 interface Base{
