@@ -1,7 +1,6 @@
 import MutationReturnType from '../types/return'
 import Ops from '../../../../ops'
 
-
 module.exports = {
 
   createArticle: {
