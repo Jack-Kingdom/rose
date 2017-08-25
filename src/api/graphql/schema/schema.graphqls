@@ -1,0 +1,80 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+
+    articles(sort:String = updatedAt,offset: Int = 0,limit:Int = 10, status:status=published):[Article]
+    categories(sort:String = updatedAt,offset: Int = 0,limit:Int = 10):[Category]
+    tags(sort:String = updatedAt,offset: Int = 0,limit:Int = 10):[Tag]
+
+    article(slug:String!):Article
+    category(slug:String!):Category
+    tag(slug:String!):Tag
+}
+
+type Mutation {
+
+    createArticle(params:ArticleInput):
+}
+
+interface Base{
+    slug: String!
+    title: String
+}
+
+type Article implements Base{
+    slug:String!
+    title:String
+    content:String
+    renderedContent:String
+    category: Category
+    tags: [Tag]
+    status: status
+    allowComments: Boolean
+    createdAt: Int
+    updatedAt: Int
+}
+
+input ArticleInput{
+    slug:String!
+    title:String
+    content:String
+    renderedContent:String
+    category: Category
+    tags: [Tag]
+    status: status
+    allowComments: Boolean
+    createdAt: Int
+    updatedAt: Int
+}
+
+
+type Category implements Base{
+    slug: String!
+    title: String
+    articles:[Article]
+}
+
+input CategoryInput {
+    slug: String!
+    title: String
+}
+
+type Tag implements Base{
+    slug: String!
+    title: String
+    articles:[Article]
+}
+
+input TagInput {
+    slug: String!
+    title: String
+}
+
+enum status {
+    published
+    draft
+    removed
+}

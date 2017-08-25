@@ -11,7 +11,7 @@ const CategorySchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  name: Types.String
+  title: Types.String
 })
 
 export default dbConnection.model('category', CategorySchema)

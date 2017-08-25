@@ -1,3 +1,4 @@
+import { GraphQLString, GraphQLNonNull, GraphQLInputObjectType } from 'graphql'
 import MutationReturnType from '../types/return'
 import Ops from '../../../../ops'
 
@@ -11,7 +12,9 @@ module.exports = {
 
   deleteCategory: {
     type: MutationReturnType,
-    args: require('../types/slug'),
+    args: {
+      slug: {type: new GraphQLNonNull(GraphQLString)}
+    },
     resolve: (parent, args, req) => Ops.Category.retrieve(args.slug)
   },
 
