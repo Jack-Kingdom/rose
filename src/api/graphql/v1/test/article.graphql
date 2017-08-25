@@ -1,6 +1,0 @@
-{
-    article(slug:"hello-world"){
-        slug
-        title
-    }
-}
