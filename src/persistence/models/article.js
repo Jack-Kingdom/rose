@@ -13,7 +13,7 @@ const ArticleSchema = mongoose.Schema({
   },
   title: {
     type: Types.String,
-    default: 'Untitled',
+    default: 'Untitled'
   },
   content: Types.String,
   renderedContent: Types.String,

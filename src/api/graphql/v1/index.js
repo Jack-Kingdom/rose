@@ -9,7 +9,7 @@ const graphqlV1 = express.Router()
 graphqlV1.use(graphqlHTTP({
   schema: schema,
   rootValue: rootValue,
-  graphiql: true
+  graphiql: config.debug
 }))
 
 export default graphqlV1

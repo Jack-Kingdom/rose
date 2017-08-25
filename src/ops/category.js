@@ -1,4 +1,3 @@
-import logger from '../utils/logger'
 import Meta from '../meta'
 
 export default {
@@ -12,7 +11,6 @@ export default {
   },
 
   retrieve (req, slug) {
-    // logger.info()
     return Meta.Category.retrieve(slug)
   },
 
@@ -26,8 +24,6 @@ export default {
   },
 
   delete (req, slug) {
-    if (!(typeof (slug) === 'string' && slug.length > 0)) throw RangeError('slug argument illegal')
-
-    if(!req.hasLogged) throw
+    if (!req.hasLogged) throw RangeError('Permission deny.')
   }
 }
