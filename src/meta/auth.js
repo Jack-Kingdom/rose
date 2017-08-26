@@ -1,51 +1,57 @@
-import crypto from 'crypto'
 import isEmail from 'validator/lib/isEmail'
-import models from '../persistence/models'
+import Models from '../persistence/models'
 
-const sha256 = (msg) => {
-  const hash = crypto.createHash('sha256')
-  hash.update(msg)
-  return hash.digest('hex')
-}
+const Model = Models.Account
+const fields = Object.keys(Models.Category.schema.obj)
 
-const hashPass = (email, password) => sha256(sha256(email) + sha256(password))
-
-// todo consider reuse validate code
 export default {
-  async register (email, password) {
-    if (typeof (email) !== 'string' || typeof (password) !== 'string') throw new TypeError('parameter type illegal.')
-    if (isEmail(email) === false) throw new RangeError('email value illegal.')
 
-    const check = await models.Account.findOne({email})
-    if (check) throw new RangeError('email has been registered.')
-    else {
-      const hashPassword = hashPass(email, password)
-      const account = new models.Account({email, password: hashPassword, createdAt: Date.now()})
-      await account.save()
-    }
+  async create (args) {
+    if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
+    if (!isEmail(args.email)) throw new RangeError('email must be provided.')
+    if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
+
+    const obj = new Model(args)
+    await obj.save()
+    return obj
   },
 
-  async login (email, password) {
-    if (typeof (email) !== 'string' || typeof (password) !== 'string') throw new TypeError('parameter type illegal.')
-    if (isEmail(email) === false) throw new RangeError('email value illegal.')
+  async remove (email) {
+    if (!isEmail(email)) throw TypeError('email argument illegal.')
 
-    const account = await models.Account.findOne({email})
-    if (!account) throw new RangeError('email not exist')
-    else if (account.password === hashPass(email, password)) {
-      account.lastLogin = Date.now()
-      await account.save()
-    } else throw new RangeError('email and password not match')
+    const obj = await Model.findOne({email: email})
+    if (!obj) throw Error(`${Model.modelName} not Found`)
+    await obj.remove()
+    return obj
   },
 
-  async changePassword (email, oldPassword, newPassword) {
-    if (typeof (email) !== 'string' || typeof (oldPassword) !== 'string' || typeof (newPassword) !== 'string') throw TypeError('parameter type illegal.')
-    if (isEmail(email) === false) throw new RangeError('email value illegal.')
+  async update (args) {
+    if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
+    if (!isEmail(args.email)) throw new RangeError('email must be provided.')
+    if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    const account = await models.Account.findOne({email})
-    if (!account) throw new RangeError('email not exist')
-    else if (account.password === hashPass(email, oldPassword)) {
-      account.password = hashPass(email, newPassword)
-      await account.save()
-    } else throw new RangeError('email and password not match')
+    const obj = await Model.findOne({email: args.email})
+    if (!obj) throw new RangeError(`email with ${args.email} not found`)
+
+    Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
+    await obj.save()
+    return obj
+  },
+
+  async retrieve (email) {
+    if (!isEmail(email)) throw TypeError('email argument illegal.')
+
+    const obj = Model.findOne({slug: email})
+    if (!obj) throw new RangeError(`email with ${email} not found`)
+    else return obj
+  },
+
+  multipleRetrieve: async (order, offset, limit, conditions = {}) => {
+    if (!(typeof (order) === 'string')) throw new RangeError('order type illegal')
+    if (!(typeof (offset) === 'number')) throw new RangeError('offset type illegal.')
+    if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
+    if (!(Object.keys(conditions).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
+
+    return Model.find(conditions).sort(order).skip(offset).limit(limit)
   }
 }
