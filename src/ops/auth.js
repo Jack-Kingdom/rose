@@ -1,5 +1,8 @@
 /*
-
+  all auth function in this file.
+  include: register, login, changedPassword
+  all function return nothing if operation legal
+  else an error will be throw, remember catch it on topper layer
  */
 import crypto from 'crypto'
 import config from '../../config'
@@ -16,7 +19,7 @@ const hashPass = (email, password) => sha256(sha256(email) + sha256(password))
 export default {
   async register (email, password) {
 
-    if(!config.openRegister) throw RangeError('register not allowed')
+    if (!config.openRegister) throw RangeError('register not allowed')
 
     const check = await Meta.Account.retrieve(email)
     if (check) throw new RangeError('email has been registered.')
@@ -24,7 +27,6 @@ export default {
     const hashPassword = hashPass(email, password)
     const account = Meta.Account.create({email, password: hashPassword, createdAt: Date.now()})
     await account.save()
-    return account
   },
 
   async login (email, password) {
@@ -33,7 +35,6 @@ export default {
     if (!(account.password === hashPass(email, password))) throw RangeError('email and password not match')
 
     await Meta.Account.update({email: email, lastLogin: Date.now()})
-    return account
   },
 
   async changePassword (email, oldPassword, newPassword) {
@@ -42,6 +43,5 @@ export default {
     if (!(account.password === hashPass(email, oldPassword))) throw RangeError('email and password not match')
 
     await Meta.Account.update(email, {password: hashPass(email, newPassword)})
-    return account
   }
 }
