@@ -13,18 +13,19 @@ export default {
   },
 
   async remove (slug) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug illegal')
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
 
     const obj = await Model.findOne({slug: slug})
     if (!obj) throw Error(`${Model.modelName} not Found`)
     await obj.remove()
   },
 
-  async update (args) {
+  async update (slug, args) {
+    if (!(typeof (slug) === 'string' && slug.length > 0)) throw new TypeError(`slug ${slug} illegal.`)
     if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
     if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal`)
 
-    const obj = await Model.findOne({slug: args.slug})
+    const obj = await Model.findOne({slug: slug})
     if (!obj) throw new RangeError(`${Model.modelName} not found`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
@@ -32,7 +33,7 @@ export default {
   },
 
   retrieve (slug) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal')
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
 
     return Model.findOne({slug: slug})
   },

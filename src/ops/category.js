@@ -3,8 +3,9 @@ import Meta from '../meta'
 export default {
 
   create (req, args) {
-    if (req.hasLogged) return Meta.Category.create(args)
-    else throw RangeError('Permission deny')
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Category.create(args)
   },
 
   update (req, args) {

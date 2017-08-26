@@ -3,8 +3,21 @@ import Meta from '../meta'
 export default {
 
   async create (req, args) {
-    if (req.hasLogged) return Meta.Article.create(args)
-    else throw RangeError('Permission deny.')
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Article.create(args)
+  },
+
+  async remove (req, slug) {
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Article.remove(slug)
+  },
+
+  async update (req, slug, args) {
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Article.update(slug, args)
   },
 
   async retrieve (req, slug) {
