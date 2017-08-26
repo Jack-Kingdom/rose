@@ -1,11 +1,11 @@
-import Auth from './auth'
+import Account from './account'
 import Article from './article'
 import Category from './category'
 import Tag from './tag'
 import Media from './media'
 
 export default {
-  Auth,
+  Account,
   Article,
   Category,
   Tag,
