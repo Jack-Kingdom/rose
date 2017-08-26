@@ -30,8 +30,8 @@ export default {
     if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
     if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    const obj = await Model.findOne({email: args.email})
-    if (!obj) throw new RangeError(`email with ${args.email} not found`)
+    const obj = await Model.findOne({email: email})
+    if (!obj) throw new RangeError(`email with ${email} not found`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
     await obj.save()
