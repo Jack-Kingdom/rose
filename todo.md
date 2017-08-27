@@ -18,3 +18,4 @@
 - wrap business code in ops folder
 - delete article's relationship if delete category or tag
 - reuse validate code
+- bug fix for tag, category update
