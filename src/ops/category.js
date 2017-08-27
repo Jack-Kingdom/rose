@@ -8,9 +8,16 @@ export default {
     return Meta.Category.create(args)
   },
 
+  remove (req, slug) {
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Category.delete(slug)
+  },
+
   update (req, args) {
-    if (req.hasLogged) return Meta.Category.update(args)
-    else throw RangeError('Permission deny')
+    if (!req.hasLogged) throw RangeError('Permission deny')
+
+    return Meta.Category.update(args)
   },
 
   retrieve (req, slug) {
@@ -20,9 +27,4 @@ export default {
   multipleRetrieve (req, order, offset, limit) {
     return Meta.Category.multipleRetrieve(order, offset, limit)
   },
-
-  delete (req, slug) {
-    if (req.hasLogged) return Meta.Category.delete(slug)
-    else throw RangeError('Permission deny.')
-  }
 }
