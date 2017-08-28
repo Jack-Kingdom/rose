@@ -16,17 +16,17 @@ type Query {
 
 type Mutation {
 
-    #    createArticle(params:ArticleInput):ReturnType
-    #    updateArticle(params:ArticleInput):ReturnType
-    #    deleteArticle(slug:ID!):ReturnType
-    #
-    #    createCategory(params:CategoryInput):ReturnType
-    #    updateCategory(params:CategoryInput):ReturnType
-    #    deleteCategory(slug:ID!):ReturnType
-    #
+    createArticle(params:ArticleInput):ReturnType
+    updateArticle(params:ArticleInput):ReturnType
+    deleteArticle(slug:ID!):ReturnType
+
+    createCategory(params:CategoryInput):ReturnType
+    updateCategory(params:CategoryInput):ReturnType
+    deleteCategory(slug:ID!):ReturnType
+
     createTag(params:TagInput):ReturnType
-    #    updateTag(params:TagInput):ReturnType
-    #    deleteTag(slug:ID!):ReturnType
+    updateTag(params:TagInput):ReturnType
+    deleteTag(slug:ID!):ReturnType
 }
 
 interface Base{
