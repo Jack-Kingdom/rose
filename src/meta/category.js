@@ -20,11 +20,12 @@ export default {
     await obj.remove()
   },
 
-  async update (args) {
+  async update (slug, args) {
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug with ${slug} illegal`)
     if (!(typeof (args) === 'object')) throw new RangeError('args cannot be null')
     if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    const obj = await Model.findOne({slug: args.slug})
+    const obj = await Model.findOne({slug: slug})
     if (!obj) throw new RangeError(`${Model.modelName} not found`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
