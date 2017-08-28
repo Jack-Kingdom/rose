@@ -5,9 +5,9 @@ schema {
 
 type Query {
 
-    articles(order:String = "updatedAt",offset: Int = 0,limit:Int = 10, status:status=published):[Article]
-    categories(order:String = "updatedAt",offset: Int = 0,limit:Int = 10):[Category]
-    tags(order:String = "updatedAt",offset: Int = 0,limit:Int = 10):[Tag]
+    articles(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10, status:status=published):[Article]
+    categories(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Category]
+    tags(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Tag]
 
     article(slug:String!):Article
     category(slug:String!):Category
