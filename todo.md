@@ -8,14 +8,14 @@
 - add sitemap.xml and robots.txt
 - add rss subcribe atom support
 - option set cookie to secure
-- graphql recurive deep limit
+- ~~graphql recurive deep limit~~
 - compose README.md file
 - add monitor support
 - ~~unify graphql mutation return type~~
 - unify restful mutation return type
 - ~~think about migrate database to mysql~~
-- migrate media to meta
-- wrap business code in ops folder
+- ~~migrate media to meta~~
+- ~~wrap business code in ops folder~~
 - delete article's relationship if delete category or tag
 - reuse validate code
-- bug fix for tag, category update
+- ~~bug fix for tag, category update~~
