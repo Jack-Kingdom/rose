@@ -1,33 +1,18 @@
 import Ops from '../../../../../ops'
 import Config from '../../../../../../config'
-import { Category, MultiCategory } from './category'
-import { Tag, MultiTag } from './tag'
+import TagQuery from './tag'
 
-class Article {
-  constructor (req, article, depth) {
+class ArticleQuery {
+  constructor (req, article, depth = 0) {
     if (depth > Config.graphqlMaxDepth) throw new RangeError(`depth with ${depth} too high.`)
 
     for (const attr in article) if (article.hasOwnProperty(attr)) this[attr] = article[attr]
 
-    this.category = async () => {
-      const category = Ops.Category.retrieve(req, article.category)
-      return new Category(req, await category, depth + 1)
-    }
-
     this.tags = async () => {
       const tags = article.tags.map((slug) => Ops.Tag.retrieve(req, slug))
-      return tags.map(async (tag) => new Tag(req, await tag, depth + 1))
-      // return new MultiTag(req, tags, depth + 1)
+      return tags.map(async (tag) => new TagQuery(req, await tag, depth + 1))
     }
   }
 }
 
-class MultiArticle {
-  constructor (req, articles, depth) {
-  }
-}
-
-export {
-  Article,
-  MultiArticle
-}
+export default ArticleQuery

@@ -6,11 +6,9 @@ schema {
 type Query {
 
     articles(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10, status:status=published):[Article]
-    categories(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Category]
     tags(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Tag]
 
     article(slug:String!):Article
-    category(slug:String!):Category
     tag(slug:String!):Tag
 }
 
@@ -19,10 +17,6 @@ type Mutation {
     createArticle(params:ArticleInput):ReturnType
     updateArticle(params:ArticleInput):ReturnType
     deleteArticle(slug:ID!):ReturnType
-
-    createCategory(params:CategoryInput):ReturnType
-    updateCategory(params:CategoryInput):ReturnType
-    deleteCategory(slug:ID!):ReturnType
 
     createTag(params:TagInput):ReturnType
     updateTag(params:TagInput):ReturnType
@@ -39,7 +33,6 @@ type Article implements Base{
     title:String
     content:String
     renderedContent:String
-    category: Category
     tags: [Tag]
     status: status
     allowComments: Boolean
@@ -52,24 +45,11 @@ input ArticleInput{
     title:String
     content:String
     renderedContent:String
-    category: String    # use slug as reference
-    tags: [String]      # as same
+    tags: [String]      # use slug as reference
     status: status
     allowComments: Boolean
     createdAt: Int
     updatedAt: Int
-}
-
-
-type Category implements Base{
-    slug: String!
-    title: String
-    articles:[Article]
-}
-
-input CategoryInput {
-    slug: String!
-    title: String
 }
 
 type Tag implements Base{
