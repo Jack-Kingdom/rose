@@ -10,6 +10,7 @@ export default {
 
     const obj = new Model(args)
     await obj.save()
+    return obj.toJSON()
   },
 
   async remove (slug) {
@@ -18,6 +19,7 @@ export default {
     const obj = await Model.findOne({slug: slug})
     if (!obj) throw Error(`${Model.modelName} not Found`)
     await obj.remove()
+    return obj.toJSON()
   },
 
   async update (slug, args) {
@@ -30,12 +32,14 @@ export default {
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
     await obj.save()
+    return obj.toJSON()
   },
 
   async retrieve (slug) {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal')
 
-    return Model.findOne({slug: slug})
+    const tag = await Model.findOne({slug: slug})
+    return tag.toJSON()
   },
 
   multipleRetrieve: async (order, offset, limit, conditions = {}) => {
@@ -44,6 +48,7 @@ export default {
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
     if (!(Object.keys(conditions).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    return Model.find(conditions).sort(order).skip(offset).limit(limit)
+    const tags = Model.find(conditions).sort(order).skip(offset).limit(limit)
+    return tags.toJSON()
   }
 }

@@ -35,7 +35,8 @@ export default {
   async retrieve (slug) {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal')
 
-    return Model.findOne({slug: slug})
+    const category = await Model.findOne({slug: slug})
+    return category.toJSON()
   },
 
   multipleRetrieve: async (order, offset, limit, conditions = {}) => {

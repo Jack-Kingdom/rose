@@ -1,32 +1,33 @@
 import Ops from '../../../../../ops'
-import CategoryQuery from './category'
-import TagQuery from './tag'
+import Config from '../../../../../../config'
+import { Category, MultiCategory } from './category'
+import { Tag, MultiTag } from './tag'
 
 class Article {
-  constructor (article) {
-    // article.forEach((attr) => this[attr] = article[attr])
-    // article.forEach((attr) => console.log(attr))
-    this.slug = article.slug
-    this.title = article.title
-    // this.tags = [{slug:"a",title:"hello"}]
+  constructor (req, article, depth) {
+    if (depth > Config.graphqlMaxDepth) throw new RangeError(`depth with ${depth} too high.`)
 
-  }
+    for (const attr in article) if (article.hasOwnProperty(attr)) this[attr] = article[attr]
 
-  tags (args, req, node) {
-    console.log(node)
+    this.category = async () => {
+      const category = Ops.Category.retrieve(req, article.category)
+      return new Category(req, await category, depth + 1)
+    }
+
+    this.tags = async () => {
+      const tags = article.tags.map((slug) => Ops.Tag.retrieve(req, slug))
+      return tags.map(async (tag) => new Tag(req, await tag, depth + 1))
+      // return new MultiTag(req, tags, depth + 1)
+    }
   }
 }
 
-export default {
-  articles: async (args, req, node) => {
-    // todo tag and category's articles
-    // articles.forEach((article) => article.tags.map((slug) => Ops.Tag.retrieve(req, slug)))
-    return Ops.Article.multipleRetrieve(req, args.order, args.offset, args.limit, args.status)
-  },
-
-  article: async (args, req, node) => {
-    // let article = await Ops.Article.retrieve(req, args.slug)
-    // return article
-    return new Article(await Ops.Article.retrieve(req, args.slug))
+class MultiArticle {
+  constructor (req, articles, depth) {
   }
+}
+
+export {
+  Article,
+  MultiArticle
 }

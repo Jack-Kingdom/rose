@@ -10,6 +10,7 @@ export default {
 
     const obj = new Model(args)
     await obj.save()
+    return obj.toJSON()
   },
 
   async remove (slug) {
@@ -18,6 +19,7 @@ export default {
     const obj = await Model.findOne({slug: slug})
     if (!obj) throw Error(`${Model.modelName} not Found`)
     await obj.remove()
+    return obj.toJSON()
   },
 
   async update (slug, args) {
@@ -30,20 +32,23 @@ export default {
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
     await obj.save()
+    return obj.toJSON()
   },
 
-  retrieve (slug) {
+  async retrieve (slug) {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
 
-    return Model.findOne({slug: slug})
+    const article = await Model.findOne({slug: slug})
+    return article.toJSON()
   },
 
-  multipleRetrieve (order, offset, limit, conditions = {}) {
+  async multipleRetrieve (order, offset, limit, conditions = {}) {
     if (!(typeof (order) === 'string')) throw new TypeError('order type illegal')
     if (!(typeof (offset) === 'number')) throw new TypeError('offset type illegal.')
     if (!(typeof (limit) === 'number')) throw new TypeError('limit type illegal.')
     if (!(Object.keys(conditions).every(arg => fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal`)
 
-    return Model.find(conditions).sort(order).skip(offset).limit(limit)
+    const articles = await Model.find(conditions).sort(order).skip(offset).limit(limit)
+    return articles.toJSON()
   }
 }

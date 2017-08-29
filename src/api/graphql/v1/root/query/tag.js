@@ -1,14 +1,26 @@
 import Ops from '../../../../../ops'
+import Config from '../../../../../../config'
 
-export default {
-  tags: (args, req, node) => {
-    // todo tag and category's articles
-    console.log('tags queried')
-    return Ops.Tag.multipleRetrieve(req, args.order, args.offset, args.limit)
-  },
 
-  tag: (args, req, node) => {
-    console.log('tags queried')
-    return Ops.Tag.retrieve(req, args.slug)
+class Tag {
+  constructor (req, tag, depth) {
+    if (depth > Config.graphqlMaxDepth) throw new RangeError(`depth with ${depth} too high.`)
+
+    for (const attr in tag) if (tag.hasOwnProperty(attr)) this[attr] = tag[attr]
+
+    // todo query tag's articles
+    // this.articles =
   }
+}
+
+class MultiTag {
+  constructor (req, tags, depth) {
+    this.slug = ['123']
+    this.title = ['hello']
+  }
+}
+
+export {
+  Tag,
+  MultiTag
 }
