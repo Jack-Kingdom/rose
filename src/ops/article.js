@@ -26,10 +26,9 @@ export default {
     else throw RangeError(`article with slug ${slug} not exist`)
   },
 
-  async multipleRetrieve (req, order, offset, limit, status) {
-    const articles = await Meta.Article.multipleRetrieve(order, offset, limit, {status: status})
-    if (status === 'published' || req.hasLogged) return articles
-    else throw Error('Permission deny.')
-  },
+  async multipleRetrieve (req, order, offset, limit, conditions) {
+    if (!(conditions.status === 'published' || req.hasLogged)) throw Error('Permission deny.')
 
+    return Meta.Article.multipleRetrieve(order, offset, limit, conditions)
+  },
 }

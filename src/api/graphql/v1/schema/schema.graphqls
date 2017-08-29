@@ -15,11 +15,11 @@ type Query {
 type Mutation {
 
     createArticle(params:ArticleInput):ReturnType
-    updateArticle(params:ArticleInput):ReturnType
+    updateArticle(slug:String!,params:ArticleInput):ReturnType
     deleteArticle(slug:ID!):ReturnType
 
     createTag(params:TagInput):ReturnType
-    updateTag(params:TagInput):ReturnType
+    updateTag(slug:String!,params:TagInput):ReturnType
     deleteTag(slug:ID!):ReturnType
 }
 
@@ -55,7 +55,7 @@ input ArticleInput{
 type Tag implements Base{
     slug: String!
     title: String
-    articles:[Article]
+    articles(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Article]
 }
 
 input TagInput {
