@@ -3,5 +3,5 @@ export default {
   session_secret: 'secret string',
   mongodbUrl: 'mongodb://localhost:27017/DevRose',
   openRegister: true,
-  graphqlMaxDepth: 1,
+  graphqlMaxDepth: 1
 }

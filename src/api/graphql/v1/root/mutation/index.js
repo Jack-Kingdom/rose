@@ -1,5 +1,4 @@
 import Ops from '../../../../../ops'
-import Config from '../../../../../../config'
 
 export default {
   createArticle: async ({params}, req, node) => {

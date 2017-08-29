@@ -19,7 +19,6 @@ const hashPass = (email, password) => sha256(sha256(email) + sha256(password))
 
 export default {
   async register (req, email, password) {
-
     if (!config.openRegister) throw RangeError('register not allowed')
 
     const check = await Meta.Account.retrieve(email)
