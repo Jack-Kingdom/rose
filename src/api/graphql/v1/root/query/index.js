@@ -1,5 +1,4 @@
 import Ops from '../../../../../ops'
-import Config from '../../../../../../config'
 import ArticleQuery from './article'
 import TagQuery from './tag'
 

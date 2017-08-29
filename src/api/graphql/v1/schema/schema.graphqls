@@ -27,7 +27,7 @@ interface Base{
     slug: String!
     title: String
 }
-
+    
 type Article implements Base{
     slug:String!
     title:String
