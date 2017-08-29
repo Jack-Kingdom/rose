@@ -1,4 +1,5 @@
+import loginRequired from './loginRequired'
+
 export default {
-  rewriteId: require('./rewriteId'),
-  loginRequired: require('./loginRequired')
+  loginRequired
 }

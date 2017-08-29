@@ -1,22 +1,20 @@
 import Meta from '../meta'
+import decorator from '../utils/decorator'
 
 export default {
 
+  @decorator.loginRequired
   async create (req, args) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Article.create(args)
   },
 
+  @decorator.loginRequired
   async remove (req, slug) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Article.remove(slug)
   },
 
+  @decorator.loginRequired
   async update (req, slug, args) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Article.update(slug, args)
   },
 

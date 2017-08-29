@@ -1,22 +1,20 @@
 import Meta from '../meta'
+import decorator from '../utils/decorator'
 
 export default {
 
+  @decorator.loginRequired
   create (req, args) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Tag.create(args)
   },
 
+  @decorator.loginRequired
   remove (req, slug) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Tag.delete(slug)
   },
 
+  @decorator.loginRequired
   update (req, args) {
-    if (!req.hasLogged) throw RangeError('Permission deny')
-
     return Meta.Tag.update(args)
   },
 
