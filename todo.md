@@ -11,3 +11,5 @@
 - unify restful mutation return type
 - delete article's relationship if delete category or tag
 - reuse validate code
+- try to save media to gfs 
+- improve auth api
