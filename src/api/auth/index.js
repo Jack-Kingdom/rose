@@ -1,8 +1,6 @@
-
 import express from 'express'
 import bodyParser from 'body-parser'
-import isEmail from 'validator/lib/isEmail'
-import Meta from '../../meta'
+import Ops from '../../ops'
 import logger from '../../utils/logger'
 
 const authRouter = express.Router()
@@ -15,21 +13,13 @@ authRouter.post('/register', async (req, res) => {
   const password = req.body.password
 
   try {
-    if (!(typeof (email) === 'string' && isEmail(email))) throw new RangeError('email type illegal.')
-    if (!(typeof (password) === 'string')) throw new RangeError('password type illegal.')
-  } catch (err) {
-    logger.info('register with illegal args', { msg: err.message })
-    return res.json({ success: false, msg: err.message })
-  }
-
-  try {
-    await Meta.Auth.register(email, password)
+    await Ops.Auth.register(email, password)
     req.session.hasLogged = true
-    logger.info('register success', { account: email })
-    return res.json({ success: true })
+    logger.info('register success', {account: email})
+    return res.json({success: true})
   } catch (err) {
-    logger.info('register fails', { account: email, msg: err.message })
-    return res.json({ success: false, msg: err.message })
+    logger.info('register fails', {account: email, msg: err.message})
+    return res.json({success: false, msg: err.message})
   }
 })
 
@@ -38,21 +28,13 @@ authRouter.post('/login', async (req, res) => {
   const password = req.body.password
 
   try {
-    if (!(typeof (email) === 'string' && isEmail(email))) throw new RangeError('email type illegal.')
-    if (!(typeof (password) === 'string')) throw new RangeError('password type illegal.')
-  } catch (err) {
-    logger.info('login with illegal args', { msg: err.message })
-    return res.json({ success: false, msg: err.message })
-  }
-
-  try {
-    await Meta.Auth.login(email, password)
+    await Ops.Auth.login(email, password)
     req.session.hasLogged = true
-    logger.info('login success', { account: email })
-    return res.json({ success: true })
+    logger.info('login success', {account: email})
+    return res.json({success: true})
   } catch (err) {
-    logger.info('login fails', { account: email, msg: err.message })
-    return res.json({ success: false, msg: 'email or password not match' })
+    logger.info('login fails', {account: email, msg: err.message})
+    return res.json({success: false, msg: 'email or password not match'})
   }
 })
 
@@ -60,10 +42,10 @@ authRouter.use('/logout', async (req, res) => {
   if (req.session.hasLogged) {
     req.session.hasLogged = false
     logger.info('logout success')
-    return res.json({ success: true })
+    return res.json({success: true})
   }
-  logger.warn("account that haven't logged try to logout")
-  return res.json({ success: false, msg: 'please login first' })
+  logger.warn('account that haven\'t logged try to logout')
+  return res.json({success: false, msg: 'please login first'})
 })
 
 authRouter.post('/change-password', async (req, res) => {
@@ -72,30 +54,22 @@ authRouter.post('/change-password', async (req, res) => {
   const newPassword = req.body.newPassword
 
   try {
-    if (!(typeof (email) === 'string' && isEmail(email))) throw new RangeError('email type illegal.')
-    if (!(typeof (originPassword) === 'string')) throw new RangeError('origin password type illegal.')
-    if (!(typeof (newPassword) === 'string')) throw new RangeError('new password type illegal.')
+    await Ops.Auth.changePassword(email, originPassword, newPassword)
+    logger.info('change password success', {account: email})
+    return res.json({success: true})
   } catch (err) {
-    logger.info('change-password with illegal args', { msg: err.message })
-    return res.json({ success: false, msg: err.message })
-  }
-
-  try {
-    await Meta.Auth.changePassword(email, originPassword, newPassword)
-    logger.info('change password success', { account: email })
-    return res.json({ success: true })
-  } catch (err) {
-    logger.info('change password success', { account: email })
-    return res.json({ success: false, msg: 'origin password not match' })
+    logger.info('change password success', {account: email})
+    return res.json({success: false, msg: 'origin password not match'})
   }
 })
 
 // catch err
 authRouter.use((err, req, res, next) => {
   if (err) {
-    logger.error('authRouter-error', { err })
+    logger.error('authRouter-error', {err})
     return res.status(500)
-  } return next()
+  }
+  return next()
 })
 
 module.exports = authRouter
