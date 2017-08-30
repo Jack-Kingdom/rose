@@ -12,7 +12,11 @@
     "clean": "rm -rf dist && mkdir dist",
     "standard": "standard --fix"
   },
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "dependencies": {
+    "babel-eslint": "^7.2.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
