@@ -28,5 +28,5 @@ export default {
     if (!(conditions.status === 'published' || req.hasLogged)) throw Error('Permission deny.')
 
     return Meta.Article.multipleRetrieve(order, offset, limit, conditions)
-  },
+  }
 }

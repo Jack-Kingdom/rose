@@ -24,5 +24,5 @@ export default {
 
   multipleRetrieve (req, order, offset, limit) {
     return Meta.Tag.multipleRetrieve(order, offset, limit)
-  },
+  }
 }
