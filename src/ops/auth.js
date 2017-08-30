@@ -37,6 +37,12 @@ export default {
     await Meta.Account.update({email: email, lastLogin: Date.now()})
   },
 
+  async logout (req) {
+    if (!req.hasLogged) throw Error('account that haven\'t logged try to logout')
+
+    req.hasLogged = false
+  },
+
   async changePassword (req, email, oldPassword, newPassword) {
     const account = await Meta.Account.retrieve(email)
     if (!account) throw new RangeError('email not exist')
