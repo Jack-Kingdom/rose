@@ -11,6 +11,8 @@ export default {
     if (!isEmail(args.email)) throw new RangeError('email must be provided.')
     if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
+    const check = Model.findOne({slug: args.email})
+    if(check) throw new Error('')
     const obj = new Model(args)
     await obj.save()
     return obj
@@ -20,7 +22,7 @@ export default {
     if (!isEmail(email)) throw TypeError('email argument illegal.')
 
     const obj = await Model.findOne({email: email})
-    if (!obj) throw Error(`${Model.modelName} not Found`)
+    if (!obj) throw new Error(`${Model.modelName} not Found`)
     await obj.remove()
     return obj
   },
@@ -41,7 +43,7 @@ export default {
   async retrieve (email) {
     if (!isEmail(email)) throw TypeError('email argument illegal.')
 
-    const obj = Model.findOne({slug: email})
+    const obj = Model.findOne({email: email})
     if (!obj) throw new RangeError(`email with ${email} not found`)
     else return obj
   },
