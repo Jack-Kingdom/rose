@@ -13,3 +13,5 @@
 - reuse validate code
 - try to save media to gfs 
 - improve auth api
+- separate relation of article and tag
+- graphql error return 

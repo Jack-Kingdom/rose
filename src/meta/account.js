@@ -26,7 +26,7 @@ export default {
   },
 
   async update (email, args) {
-    if (!isEmail(email)) throw new TypeError('email must be provided.')
+    if (!isEmail(email)) throw new TypeError('email argument illegal.')
     if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
     if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
