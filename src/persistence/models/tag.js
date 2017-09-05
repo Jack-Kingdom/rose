@@ -11,6 +11,8 @@ const TagSchema = mongoose.Schema({
     unique: true
   },
   title: Types.String
+}, {
+  versionKey: false
 })
 
 export default dbConnection.model('tag', TagSchema)

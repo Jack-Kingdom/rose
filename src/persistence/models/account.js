@@ -21,6 +21,8 @@ const AccountSchema = mongoose.Schema({
   },
   createdAt: Types.Number,
   lastLogin: Types.Number
+}, {
+  versionKey: false
 })
 
 export default dbConnection.model('account', AccountSchema)

@@ -25,6 +25,8 @@ const RelationSchema = mongoose.Schema({
     index: true,
     required: true
   }
+}, {
+  versionKey: false
 })
 
 export default dbConnection.model('relation', RelationSchema)

@@ -29,6 +29,8 @@ const ArticleSchema = mongoose.Schema({
   },
   createdAt: Types.Number,
   updatedAt: Types.Number
+}, {
+  versionKey: false
 })
 
 export default dbConnection.model('article', ArticleSchema)

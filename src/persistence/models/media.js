@@ -13,6 +13,8 @@ const mediaSchema = mongoose.Schema({
   mimetype: Types.String,
   data: Types.Buffer,
   size: Types.Number
+}, {
+  versionKey: false
 })
 
 export default dbConnection.model('media', mediaSchema)
