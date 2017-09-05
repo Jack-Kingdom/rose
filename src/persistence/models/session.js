@@ -23,7 +23,7 @@ const SessionSchema = mongoose.Schema({
   },
   createAt: {
     type: Types.Number,
-    default: Date.now(),
+    default: Date.now,
     expires: config.sessionTimeout
   }
 }, {
