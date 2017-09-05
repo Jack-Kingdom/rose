@@ -4,9 +4,13 @@
   OriginId and targetId is record's _id value
 
   Notice:
-    Remember add two record if a relation is double-sided:
+    1. Remember add two record if a relation is double-sided:
       originId ---> targetId
       targetId ---> originId
+    2. Do not use this if you cannot separate target from multi collections.
+
+  Info:
+    1. This collection only used to describe article and tag's relation on current version.
  */
 
 import mongoose from 'mongoose'
