@@ -18,7 +18,6 @@ const ArticleSchema = mongoose.Schema({
   content: Types.String,
   renderedContent: Types.String,
   category: Types.String,
-  tags: [Types.String],
   status: {
     type: Types.String,
     enum: ['published', 'draft', 'removed'],
