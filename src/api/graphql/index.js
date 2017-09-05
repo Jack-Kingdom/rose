@@ -5,4 +5,4 @@ const graphqlRouter = express.Router()
 
 graphqlRouter.use('/v1', graphqlV1)
 
-module.exports = graphqlRouter
+export default graphqlRouter

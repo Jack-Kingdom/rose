@@ -69,4 +69,4 @@ authRouter.use((err, req, res, next) => {
   return next()
 })
 
-module.exports = authRouter
+export default authRouter

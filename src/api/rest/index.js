@@ -1,8 +1,8 @@
 import express from 'express'
 import restfulV1 from './v1'
 
-const restfulRouter = express.Router()
+const restRouter = express.Router()
 
-restfulRouter.use('/v1', restfulV1)
+restRouter.use('/v1', restfulV1)
 
-module.exports = restfulRouter
+export default restRouter

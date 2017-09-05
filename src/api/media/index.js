@@ -44,4 +44,4 @@ mediaRouter.use((err, req, res, next) => {
   } else next()
 })
 
-module.exports = mediaRouter
+export default mediaRouter

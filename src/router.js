@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import session from 'express-session'
+import {graphqlRouter,restRouter,mediaRouter,authRouter} from './api'
 import config from '../config'
 
 const router = express.Router()
@@ -19,9 +20,9 @@ router.use(session({
   }
 }))
 
-router.use('/api/graphql', require('./api/graphql'))
-router.use('/api/rest', require('./api/rest'))
-router.use('/api/media', require('./api/media'))
-router.use('/api/auth', require('./api/auth'))
+router.use('/api/graphql', graphqlRouter)
+router.use('/api/rest', restRouter)
+router.use('/api/media', mediaRouter)
+router.use('/api/auth', authRouter)
 
 export default router
