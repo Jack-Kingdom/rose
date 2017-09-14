@@ -12,7 +12,7 @@ const AccountSchema = mongoose.Schema({
     validate: {
       isAsync: false,
       validator: isEmail,
-      message: 'Email not valid'
+      message: 'Email illegal.'
     }
   },
   password: {

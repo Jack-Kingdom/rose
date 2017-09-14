@@ -22,7 +22,7 @@ const RelationSchema = mongoose.Schema({
   originId: {
     type: Types.ObjectId,
     index: true,
-    required: true,
+    required: true
   },
   targetId: {
     type: Types.ObjectId,

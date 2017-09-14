@@ -16,10 +16,10 @@ const SessionSchema = mongoose.Schema({
   key: {
     type: Types.ObjectId,
     index: true,
-    required: true,
+    required: true
   },
   value: {
-    type: Types.ObjectField(),
+    type: Types.ObjectField()
   },
   createAt: {
     type: Types.Number,
