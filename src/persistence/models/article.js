@@ -8,8 +8,8 @@ const ArticleSchema = mongoose.Schema({
     type: Types.String,
     lowercase: true,
     index: true,
-    required: [true, "article's slug cannot be empty"],
-    unique: [true,"article with this slug has exists"]
+    required: [true, 'article\'s slug cannot be empty'],
+    unique: [true, 'article with this slug has exists']
   },
   title: {
     type: Types.String,
