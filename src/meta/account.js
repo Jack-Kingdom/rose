@@ -49,7 +49,7 @@ export default {
     else return obj.toObject()
   },
 
-  multipleRetrieve: async (order, offset, limit, conditions = {}) => {
+  async multipleRetrieve (order, offset, limit, conditions = {}) {
     if (!(typeof (order) === 'string')) throw new RangeError('order type illegal')
     if (!(typeof (offset) === 'number')) throw new RangeError('offset type illegal.')
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')

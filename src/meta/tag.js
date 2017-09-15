@@ -6,40 +6,43 @@ const fields = Object.keys(Models.Tag.schema.obj)
 export default {
 
   async create (args) {
-    if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
+    if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal.`)
 
     const obj = new Model(args)
     await obj.save()
+    return obj.toObject()
   },
 
   async remove (slug) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug illegal')
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`Tag slug with ${slug} illegal.`)
 
     const obj = await Model.findOne({slug: slug})
-    if (!obj) throw Error(`${Model.modelName} not Found`)
+    if (!obj) throw Error(`Tag with slug ${slug} not Found.`)
     await obj.remove()
+    return obj.toObject()
   },
 
   async update (slug, args) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug with ${slug} illegal`)
-    if (!(typeof (args) === 'object')) throw new RangeError('args cannot be null')
-    if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`Tag slug with ${slug} illegal.`)
+    if (!(typeof (args) === 'object')) throw new TypeError(`Tag args with ${args} illegal.`)
+    if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal.`)
 
     const obj = await Model.findOne({slug: slug})
-    if (!obj) throw new RangeError(`${Model.modelName} not found`)
+    if (!obj) throw new RangeError(`Tag with slug ${slug} not found.`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
     await obj.save()
+    return obj.toObject()
   },
 
   async retrieve (slug) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError('slug type illegal')
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`Tag slug with ${slug} illegal.`)
 
     const tag = await Model.findOne({slug: slug})
     return tag.toObject()
   },
 
-  multipleRetrieve: async (order, offset, limit, conditions = {}) => {
+  async multipleRetrieve(order, offset, limit, conditions = {}){
     if (!(typeof (order) === 'string')) throw new RangeError('order type illegal')
     if (!(typeof (offset) === 'number')) throw new RangeError('offset type illegal.')
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
