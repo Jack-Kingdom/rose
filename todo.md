@@ -12,3 +12,4 @@
 - improve auth api
 - graphql error return 
 - use JSDoc to generate document
+- use grid fs to store files
