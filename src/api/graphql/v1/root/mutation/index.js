@@ -7,5 +7,5 @@ export default {
 
   createTag: async ({params}, req, node) => Ops.Tag.create(req, params),
   updateTag: async ({params}, req, node) => Ops.Tag.update(req, params),
-  deleteTag: async ({params}, req, node) => Ops.Tag.delete(req, params),
+  deleteTag: async ({params}, req, node) => Ops.Tag.delete(req, params)
 }

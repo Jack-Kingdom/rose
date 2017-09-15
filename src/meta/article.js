@@ -17,7 +17,7 @@ export default {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
 
     const obj = await Model.findOne({slug: slug})
-    if (!obj) throw Error(`Article with slug ${slug} not Found`)
+    if (!obj) throw new Error(`Article with slug ${slug} not Found`)
     await obj.remove()
     return obj.toObject()
   },

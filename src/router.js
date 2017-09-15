@@ -7,7 +7,7 @@ import config from '../config'
 const router = express.Router()
 
 // add http logger
-//get real ip if passed by nginx
+// get real ip if passed by nginx
 morgan.token('remote-addr', function (req) {
   return req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress
 })

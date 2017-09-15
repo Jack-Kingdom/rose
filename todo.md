@@ -13,3 +13,5 @@
 - graphql error return 
 - use JSDoc to generate document
 - use grid fs to store files
+- operate article and tag's relation 
+- graphql retrieve multi format return

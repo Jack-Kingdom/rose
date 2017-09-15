@@ -19,7 +19,7 @@ export default {
   },
 
   async remove (email) {
-    if (!isEmail(email)) throw TypeError('email argument illegal.')
+    if (!isEmail(email)) throw new TypeError('email argument illegal.')
 
     const obj = await Model.findOne({email: email})
     if (!obj) throw new RangeError(`Account with email ${email} Found`)
