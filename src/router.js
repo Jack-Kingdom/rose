@@ -1,12 +1,16 @@
 import express from 'express'
 import morgan from 'morgan'
 import session from 'express-session'
-import {graphqlRouter,restRouter,mediaRouter,authRouter} from './api'
+import { graphqlRouter, restRouter, mediaRouter, authRouter } from './api'
 import config from '../config'
 
 const router = express.Router()
 
 // add http logger
+//get real ip if passed by nginx
+morgan.token('remote-addr', function (req) {
+  return req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress
+})
 router.use(morgan('short'))
 
 // load session
