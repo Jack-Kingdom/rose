@@ -11,3 +11,4 @@
 - try to save media to gfs 
 - improve auth api
 - graphql error return 
+- use JSDoc to generate document
