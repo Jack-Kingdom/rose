@@ -8,7 +8,7 @@ const TagSchema = mongoose.Schema({
     lowercase: true,
     index: true,
     required: [true, "tag's slug cannot be empty"],
-    unique: [true,"tag with this slug has exists"]
+    unique: [true, 'tag with this slug has exists']
   },
   title: Types.String
 }, {

@@ -3,9 +3,10 @@ import decorator from '../utils/decorator'
 
 export default {
 
+  @decorator.unify
   @decorator.loginRequired
   async create (req, args) {
-    return Meta.Article.create(args)
+    await Meta.Article.create(args)
   },
 
   @decorator.loginRequired

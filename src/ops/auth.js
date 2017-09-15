@@ -47,5 +47,5 @@ export default {
     if (!(account.password === hashPass(email, oldPassword))) throw RangeError('email and password not match')
 
     await Meta.Account.update(email, {password: hashPass(email, newPassword)})
-  },
+  }
 }

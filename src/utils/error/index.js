@@ -6,7 +6,6 @@ import logger from '../logger'
 
 class CustomError extends Error {
   constructor (msg, meta, lvl) {
-
     // Calling parent constructor of base Error class.
     super(msg)
 

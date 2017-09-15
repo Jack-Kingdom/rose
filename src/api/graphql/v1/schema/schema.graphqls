@@ -70,6 +70,5 @@ enum status {
 }
 
 type ReturnType {
-    success:Boolean!
-    message:String
+    msg:String
 }
