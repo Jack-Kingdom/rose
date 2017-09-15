@@ -19,7 +19,7 @@ const SessionSchema = mongoose.Schema({
     required: true
   },
   value: {
-    type: Types.ObjectField()
+    type: Types.ObjectId
   },
   createAt: {
     type: Types.Number,
@@ -30,4 +30,4 @@ const SessionSchema = mongoose.Schema({
   versionKey: false
 })
 
-export default dbConnection.model('relation', SessionSchema)
+export default dbConnection.model('session', SessionSchema)
