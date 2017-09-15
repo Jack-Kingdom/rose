@@ -6,37 +6,40 @@ const fields = Object.keys(Models.Article.schema.obj)
 export default {
 
   async create (args) {
-    if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal`)
+    if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal.`)
 
     const obj = new Model(args)
     await obj.save()
+    return obj.toObject()
   },
 
   async remove (slug) {
     if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
 
     const obj = await Model.findOne({slug: slug})
-    if (!obj) throw Error(`${Model.modelName} not Found`)
+    if (!obj) throw Error(`Article with slug ${slug} not Found`)
     await obj.remove()
+    return obj.toObject()
   },
 
   async update (slug, args) {
-    if (!(typeof (slug) === 'string' && slug.length > 0)) throw new TypeError(`slug ${slug} illegal.`)
-    if (!(typeof (args) === 'object')) throw new TypeError('args cannot be null')
-    if (!(Object.keys(args).every(arg => this.fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal`)
+    if (!(typeof (slug) === 'string' && slug.length > 0)) throw new TypeError(`Article slug type ${typeof slug} illegal.`)
+    if (!(typeof (args) === 'object')) throw new TypeError(`Article args type ${typeof args} illegal`)
+    if (!(Object.keys(args).every(arg => fields.includes(arg)))) throw new TypeError(`${Model.modelName} args illegal.`)
 
     const obj = await Model.findOne({slug: slug})
-    if (!obj) throw new RangeError(`${Model.modelName} not found`)
+    if (!obj) throw new RangeError(`Article with slug ${slug} not found.`)
 
     Object.keys(args).forEach((arg) => { obj[arg] = args[arg] })
     await obj.save()
+    return obj.toObject()
   },
 
   async retrieve (slug) {
-    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`slug ${slug} illegal.`)
+    if (!(typeof (slug) === 'string') && slug.length > 0) throw new RangeError(`Article slug type ${typeof slug} illegal.`)
 
     const article = await Model.findOne({slug: slug})
-    if(!article) throw new Error('article not found')
+    if (!article) throw new RangeError(`Article with slug ${slug} not found.`)
     return article.toObject()
   },
 
