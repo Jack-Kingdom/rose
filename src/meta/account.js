@@ -13,7 +13,7 @@ export default {
 
     const exist = Model.findOne({slug: args.email})
     if (exist) throw new Error('Account with this email already exist.')
-    let obj = new Model(args)
+    const obj = new Model(args)
     await obj.save()
     return obj.toObject()
   },
@@ -55,7 +55,7 @@ export default {
     if (!(typeof (limit) === 'number')) throw new RangeError('limit type illegal.')
     if (!(Object.keys(conditions).every(arg => fields.includes(arg)))) throw new RangeError(`${Model.modelName} args illegal`)
 
-    let accounts = Model.find(conditions).sort(order).skip(offset).limit(limit)
+    const accounts = Model.find(conditions).sort(order).skip(offset).limit(limit)
     return accounts.map((article) => article.toObject())
   }
 }
