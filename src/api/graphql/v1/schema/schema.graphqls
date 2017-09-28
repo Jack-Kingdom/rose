@@ -30,6 +30,7 @@ interface Base{
     
 type Article implements Base{
     slug:String!
+    uuid:String
     title:String
     content:String
     renderedContent:String
@@ -54,6 +55,7 @@ input ArticleInput{
 
 type Tag implements Base{
     slug: String!
+    uuid:String
     title: String
     articles(order:String = "-updatedAt",offset: Int = 0,limit:Int = 10):[Article]
 }
