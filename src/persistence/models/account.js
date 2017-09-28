@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import isEmail from 'validator/lib/isEmail'
+import uuidV4 from 'uuid/v4'
 import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
@@ -14,6 +15,10 @@ const AccountSchema = mongoose.Schema({
       validator: isEmail,
       message: 'Email illegal.'
     }
+  },
+  uuid: {
+    type: Types.String,
+    default: uuidV4()
   },
   password: {
     type: Types.String,

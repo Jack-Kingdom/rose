@@ -14,6 +14,7 @@
  */
 
 import mongoose from 'mongoose'
+import uuidV4 from 'uuid/v4'
 import dbConnection from '../database'
 
 const Types = mongoose.Schema.Types
@@ -24,9 +25,12 @@ const RelationSchema = mongoose.Schema({
     index: true,
     required: true
   },
+  uuid: {
+    type: Types.String,
+    default: uuidV4()
+  },
   targetId: {
     type: Types.ObjectId,
-    index: true,
     required: true
   }
 }, {
