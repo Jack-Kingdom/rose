@@ -24,8 +24,6 @@ router.use(session({
   }
 }))
 
-// graphql is disable on current version.
-// router.use('/api/graphql', graphqlRouter)
 router.use('/api/rest', restRouter)
 router.use('/api/media', mediaRouter)
 router.use('/api/auth', authRouter)

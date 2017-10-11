@@ -3,7 +3,7 @@ export default (target, property, descriptor) => {
 
   function wrapper () {
     const req = arguments[0]
-    if (!req.hasLogged) return {msg: 'Permission deny.'}
+    if (!req.hasLogged) return {error: 'Permission deny.'}
     else return originFunc.apply(null, arguments)
   }
 
