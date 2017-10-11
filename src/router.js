@@ -1,7 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import session from 'express-session'
-import { graphqlRouter, restRouter, mediaRouter, authRouter } from './api'
+import { restRouter, mediaRouter, authRouter } from './api'
 import config from '../config'
 
 const router = express.Router()
@@ -24,7 +24,8 @@ router.use(session({
   }
 }))
 
-router.use('/api/graphql', graphqlRouter)
+// graphql is disable on current version.
+// router.use('/api/graphql', graphqlRouter)
 router.use('/api/rest', restRouter)
 router.use('/api/media', mediaRouter)
 router.use('/api/auth', authRouter)
