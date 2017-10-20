@@ -7,13 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "export NODE_ENV=development && nodemon src/index.js --exec \"babel-node\"",
+    "dev": "export NODE_ENV=development && tsc ./src/index.ts --outDir build",
     "build": "babel config -d dist/config && babel src -d dist/src --copy-files",
     "serve": "export NODE_ENV=production && node dist/src/index.js",
-    "clean": "rm -rf dist && mkdir dist",
-    "standard": "standard --fix"
-  },
-  "standard": {
-    "parser": "babel-eslint"
+    "clean": "rm -rf dist && mkdir dist"
   },
   "dependencies": {
     "babel-eslint": "^7.2.3",
@@ -23,6 +20,7 @@
     "express-graphql": "^0.6.6",
     "express-session": "^1.15.5",
     "graphql": "^0.10.5",
+    "koa": "^2.3.0",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.6",
     "morgan": "^1.8.2",
@@ -31,6 +29,8 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/node": "^8.0.46",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-decorators": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -41,6 +41,6 @@
     "file-loader": "^0.11.2",
     "gulp": "^3.9.1",
     "nodemon": "^1.11.0",
-    "standard": "^10.0.3"
+    "typescript": "^2.5.3"
   }
 }

@@ -1,24 +1,36 @@
-import developmentConfig from './development'
-import productionConfig from './production'
-import testConfig from './test'
-
-let config = null
-const env = process.env.NODE_ENV
-
-switch (env) {
-  case 'development':
-    config = developmentConfig
-    break
-  case 'production':
-    config = Object.assign(developmentConfig, productionConfig)
-    break
-  case 'test':
-    config = Object.assign(developmentConfig, testConfig)
-    break
-  default:
-    throw RangeError(`env ${env} not match any config`)
+"use strict";
+exports.__esModule = true;
+var development_1 = require("./development");
+var production_1 = require("./production");
+var test_1 = require("./test");
+/**
+ * This function used to merge two config.
+ * Any value in patchConfig will overwrite originConfig's that with the same key.
+ * If some field that originConfig not have, this field will be add.
+ * @param {Object} originConfig
+ * @param {Object} patchConfig
+ * @return {Object} Origin object, but modified
+ * @private
+ */
+function _mergeConfig(originConfig, patchConfig) {
+    for (var i in patchConfig)
+        originConfig[i] = patchConfig[i];
+    return originConfig;
 }
-
-config.debug = !(env === 'production')
-
-export default config
+var config = null;
+var env = process.env.NODE_ENV;
+console.log("application run under " + env + " environment.");
+switch (env) {
+    case 'development':
+        config = development_1["default"];
+        break;
+    case 'production':
+        config = _mergeConfig(development_1["default"], production_1["default"]);
+        break;
+    case 'test':
+        config = _mergeConfig(development_1["default"], test_1["default"]);
+        break;
+    default:
+        throw new Error("env " + env + " not match any config");
+}
+exports["default"] = config;

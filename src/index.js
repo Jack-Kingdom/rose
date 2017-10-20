@@ -1,14 +1,9 @@
-
-import express from 'express'
-import config from '../config'
-import router from './router'
-
-const app = express()
-
-// load router
-app.use(router)
-
-// start app
-app.listen(config.port, () => {
-  console.log(`App started at port ${config.port}.`)
-})
+"use strict";
+exports.__esModule = true;
+var Koa = require("koa");
+var config_1 = require("../config");
+var app = new Koa();
+app.use(function (ctx) {
+    ctx.body = "hello koa";
+});
+app.listen(config_1["default"].port);
