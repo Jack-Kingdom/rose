@@ -1,7 +1,10 @@
-import configInterface from './interface'
 import developmentConfig from './development'
 import productionConfig from './production'
 import testConfig from './test'
+
+interface configInterface {
+    [key: string]: number | string | boolean
+}
 
 /**
  * This function used to merge two config.

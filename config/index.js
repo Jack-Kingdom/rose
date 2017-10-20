@@ -7,9 +7,9 @@ var test_1 = require("./test");
  * This function used to merge two config.
  * Any value in patchConfig will overwrite originConfig's that with the same key.
  * If some field that originConfig not have, this field will be add.
- * @param {Object} originConfig
- * @param {Object} patchConfig
- * @return {Object} Origin object, but modified
+ * @param {configInterface} originConfig
+ * @param {configInterface} patchConfig
+ * @return {configInterface}
  * @private
  */
 function _mergeConfig(originConfig, patchConfig) {

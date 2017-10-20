@@ -6,8 +6,8 @@
   "email": "email@qiaohong.org",
   "license": "MIT",
   "scripts": {
-    "start": "export NODE_ENV=development && nodemon src/index.js --exec \"babel-node\"",
-    "dev": "export NODE_ENV=development && tsc ./src/index.ts --outDir build",
+    "dev": "export NODE_ENV=development && nodemon src/index.js",
+    "tsc": "tsc ./src/index.ts --watch",
     "build": "babel config -d dist/config && babel src -d dist/src --copy-files",
     "serve": "export NODE_ENV=production && node dist/src/index.js",
     "clean": "rm -rf dist && mkdir dist"
