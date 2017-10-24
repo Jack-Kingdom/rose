@@ -20,7 +20,7 @@ function _mergeConfig(originConfig: configInterface, patchConfig: configInterfac
     return originConfig;
 }
 
-let config = null;
+let config: configInterface = null;
 
 const env = process.env.NODE_ENV;
 console.log(`application run under ${env} environment.`);
