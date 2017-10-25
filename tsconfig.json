@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "outDir":"dist",
+    "target": "es2017",
+    "outDir": "dist",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
