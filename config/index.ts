@@ -39,4 +39,4 @@ switch (env) {
         throw new Error(`env ${env} not match any config`)
 }
 
-export default config
+export default config;

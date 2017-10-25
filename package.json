@@ -6,8 +6,8 @@
   "email": "email@qiaohong.org",
   "license": "MIT",
   "scripts": {
-    "dev": "export NODE_ENV=development && nodemon src/index.js",
-    "build": "tsc ./src/index.ts --outDir dist",
+    "dev": "export NODE_ENV=development && nodemon dist/src/index.js",
+    "build": "tsc ./src/index.ts --sourcemap --outDir dist",
     "serve": "export NODE_ENV=production && node dist/src/index.js",
     "clean": "rm -rf dist && mkdir dist"
   },
