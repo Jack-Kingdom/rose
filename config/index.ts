@@ -3,7 +3,13 @@ import productionConfig from './production'
 import testConfig from './test'
 
 interface configInterface {
-    [key: string]: number | string | boolean
+
+    // special value type
+    mongodbUrl: string,
+
+    // common value type
+    [key: string]: number | string | boolean,
+
 }
 
 /**
