@@ -12,6 +12,7 @@
     "clean": "rm -rf dist && mkdir dist"
   },
   "dependencies": {
+    "@types/validator": "^6.3.0",
     "body-parser": "^1.17.2",
     "glob": "^7.1.2",
     "koa": "^2.3.0",
