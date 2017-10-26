@@ -9,7 +9,8 @@
     "dev": "export NODE_ENV=development && nodemon dist/src/index.js",
     "build": "tsc ./src/index.ts --sourcemap --outDir dist",
     "serve": "export NODE_ENV=production && node dist/src/index.js",
-    "clean": "rm -rf dist && mkdir dist"
+    "clean": "rm -rf dist && mkdir dist",
+    "test":"node dist/src/persistence/models/index.js"
   },
   "dependencies": {
     "@types/validator": "^6.3.0",
