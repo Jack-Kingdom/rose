@@ -19,24 +19,20 @@ articleRouter.post("/articles", (ctx, next) => {
 
 });
 
-// articleRouter.param("uuid", function* (uuid, next) {
-//     console.log("here");
-//     this.article = models.Article.findOne({uuid});
-//     if (!this.article) return this.body = JSON.stringify({success: false, msg: "Not Found"});
-//     yield next;
-//
-// }).delete("/articles/:uuid", async (ctx, next) => {
-//
-// }).put("/articles/:uuid", async (ctx, next) => {
-//
-// }).get("/articles/:uuid", async (ctx, next) => {
-//
-// });
+articleRouter.delete("/articles/:uuid", async (ctx, next) => {
+
+});
+
+articleRouter.put("/articles/:uuid", async (ctx, next) => {
+
+});
 
 articleRouter.get("/articles/:uuid", async (ctx, next) => {
-    // ctx.res.statusCode = 200;
-    console.log(ctx.params);
-    ctx.body = "hello";
+    const article = await models.Article.findOne({uuid: ctx.params.uuid});
+    if (!article) return ctx.body = {success: false, msg: "not found"};
+    else {
+        // todo check login or not
+    }
 });
 
 articleRouter.get("/articles", async (ctx, next) => {
