@@ -2,7 +2,7 @@ const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
 const json = require("koa-json");
 const restRouter = require("./rest");
-const authRouter = require("./auth/index");
+const authRouter = require("./auth");
 
 const apiRouter = new Router();
 apiRouter.use(bodyParser());

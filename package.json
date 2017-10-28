@@ -6,9 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon src/index.js",
-    "build": "tsc ./src/index.ts --sourcemap --outDir dist --lib es2015",
     "serve": "export NODE_ENV=production && node dist/src/index.js",
-    "clean": "rm -rf dist && mkdir dist",
     "test": "node dist/src/persistence/models/index.js"
   },
   "dependencies": {
@@ -24,17 +22,7 @@
     "validator": "^8.0.0"
   },
   "devDependencies": {
-    "@types/koa": "^2.0.39",
-    "@types/koa-bodyparser": "^3.0.25",
-    "@types/koa-json": "^2.0.17",
-    "@types/koa-router": "^7.0.23",
-    "@types/koa-session": "^3.0.5",
-    "@types/mongodb": "^2.2.15",
-    "@types/mongoose": "^4.7.24",
-    "@types/node": "^8.0.46",
-    "@types/validator": "^6.3.0",
     "gulp": "^3.9.1",
-    "nodemon": "^1.11.0",
-    "typescript": "^2.5.3"
+    "nodemon": "^1.11.0"
   }
 }

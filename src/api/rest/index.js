@@ -1,8 +1,8 @@
 const Router = require("koa-router");
-const v1Router = require("./v1/index");
+const articleRouter = require("./article");
 
 const restRouter = new Router();
 
-restRouter.use("/v1", v1Router.routes());
+restRouter.use(articleRouter.routes());
 
 module.exports = restRouter;

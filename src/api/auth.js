@@ -1,8 +1,8 @@
 const crypto = require("crypto");
 const Router = require("koa-router");
 const isEmail = require('validator/lib/isEmail');
-const config = require("../../../../config");
-const models = require("../../../persistence/models");
+const config = require("../../config/index");
+const models = require("../persistence/models/index");
 
 const _sha256 = (msg) => {
     const hash = crypto.createHash('sha256');

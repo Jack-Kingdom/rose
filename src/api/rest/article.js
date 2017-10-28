@@ -1,5 +1,5 @@
 const Router = require("koa-router");
-const models = require("../../../persistence/models");
+const models = require("../../persistence/models/index");
 
 const articleRouter = new Router();
 
@@ -9,20 +9,25 @@ articleRouter.post("/articles", (ctx, next) => {
 
 });
 
-articleRouter.delete("/articles/:id", async (ctx, next) => {
-    if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
+articleRouter
+    .param("id", async (id, ctx, next) => {
+        this.article = await models.Article.findOne({_id: id}).populate('tags');
+        if (!this.article) return ctx.body = {success: false, msg: "not found"};
+        else next();
+    })
+    .delete("/articles/:id", async (ctx, next) => {
+        if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
 
-});
-
-articleRouter.put("/articles/:id", async (ctx, next) => {
-    if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
-});
-
-articleRouter.get("/articles/:id", async (ctx, next) => {
-    const article = await models.Article.findOne({_id: ctx.params.id}).populate('tags');
-    if (article && (article.status === "published" || ctx.session.signed)) return ctx.body = article.toJSON();
-    else return ctx.body = {success: false, msg: "not found"};
-});
+    })
+    .put("/articles/:id", async (ctx, next) => {
+        if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
+    })
+    .get("/articles/:id", async (ctx, next) => {
+        if (this.article && (this.article.status === "published" || ctx.session.signed))
+            return ctx.body = this.article.toJSON();
+        else
+            return ctx.body = {success: false, msg: "not found"};
+    });
 
 articleRouter.get("/articles", async (ctx, next) => {
     // ctx.res.statusCode = 200;
