@@ -1,6 +1,14 @@
-import * as mongoose from 'mongoose'
-import * as isEmail from 'validator/lib/isEmail'
-import dbConnection from '../database'
+import * as mongoose from 'mongoose';
+import {Document, Schema, Model, model} from "mongoose";
+import * as isEmail from 'validator/lib/isEmail';
+import dbConnection from '../database';
+
+interface accountInterface {
+    email: string
+    firstName: string
+    createdAt: number
+    lastLogin: number
+}
 
 const Types = mongoose.Schema.Types;
 const AccountSchema = new mongoose.Schema({
@@ -25,4 +33,14 @@ const AccountSchema = new mongoose.Schema({
     versionKey: false
 });
 
-export default dbConnection.model('account', AccountSchema)
+AccountSchema.pre("save", next => {
+    const now = Date.now();
+
+    this.lastLogin = now;
+    if (!this.createdAt) this.createdAt = now;
+
+    next();
+
+});
+
+export default dbConnection.model('account', AccountSchema);
