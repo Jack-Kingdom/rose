@@ -9,10 +9,3 @@ yarn.lock
 
 # installed packages
 node_modules/
-
-# typescript compiled file
-src/*.js
-config/*.js
-
-# build file
-dist
