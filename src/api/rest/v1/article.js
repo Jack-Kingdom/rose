@@ -1,38 +1,27 @@
-import * as Router from "koa-router"
-import models from '../../persistence/models'
+const Router = require("koa-router");
+const models = require("../../../persistence/models");
 
 const articleRouter = new Router();
 
-enum articleStatus {
-    'published', 'draft', 'removed'
-}
-
-interface articleArgsInterface {
-    title: string
-    content: string
-    renderedContent: string
-    status: articleStatus
-    allowComments: boolean
-}
-
 articleRouter.post("/articles", (ctx, next) => {
+    if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
+
 
 });
 
-articleRouter.delete("/articles/:uuid", async (ctx, next) => {
+articleRouter.delete("/articles/:id", async (ctx, next) => {
+    if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
 
 });
 
-articleRouter.put("/articles/:uuid", async (ctx, next) => {
-
+articleRouter.put("/articles/:id", async (ctx, next) => {
+    if (!ctx.session.signed) return ctx.body = {success: false, msg: "please logging first"};
 });
 
-articleRouter.get("/articles/:uuid", async (ctx, next) => {
-    const article = await models.Article.findOne({uuid: ctx.params.uuid});
-    if (!article) return ctx.body = {success: false, msg: "not found"};
-    else {
-        // todo check login or not
-    }
+articleRouter.get("/articles/:id", async (ctx, next) => {
+    const article = await models.Article.findOne({_id: ctx.params.id}).populate('tags');
+    if (article && (article.status === "published" || ctx.session.signed)) return ctx.body = article.toJSON();
+    else return ctx.body = {success: false, msg: "not found"};
 });
 
 articleRouter.get("/articles", async (ctx, next) => {
@@ -69,4 +58,4 @@ articleRouter.get("/articles", async (ctx, next) => {
 //     return articles.map((article) => article.toObject())
 // }
 
-export default articleRouter;
+module.exports = articleRouter;

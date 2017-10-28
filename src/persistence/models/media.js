@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose'
-import dbConnection from '../database'
+const mongoose = require("mongoose");
+const dbConnection = require("../database");
 
 const Types = mongoose.Schema.Types;
 const mediaSchema = new mongoose.Schema({
@@ -16,4 +16,4 @@ const mediaSchema = new mongoose.Schema({
     versionKey: false
 });
 
-export default dbConnection.model('media', mediaSchema)
+module.exports = dbConnection.model('media', mediaSchema);

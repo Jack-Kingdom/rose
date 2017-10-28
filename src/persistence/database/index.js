@@ -1,8 +1,8 @@
-import * as mongoose from 'mongoose'
-import config from '../../../config'
+const mongoose = require("mongoose");
+const config = require("../../../config");
 
 // plug in ES6 native promise manager to sweep warning
-// mongoose.Promise = Promise
+mongoose.Promise = Promise;
 
 const options = {
     useMongoClient: true
@@ -10,4 +10,4 @@ const options = {
 
 const dbConnection = mongoose.createConnection(config.mongodbUrl, options);
 
-export default dbConnection;
+module.exports = dbConnection;

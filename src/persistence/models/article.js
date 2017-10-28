@@ -1,9 +1,7 @@
-import * as mongoose from 'mongoose';
-import * as uuid from 'uuid';
-import dbConnection from '../database';
+const mongoose = require("mongoose");
+const dbConnection = require("../database");
 
 const Types = mongoose.Schema.Types;
-
 const ArticleSchema = new mongoose.Schema({
     title: {
         type: Types.String,
@@ -34,8 +32,7 @@ ArticleSchema.pre("save", next => {
     const now = Date.now();
     this.updatedAt = now;
     if (!this.createdAt) this.createdAt = now;
-    if (!this.uuid) this.uuid.
     next();
 });
 
-export default dbConnection.model('article', ArticleSchema)
+module.exports = dbConnection.model('article', ArticleSchema)

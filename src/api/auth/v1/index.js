@@ -1,16 +1,16 @@
-import * as crypto from 'crypto';
-import * as Router from "koa-router";
-import * as isEmail from 'validator/lib/isEmail';
-import config from '../../../../config';
-import models from '../../../persistence/models';
+const crypto = require("crypto");
+const Router = require("koa-router");
+const isEmail = require('validator/lib/isEmail');
+const config = require("../../../../config");
+const models = require("../../../persistence/models");
 
-const _sha256 = (msg: string) => {
+const _sha256 = (msg) => {
     const hash = crypto.createHash('sha256');
     hash.update(msg);
     return hash.digest('hex')
 };
 
-const _hashPass = (email: string, password: string) => _sha256(_sha256(email) + _sha256(password));
+const _hashPass = (email, password) => _sha256(_sha256(email) + _sha256(password));
 
 const authRouter = new Router();
 
@@ -46,11 +46,11 @@ authRouter.post("/login", async (ctx, next) => {
 });
 
 authRouter.post("/logout", async (ctx, next) => {
-    if(ctx.session.signed){
+    if (ctx.session.signed) {
         ctx.session.signed = false;
         return ctx.body = {success: true};
-    }else{
-        return ctx.body = {success:false,msg:"please sign in first"}
+    } else {
+        return ctx.body = {success: false, msg: "please sign in first"}
     }
 });
 
@@ -61,15 +61,13 @@ authRouter.post("/changePassword", async (ctx, next) => {
     if (newPassword.length < 8) return ctx.body = {success: false, msg: "password too short"};
 
     const account = await models.Account.findOne({email});
-    if(account && account.password == _hashPass(email,oldPassword)){
+    if (account && account.password === _hashPass(email, oldPassword)) {
         account.password = _hashPass(email, newPassword);
         await account.save();
         return ctx.body = {success: true};
-    }else{
-        return ctx.body = {success:false,msg: "email or password not match"}
+    } else {
+        return ctx.body = {success: false, msg: "email or password not match"}
     }
 });
 
-export default authRouter;
-
-
+module.exports = authRouter;
