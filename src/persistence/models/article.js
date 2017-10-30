@@ -22,17 +22,13 @@ const ArticleSchema = new mongoose.Schema({
         type: Types.Boolean,
         defaultValue: true
     },
-    createdAt: Types.Number,
+    createdAt: {
+        type: Types.Number,
+        default: Date.now()
+    },
     updatedAt: Types.Number
 }, {
     versionKey: false
 });
 
-ArticleSchema.pre("save", next => {
-    const now = Date.now();
-    this.updatedAt = now;
-    if (!this.createdAt) this.createdAt = now;
-    next();
-});
-
-module.exports = dbConnection.model('article', ArticleSchema)
+module.exports = dbConnection.model('article', ArticleSchema);
