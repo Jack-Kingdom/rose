@@ -1,5 +1,5 @@
 module.exports = {
-    port: 3000,
+    port: 23570,
     session_secret: 'secret string',
     // mongodbUrl: 'mongodb://192.168.1.107:27017/DevRose',
     mongodbUrl: 'mongodb://192.168.4.60:27017/DevRose',

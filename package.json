@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon src/index.js",
-    "serve": "export NODE_ENV=production && node dist/src/index.js",
+    "serve": "export NODE_ENV=production && node src/index.js",
     "test": "node dist/src/persistence/models/index.js"
   },
   "dependencies": {
