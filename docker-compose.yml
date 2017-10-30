@@ -1,0 +1,10 @@
+version: '3'
+services:
+  rose:
+    build: .
+    ports:
+     - "127.0.0.1:23570:23570"
+  mongo:
+    image: "mongo:latest"
+  nginx:
+    image: "nginx:alpine"
