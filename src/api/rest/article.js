@@ -1,4 +1,5 @@
 const Router = require("koa-router");
+const {ObjectId} = require('mongodb');
 const models = require("../../persistence/models/index");
 
 const articleRouter = new Router();
@@ -11,7 +12,7 @@ articleRouter.post("/articles", (ctx, next) => {
 
 articleRouter
     .param("id", async (id, ctx, next) => {
-        this.article = await models.Article.findOne({_id: id}).populate('tags');
+        this.article = await models.Article.findOne({_id: ObjectId.isValid(id) ? id : null}).populate('tags');
         if (!this.article) return ctx.body = {success: false, msg: "not found"};
         else next();
     })
