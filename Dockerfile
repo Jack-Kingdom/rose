@@ -1,5 +1,3 @@
-MAINTAINER Jack email@qiaohong.org
-
 FROM node:alpine
 
 # cp code and install packages
@@ -15,4 +13,4 @@ VOLUME ["./config"]
 # run application
 ENV NODE_ENV production
 WORKDIR /root/rose
-CMD node src/index.js
+CMD node src/index.js 1>std.out 2>err.out
