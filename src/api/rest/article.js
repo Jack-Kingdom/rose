@@ -70,33 +70,4 @@ articleRouter.get("/articles", async (ctx, next) => {
     return ctx.body = format(200, articles);
 });
 
-// async function remove(uuid: string) {
-//
-//     const obj = await models.Article.findOne({uuid: uuid});
-//     if (!obj) return false;
-//     await obj.remove();
-//     return true;
-// }
-//
-// async function update(uuid: string, args: articleArgsInterface) {
-//
-//     const obj = await models.Article.findOne({uuid: uuid});
-//     if (!obj) return false;
-//
-//     // todo pass
-//
-//     await obj.save();
-//     return true;
-// }
-//
-// async function retrieve(uuid: string) {
-//
-// }
-//
-// async function multipleRetrieve(order: string, offset: number, limit: number, conditions = {}) {
-//
-//     const articles = await models.Article.find(conditions).sort(order).skip(offset).limit(limit);
-//     return articles.map((article) => article.toObject())
-// }
-
 module.exports = articleRouter;
