@@ -3,6 +3,12 @@ const dbConnection = require("../database");
 
 const Types = mongoose.Schema.Types;
 const ArticleSchema = new mongoose.Schema({
+    slug: {
+        type:Types.String,
+        required: true,
+        unique: true,
+        index: true,
+    },
     title: {
         type: Types.String,
         default: 'Untitled'

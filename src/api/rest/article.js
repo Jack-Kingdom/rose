@@ -22,17 +22,17 @@ articleRouter.post("/articles", async (ctx, next) => {
 });
 
 articleRouter
-    .param("id", async (id, ctx, next) => {
-        this.article = await models.Article.findOne({_id: ObjectId.isValid(id) ? id : null}).populate('tags');
+    .param("slug", async (slug, ctx, next) => {
+        this.article = await models.Article.findOne({slug}).populate('tags');
         if (!this.article) return ctx.body = format(404);
         else next();
     })
-    .delete("/articles/:id", async (ctx, next) => {
+    .delete("/articles/:slug", async (ctx, next) => {
         if (!ctx.session.signed) return ctx.body = format(401);
         await this.article.remove();
         return ctx.body = format(200);
     })
-    .put("/articles/:id", async (ctx, next) => {
+    .put("/articles/:slug", async (ctx, next) => {
         if (!ctx.session.signed) return ctx.body = format(401);
         const articleFields = Object.keys(models.Article.schema.obj);
         if (!(Object.keys(ctx.request.body).every(arg => articleFields.includes(arg)))) {
@@ -47,7 +47,7 @@ articleRouter
             }
         }
     })
-    .get("/articles/:id", async (ctx, next) => {
+    .get("/articles/:slug", async (ctx, next) => {
         if (this.article.status === "published" || ctx.session.signed)
             return ctx.body = format(200, this.article.toJSON());
         else
