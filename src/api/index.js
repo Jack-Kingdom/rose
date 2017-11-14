@@ -9,7 +9,7 @@ apiRouter.use(json({pretty: false}));
 apiRouter.use(async (ctx, next) => {
     const start_timestamp = Date.now();
     await next();
-    console.log(`url: ${ctx.req.url}, method: ${ctx.req.method}, status code: ${ctx.res.statusCode}, time cost: ${Date.now() - start_timestamp}`)
+    console.log(`${ctx.req.url} ${ctx.req.method} ${ctx.res.statusCode} ${Date.now() - start_timestamp}`)
 });
 
 apiRouter.use("/api/rest", require("./rest").routes());
