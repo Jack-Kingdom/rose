@@ -11,19 +11,19 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
-    "koa": "^2.3.0",
+    "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-json": "^2.0.2",
     "koa-morgan": "^1.0.1",
-    "koa-router": "^7.2.1",
-    "koa-session": "^5.5.0",
+    "koa-router": "^7.3.0",
+    "koa-session": "^5.5.1",
     "mongodb": "^2.2.33",
-    "mongoose": "^4.12.4",
+    "mongoose": "^4.13.8",
     "multer": "^1.3.0",
     "validator": "^8.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.14.7"
   }
 }
