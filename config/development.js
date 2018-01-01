@@ -1,8 +1,7 @@
 module.exports = {
     port: 23570,
     session_secret: 'secret string',
-    // mongodbUrl: 'mongodb://192.168.1.107:27017/DevRose',
-    mongodbUrl: 'mongodb://192.168.4.60:27017/DevRose',
+    mongodbUrl: 'mongodb://180.79.242.195:27017/DevRose',
     openRegister: true,
     graphqlMaxDepth: 1,
 
