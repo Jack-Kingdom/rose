@@ -1,5 +1,11 @@
 module.exports = {
     session_secret: 'secret string',
-    mongodbUrl: 'mongodb://localhost:27017/Rose',
-    openRegister: false // not supported on current version, please keep it false
+
+    db_config: {
+        connectionLimit: 25,
+        host: 'localhost',
+        user: 'root',
+        password: 'qiaohong',
+        database: 'rose'
+    }
 };
